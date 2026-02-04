@@ -1,0 +1,41 @@
+---
+layout: ../layouts/AboutLayout.astro
+title: "About"
+description: "George Diab's home on the web — sharing experiments, notes, and projects."
+---
+
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+<div class="flex flex-col md:flex-row gap-8 items-start">
+  <div class="w-full md:w-auto md:flex-shrink-0 md:max-w-[281px]">
+    <img src="/avatar-placeholder.svg" alt="George Diab placeholder avatar" class="w-full h-auto rounded-lg bg-slate-900/10 p-8" />
+  </div>
+  <div class="flex-1 min-w-0">
+    <p>Hi, I'm George Diab. I'm building this space to collect what I'm learning, prototypes that ship, and ideas that keep resurfacing.</p>
+    <p>Over time you'll find posts about product experiments, engineering workflows, and the occasional rabbit hole.</p>
+    <p>For now I'm laying the groundwork — wiring up the site, deciding on rhythm, and keeping things simple.</p>
+    <p>If you're working on something interesting or just want to say hi, I'd love to hear from you.</p>
+  </div>
+</div>
+
+## GitHub Activity
+
+<div class="bg-secondary p-0 rounded-lg">
+  <img 
+    src="https://ghchart.rshah.org/georgediab" 
+    alt="George's GitHub Contribution Graph" 
+    class="w-full"
+    style="max-width: 100%; height: auto;"
+    loading="lazy"
+  />
+</div>
+
+I build what excites me and try to open source as much as possible.
+
+[Follow me on GitHub](https://github.com/gdiab) or reach out via [email](mailto:me@georgediab.com).
+
+## Stay Connected
+
+<NewsletterForm />
+
+If you'd like to connect or have questions about my work, feel free to reach out through any of the links below.

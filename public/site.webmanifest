@@ -1,0 +1,21 @@
+{
+  "name": "George Diab",
+  "short_name": "georgediab",
+  "description": "Ideas, experiments, and build notes from georgediab.com",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/avatar-placeholder.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0ea5e9",
+  "background_color": "#ffffff"
+}
