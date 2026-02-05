@@ -7,12 +7,10 @@ export interface Props {
 }
 
 const { type, data } = Astro.props;
-const siteUrl = SITE.website.endsWith("/")
-  ? SITE.website.slice(0, -1)
-  : SITE.website;
+const siteUrl = SITE.website.endsWith("/") ? SITE.website.slice(0, -1) : SITE.website;
 const ogImageUrl = new URL(SITE.ogImage, SITE.website).toString();
 const socialLinks = SOCIALS.filter((social) => social.active && social.icon !== "mail").map(
-  (social) => social.href,
+  (social) => social.href
 );
 
 let structuredData = {};
