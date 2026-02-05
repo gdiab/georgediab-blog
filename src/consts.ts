@@ -37,7 +37,7 @@ export const SITE: Site = {
   profile: "https://georgediab.com/about",
   desc: "Ideas, experiments, and build notes from George Diab. Shipping in public from georgediab.com.",
   title: "George Diab",
-  ogImage: "avatar-placeholder.svg",
+  ogImage: "george-diab.png",
   twitterHandle: "@geediab",
   lightAndDarkMode: true,
   postPerIndex: 10,
