@@ -49,12 +49,12 @@ const criticalCSS = getPageCriticalCSS(Astro.url.pathname);
 <!-- Theme Color -->
 <meta
   name="theme-color"
-  content="#0ea5e9"
+  content="#f8fbff"
   media="(prefers-color-scheme: light)"
 />
 <meta
   name="theme-color"
-  content="#1f2937"
+  content="#0b1020"
   media="(prefers-color-scheme: dark)"
 />
 
@@ -88,9 +88,13 @@ const criticalCSS = getPageCriticalCSS(Astro.url.pathname);
 <!-- Sitemap -->
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<!-- Font Preloading -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
 
 <!-- Critical CSS -->
 <style is:inline set:html={criticalCSS}></style>
