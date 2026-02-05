@@ -6,25 +6,29 @@ export interface Props {
 const { variant = "default" } = Astro.props;
 ---
 
-<div class={variant === 'default' ? 'newsletter-box bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6 my-8' : 'newsletter-compact mt-6'}>
+<div
+  class={variant === 'default' ? 'newsletter-box bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6 my-8' : 'newsletter-compact mt-6'}
+  data-placeholder="future-offer"
+  hidden
+>
   {variant === 'default' && (
     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      Newsletter subscriptions are coming soon. Until then you can follow via RSS or drop me a line.
+      Placeholder: future offer or updates will go here.
     </p>
   )}
 
   <div class="flex flex-col sm:flex-row gap-3 text-sm text-gray-600 dark:text-gray-400">
     <a
-      href="/rss.xml"
+      href="#"
       class="px-4 py-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md text-center hover:border-accent"
     >
-      Subscribe via RSS
+      Primary CTA (future)
     </a>
     <a
-      href="mailto:me@georgediab.com"
+      href="#"
       class="px-4 py-2 border border-dashed border-gray-300 dark:border-gray-600 rounded-md text-center hover:border-accent"
     >
-      Send me an email
+      Secondary CTA (future)
     </a>
   </div>
 </div>
