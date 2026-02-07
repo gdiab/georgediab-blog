@@ -86,10 +86,51 @@ In practice, many of the best skills orchestrate multiple MCP tools.
 
 Example: “Prepare weekly engineering metrics”
 
-- MCP tools: query Jira, fetch GitHub PR stats, pull incident data
-- Skill: a scripted procedure that normalizes data, computes metrics, and outputs a report format your org already trusts
+Here’s what the split looks like when you have to ship a report every week and you want it to be boringly consistent.
+
+**MCP tools (connectivity):**
+
+- `jira.search` → pull completed issues for the week (with story points, team, etc.)
+- `github.pull_requests` → count merged PRs, median cycle time, review latency
+- `pagerduty.incidents` (or your incident system) → pull incident counts and severities
+- `confluence.getPage` (or Notion/Drive) → fetch the last report as a reference
+
+These tools answer: how do I reach the systems safely, with permissions and logging?
+
+**A skill (expertise/procedure):**
+
+The skill is where you encode what “weekly metrics” means for your org:
+
+- normalization rules (teams renamed, services mapped, what counts as “production incident”)
+- definitions (cycle time start/end, what qualifies as “blocked”)
+- formatting (the exact report template your leaders expect)
+- guardrails (must include: trend vs last week, top 3 drivers, and a short risk section)
+- a script that composes the above into a single Markdown output
+
+In practice, the skill often orchestrates multiple MCP calls and then runs code locally to compute the final metrics.
 
 MCP connects you. Skills standardize you.
+
+## A quick diagram (how the layers fit)
+
+If you’re trying to explain this stack to a team, a simple picture helps:
+
+- **Runtime**: files + code execution + context management
+- **MCP servers**: connectors to systems and data
+- **Skills**: reusable procedure and domain expertise
+
+In other words:
+
+- MCP is the path to the data.
+- Skills are the path to repeatable outcomes.
+
+## Resources and “rabbit holes”
+
+If you want examples of what people are packaging as skills, a decent starting point is:
+
+- Anthropic skills repo: https://github.com/anthropics/skills
+
+(If you’ve got other aggregators you like, I’ll add them here. This space is evolving fast and the “best” list will change.)
 
 ## Decision framework: should this be an MCP server or a skill?
 
