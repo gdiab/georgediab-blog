@@ -12,7 +12,9 @@ Most of us have had the same experience with AI agents: they can be brilliant in
 
 That frustration is not primarily a model intelligence problem. It’s a reliability and expertise problem.
 
-An agent can write code, reason about tradeoffs, and stitch together a workflow. But when the work requires domain rules, organizational conventions, or “how we do it here” context, the agent often behaves like a genius intern seeing your world for the first time. You can coach it. You can paste in checklists. It might do a great job once. Then it drifts.
+An agent can write code, reason about tradeoffs, and stitch together a workflow. But when the work requires domain rules, organizational conventions, or “how we do it here” context, the agent often behaves like a talented intern seeing your system for the first time. You can coach it. You can paste in checklists. It might do a great job once. Then it drifts.
+
+That drift is what kills adoption. Teams will tolerate an occasional mistake from a human if the process is learnable and stable. They won’t tolerate a tool that changes its mind every week about what “good” looks like.
 
 So the question becomes: how do we turn one-off brilliance into consistent execution?
 
@@ -28,7 +30,7 @@ A lot of agent work is converging on a surprisingly universal base:
 
 Once an agent can pull data from APIs, organize artifacts in a filesystem, run analysis, and generate outputs in standard formats, you don’t need a bespoke “agent” per domain. Code becomes the universal interface to the digital world.
 
-But universality isn’t the same as expertise.
+That’s good news because it means you can reuse the same scaffolding across lots of problems. But it also makes a different limitation obvious.
 
 ## Intelligence isn’t expertise
 
@@ -36,46 +38,70 @@ If you’re doing taxes, you don’t want a superhuman mathematician re-deriving
 
 That’s the gap with many agents today. They’re capable, but not consistently aligned with the domain rules you actually care about.
 
-## What a “skill” is (and why the simplicity matters)
+In a real org, “domain rules” look like:
+
+- which repos count as “in scope” for a program,
+- what you consider a production incident,
+- your PR template requirements,
+- how you want weekly reporting formatted,
+- the tradeoffs your team prefers (when to refactor vs when to ship).
+
+If those rules live only in a conversation, you are training the agent from scratch every time.
+
+## What a skill is (and why the simplicity matters)
 
 In the simplest formulation, a skill is an organized folder that packages procedural knowledge an agent can reuse.
 
 That’s intentionally unglamorous.
 
-Folders are:
+Folders are easy to:
 
-- easy for humans to create and review,
-- easy to version in Git,
-- easy to share across a team,
-- and capable of holding both instructions and actual tools (scripts, templates, assets).
+- create and review,
+- version in Git,
+- share across a team,
+- and evolve over time.
 
-The key shift is that instead of asking the model to reinvent a workflow every time, you externalize the workflow as code and documentation. It can be executed, inspected, and improved.
+A good skill can include:
 
-If you notice the agent repeatedly writing the same helper script, that script should stop living as a transient idea in your chat history. It should live as a tool in a skill. Next time, you run it.
+- a `SKILL.md` that explains when to use it and the expected outputs,
+- scripts that do the repetitive work,
+- templates and examples,
+- and references that keep the procedure grounded.
 
-That turns prompting into productizing.
+The key shift is that instead of asking the model to reinvent a workflow every time, you externalize the workflow as code and documentation. It becomes executable, inspectable, and changeable.
+
+Here’s a concrete example. If your agent keeps generating release notes with the wrong structure, you can keep correcting it in chat, or you can ship a skill that includes:
+
+- the release notes template your org uses,
+- a script that pulls merged PR titles since the last tag,
+- a checklist for what must be included (risk, customer impact, rollout plan),
+- and a golden example that shows “this is what good looks like.”
+
+Now the agent has something stable to follow.
 
 ## Progressive disclosure: protect the context window
 
-One of the most practical design choices in a skills-based approach is progressive disclosure.
+If skills are going to scale, they need to stay out of the prompt until they’re needed.
 
-At runtime, the agent only needs to know that a skill exists and what it’s for. It does not need every instruction and every script injected into context all the time.
+That’s where progressive disclosure matters.
 
-So you expose lightweight metadata up front, and the agent pulls the full instructions only when it chooses to use the skill.
+At runtime, the agent only needs to know a skill exists and what it’s for. It does not need every instruction and script injected into context all the time.
 
-If you want an agent with dozens or hundreds of skills, this matters. The context window is finite and expensive. Progressive disclosure is how you keep a large capability surface without permanently bloating the prompt.
+So you expose lightweight metadata up front, and the agent pulls the full `SKILL.md` only when it chooses to use the skill.
+
+This is how you end up with a library of dozens or hundreds of procedures without turning every conversation into a bloated prompt.
 
 ## Why skills create leverage for teams
 
-Skills aren’t just a neat packaging trick. They change how teams operationalize AI:
+Skills aren’t just a packaging trick. They change how teams operationalize AI:
 
-- **Repeatability:** encode the happy path; reduce drift.
-- **Guardrails:** embed checks, defaults, and required outputs.
+- **Repeatability:** the happy path becomes explicit and reusable.
+- **Guardrails:** you can embed checks, defaults, and required outputs.
 - **Faster onboarding:** new engineers inherit a working library on day one.
 - **Institutional knowledge:** procedures become versioned artifacts, not tribal lore.
 - **Continuous improvement:** when a workflow fails, you update the skill and everyone benefits.
 
-In other words, skills turn AI usage from “a conversation” into “a system.”
+This is also where the conversation changes with leadership. Instead of “we’re trying an AI agent,” you can say, “we shipped three skills that standardize how we do X, Y, and Z, and we can review and improve them like any other software asset.”
 
 ## How to start (without boiling the ocean)
 
@@ -84,16 +110,18 @@ Start with one workflow your team repeats weekly:
 - writing release notes,
 - preparing a metrics report,
 - generating a PRD outline,
-- incident comms,
-- codebase migrations with your internal conventions.
+- incident communications,
+- migrations with your internal conventions.
 
 Create a skill folder with:
 
 1) a short README that lists triggers and expected outputs,
 2) one script that does the repetitive part,
-3) a small “golden output” example to sanity-check formatting.
+3) a small golden example to sanity-check formatting.
 
 Then use it for a week. The point is to create an improvement loop.
+
+A good starting constraint is to pick a workflow where the “definition of done” is annoying but stable. That makes it obvious when the skill is working.
 
 ## Where this goes next
 
@@ -104,7 +132,7 @@ As skills mature, the obvious next step is to treat them like software:
 - testing and evaluation,
 - dependency management.
 
-The moment you have that, you have a path to something agents struggle with on their own: consistent execution of expertise over time.
+Once you have that, you have a path to something agents struggle with on their own: consistent execution of expertise over time.
 
 ## Source
 
