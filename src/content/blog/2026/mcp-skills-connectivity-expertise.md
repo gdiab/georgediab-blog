@@ -6,133 +6,68 @@ draft: true
 tags: ["ai", "agents", "mcp", "skills", "architecture"]
 ---
 
-## The agent stack is starting to clarify
+I keep hearing “build an agent,” and I get why: it’s a useful shorthand. But in practice it becomes a junk drawer — model, prompt, tools, glue code, and hope. That’s fine for a demo. It’s rough when you want something you can trust, debug, and hand off.
 
-A lot of “agent” discussions collapse into a single blob: model, tools, prompts, integrations, and vibes.
+A better default is to build **skills**, and let the agent runtime be just that: a runtime. Skills are the unit of reliability. They’re small enough to review, specific enough to test, and reusable enough to justify the effort.
 
-In practice, the systems that feel dependable have a clearer separation of concerns. A pragmatic architecture that’s emerging looks like:
+## Don’t build an agent. Build a skill.
 
-1) a general agent runtime (code + filesystem + execution)
-2) MCP servers for connectivity
-3) a skills library for expertise and procedure
+If you’re an engineer learning this stack, here’s the framing that’s helped me the most:
 
-If you want agents to do real work reliably, you need all three.
+- The **runtime** is the engine.
+- **MCP** is the wiring to real systems.
+- **Skills** are the repeatable, reviewable procedures you actually care about.
 
-## The base layer: a general runtime
+When you build “an agent,” the layers tend to tangle. Debugging turns into guesswork and every change risks ripple effects. A skills-first approach keeps the layers separate so you can see what broke, swap parts, and move faster with less thrash.
 
-Start with what’s increasingly universal: an agent that can read and write files, run scripts, and manage artifacts.
+## The runtime is the engine
 
-Once an agent can:
+Start with the unglamorous bit: an agent that can read and write files, run scripts, and manage artifacts. It’s not exciting, but it’s the foundation that makes any of this practical.
 
-- pull data from APIs,
-- organize files in a workspace,
-- run Python for analysis,
-- and generate outputs in standard formats,
+Give an agent the ability to pull data from APIs, organize a workspace, run analysis code, and emit clean outputs, and you’ve unlocked a lot. It can handle real workflows without you building a custom “agent” for every domain.
 
-it can tackle a huge range of tasks without you inventing a bespoke agent for each domain.
+Just don’t confuse capability with reliability. A runtime expands what’s possible, but it won’t tell you which steps to take or how consistent the outcome will be.
 
-But universality alone doesn’t get you to predictable outcomes.
+## MCP is the wiring
 
-## MCP is the connectivity layer
+MCP (Model Context Protocol) is an open protocol for connecting LLM applications to external data sources and tools. I think of it as the adapter layer between your runtime and the real world. It gives you a standard shape for inputs, outputs, permissions, and logging so you can plug in a system without inventing a new integration every time.
 
-MCP (Model Context Protocol) is best understood as the connectivity standard.
+If your agent needs to query Jira, fetch a doc, or kick off a deployment, MCP is the right place to invest. It keeps the access layer explicit and auditable.
 
-It answers “how does the agent reach systems and data?”
+## Skills are the unit of reliability
 
-- How does it query Jira?
-- How does it read from a database safely?
-- How does it call a deployment tool?
-- How does it access internal docs?
+This is where the leverage shows up.
 
-MCP servers are where you put stable interfaces: inputs, outputs, permissions, and observable behavior.
+A skill is a small, organized bundle of instructions, scripts, and resources that an agent can load to perform a specific task the same way every time. Anthropic’s skills repo is a good concrete example: each skill lives in its own folder with a `SKILL.md` file that defines how it should be used.
 
-If you want the agent to access a system, MCP is usually the right abstraction.
+That packaging is the point. Skills capture “how we do this here” — the definitions, templates, guardrails, and scripts — in a way you can review, version, and reuse. That’s much closer to normal engineering than a giant prompt.
 
-## Skills are the expertise and procedure layer
+## Example: weekly engineering metrics (the boring kind you want)
 
-Now the missing part: what does the agent do with that access?
-
-This is where skills shine.
-
-A skill is an organized folder that packages procedural knowledge the agent can reuse. It can contain:
-
-- instructions and checklists,
-- scripts and utilities,
-- templates and examples,
-- assets and “definition of done” guardrails.
-
-The key distinction from MCP is that skills are not primarily about access. They’re about doing work the way you want, consistently.
-
-If MCP gives the agent hands, skills teach craft.
-
-## Why MCP and skills are complements (not competitors)
-
-A useful division of labor:
-
-- **MCP is “how to reach”**
-  - stable APIs and data access
-  - auth and permissions
-  - side effects and safety
-  - observability and constraints
-
-- **Skills are “how to do”**
-  - your team’s definition of “done”
-  - sequencing multi-step workflows
-  - formatting outputs
-  - validation steps
-  - repeatable scripts
-
-In practice, many of the best skills orchestrate multiple MCP tools.
-
-Example: “Prepare weekly engineering metrics”
-
-Here’s what the split looks like when you have to ship a report every week and you want it to be boringly consistent.
+Here’s how a skills-first approach plays out for a common workflow: a weekly engineering metrics report. The data lives in different systems. The judgment about what it means lives in your org. Keep those separate.
 
 **MCP tools (connectivity):**
 
-- `jira.search` → pull completed issues for the week (with story points, team, etc.)
-- `github.pull_requests` → count merged PRs, median cycle time, review latency
-- `pagerduty.incidents` (or your incident system) → pull incident counts and severities
-- `confluence.getPage` (or Notion/Drive) → fetch the last report as a reference
+- `jira.search` → completed issues for the week
+- `github.pull_requests` → merged PRs, cycle time, review latency
+- `pagerduty.incidents` → incident counts and severities
+- `confluence.getPage` (or Notion/Drive) → last report as reference
 
-These tools answer: how do I reach the systems safely, with permissions and logging?
+**A skill (procedure):**
 
-**A skill (expertise/procedure):**
-
-The skill is where you encode what “weekly metrics” means for your org:
+The skill encodes what “weekly metrics” means for *your* org:
 
 - normalization rules (teams renamed, services mapped, what counts as “production incident”)
 - definitions (cycle time start/end, what qualifies as “blocked”)
 - formatting (the exact report template your leaders expect)
-- guardrails (must include: trend vs last week, top 3 drivers, and a short risk section)
+- guardrails (must include: trend vs last week, top 3 drivers, short risk section)
 - a script that composes the above into a single Markdown output
 
-In practice, the skill often orchestrates multiple MCP calls and then runs code locally to compute the final metrics.
+MCP gets you the inputs. The skill produces a consistent, reviewable result.
 
-MCP connects you. Skills standardize you.
+## Decide where it belongs (fast)
 
-## A quick diagram (how the layers fit)
-
-If you’re trying to explain this stack to a team, a simple picture helps:
-
-- **Runtime**: files + code execution + context management
-- **MCP servers**: connectors to systems and data
-- **Skills**: reusable procedure and domain expertise
-
-In other words:
-
-- MCP is the path to the data.
-- Skills are the path to repeatable outcomes.
-
-## Resources and “rabbit holes”
-
-If you want examples of what people are packaging as skills, a decent starting point is:
-
-- Anthropic skills repo: https://github.com/anthropics/skills
-
-(If you’ve got other aggregators you like, I’ll add them here. This space is evolving fast and the “best” list will change.)
-
-## Decision framework: should this be an MCP server or a skill?
+Here’s the quick test I use:
 
 Build an **MCP server/tool** when:
 
@@ -148,19 +83,16 @@ Build a **skill** when:
 - you want versioned templates/scripts/checklists,
 - you want progressive disclosure so it’s not always in context.
 
-Often you do both: MCP for access, skill for procedure.
+Most real workflows use both. Let MCP handle access, and let skills define the procedure.
 
 ## Treat skills like software
 
-The moment skills matter, manage them like production assets:
+The moment a skill matters, manage it like production code. Give it an owner. Put it in version control. Review changes. Add simple tests or golden outputs. When a report or workflow depends on it, you want to know what changed before it surprises you.
 
-- versioning
-- code review
-- ownership
-- simple tests or golden outputs
-
-That’s how you move from “agents are cool” to “agents are dependable.”
+That’s how you move from “agents are cool” to “agents are dependable.” When the layers are clear, the work stops feeling like magic and starts feeling like engineering.
 
 ## Source
 
-- Video transcript source material: https://www.youtube.com/watch?v=CEvIs9y1uog
+- Video transcript source material: [https://www.youtube.com/watch?v=CEvIs9y1uog](https://www.youtube.com/watch?v=CEvIs9y1uog)
+- MCP specification: [https://modelcontextprotocol.info/specification/](https://modelcontextprotocol.info/specification/)
+- Anthropic skills repo: [https://github.com/anthropics/skills](https://github.com/anthropics/skills)
