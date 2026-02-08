@@ -40,6 +40,8 @@ This is where the leverage shows up.
 
 A skill is a small, organized bundle of instructions, scripts, and resources that an agent can load to perform a specific task the same way every time. Anthropic’s skills repo is a good concrete example: each skill lives in its own folder with a `SKILL.md` file that defines how it should be used.
 
+The detail that matters is that this is packaging, not magic. The runtime can see that a skill exists (and what it’s for), but it doesn’t need every instruction and script sitting in context all the time. When the agent decides it needs the procedure, it reads the `SKILL.md` and executes the scripts/resources in that folder. That progressive disclosure is how you end up with a library of reliable behaviors without bloating every prompt.
+
 That packaging is the point. Skills capture “how we do this here” — the definitions, templates, guardrails, and scripts — in a way you can review, version, and reuse. That’s much closer to normal engineering than a giant prompt.
 
 ## Example: weekly engineering metrics (the boring kind you want)
