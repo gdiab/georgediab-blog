@@ -48,26 +48,35 @@ That packaging is the point. Skills capture “how we do this here” — the de
 
 ## Example: weekly engineering metrics (the boring kind you want)
 
-Here’s how a skills-first approach plays out for a common workflow: a weekly engineering metrics report. The data lives in different systems. The judgment about what it means lives in your org. Keep those separate.
+Here’s how a skills-first approach plays out for a workflow that looks simple on the surface but gets political fast: weekly engineering metrics.
+
+You don’t just need data. You need a repeatable definition of “what counts” and a report format people will actually trust.
 
 **MCP tools (connectivity):**
 
-- `jira.search` → completed issues for the week
-- `github.pull_requests` → merged PRs, cycle time, review latency
-- `pagerduty.incidents` → incident counts and severities
-- `confluence.getPage` (or Notion/Drive) → last report as reference
+In our case, we’re starting with GitHub as the source of truth and using GitHub’s official MCP server in **read-only** mode. The MCP layer is responsible for:
+
+- finding pull requests in a time window,
+- reading PR details and review data,
+- (later) connecting Jira so “work shipped” can be correlated with PR activity.
+
+The important part isn’t the exact tool names, it’s the contract: MCP is the access layer and it’s swappable per client engagement.
 
 **A skill (procedure):**
 
-The skill encodes what “weekly metrics” means for *your* org:
+Then the “skills” layer captures what your org means by weekly metrics:
 
-- normalization rules (teams renamed, services mapped, what counts as “production incident”)
-- definitions (cycle time start/end, what qualifies as “blocked”)
-- formatting (the exact report template your leaders expect)
-- guardrails (must include: trend vs last week, top 3 drivers, short risk section)
-- a script that composes the above into a single Markdown output
+- which repos count for this engagement,
+- the default time window (for us: last 7 days, runnable any time),
+- definitions (what counts as merged vs closed, how to treat drafts, etc.),
+- formatting (the report template and required sections),
+- guardrails (what must be included so the report is usable).
 
-MCP gets you the inputs. The skill produces a consistent, reviewable result.
+One nice thing we saw when building `eng-metrics` is that skills don’t have to be fancy to be useful. Even a single onboarding skill that standardizes how a TL initializes a client engagement makes the whole workflow more reliable.
+
+Do we need a separate skill for “processing the MCP results?” Maybe. It depends on whether the interpretation is stable enough to codify. If you’re going to use the same checks every week (sanity checks, outlier handling, what to highlight), that’s a great candidate for a second skill.
+
+MCP gets you the inputs. Skills make the outcomes repeatable.
 
 ## Decide where it belongs (fast)
 
@@ -93,4 +102,4 @@ Most real workflows use both. Let MCP handle access, and let skills define the p
 
 The moment a skill matters, manage it like production code. Give it an owner. Put it in version control. Review changes. Add simple tests or golden outputs. When a report or workflow depends on it, you want to know what changed before it surprises you.
 
-That’s how you move from “agents are cool” to “agents are dependable.” When the layers are clear, the work stops feeling like magic and starts feeling like engineering.
+That's how you move from "agents are cool" to "agents are dependable." When the layers are clear, the work stops feeling like magic and starts feeling like engineering.
