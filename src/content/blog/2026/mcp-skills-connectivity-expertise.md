@@ -46,38 +46,6 @@ The runtime can see that a skill exists (and what it’s for), but it doesn’t 
 
 That packaging is the point. Skills capture “how we do this here” — the definitions, templates, guardrails, and scripts — in a way you can review, version, and reuse. That’s much closer to normal engineering than a giant prompt.
 
-## Example: weekly engineering metrics (the boring kind you want)
-
-Here’s how a skills-first approach plays out for a workflow that looks simple on the surface but gets political fast: weekly engineering metrics.
-
-You don’t just need data. You need a repeatable definition of “what counts” and a report format people will actually trust.
-
-**MCP tools (connectivity):**
-
-In our case, we’re starting with GitHub as the source of truth and using GitHub’s official MCP server in **read-only** mode. The MCP layer is responsible for:
-
-- finding pull requests in a time window,
-- reading PR details and review data,
-- (later) connecting Jira so “work shipped” can be correlated with PR activity.
-
-The important part isn’t the exact tool names, it’s the contract: MCP is the access layer and it’s swappable per client engagement.
-
-**A skill (procedure):**
-
-Then the “skills” layer captures what your org means by weekly metrics:
-
-- which repos count for this engagement,
-- the default time window (for us: last 7 days, runnable any time),
-- definitions (what counts as merged vs closed, how to treat drafts, etc.),
-- formatting (the report template and required sections),
-- guardrails (what must be included so the report is usable).
-
-One nice thing we saw when building `eng-metrics` is that skills don’t have to be fancy to be useful. Even a single onboarding skill that standardizes how a TL initializes a client engagement makes the whole workflow more reliable.
-
-Do we need a separate skill for “processing the MCP results?” Maybe. It depends on whether the interpretation is stable enough to codify. If you’re going to use the same checks every week (sanity checks, outlier handling, what to highlight), that’s a great candidate for a second skill.
-
-MCP gets you the inputs. Skills make the outcomes repeatable.
-
 ## Decide where it belongs (fast)
 
 Here’s the quick test I use:
