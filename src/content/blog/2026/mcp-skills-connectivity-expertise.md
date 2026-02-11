@@ -2,7 +2,7 @@
 title: "MCP + Skills = connectivity + expertise"
 description: "A pragmatic agent stack: runtime + MCP servers for access + skills for repeatable procedure. How to decide what to build where."
 pubDatetime: 2026-02-06T20:56:03-08:00
-draft: true
+draft: false
 tags: ["ai", "agents", "mcp", "skills", "architecture"]
 ---
 
@@ -34,11 +34,13 @@ MCP (Model Context Protocol) is an open protocol for connecting LLM applications
 
 If your agent needs to query Jira, fetch a doc, or kick off a deployment, MCP is the right place to invest. It keeps the access layer explicit and auditable.
 
+You *can* skip MCP and wire external systems directly from skills, and plenty of teams do that early on. For a single runtime and a small set of workflows, that can be faster to ship. The trade-off shows up later. Integrations become more custom, harder to port between runtimes, and less consistent to audit. My default is pretty simple. If this is a prototype or one-off workflow, skills-only is fine. If you expect reuse across teams, tools, or agent frameworks, MCP pays for itself.
+
 ## Skills are the unit of reliability
 
 This is where the leverage shows up.
 
-A skill is a small, organized bundle of instructions, scripts, and resources that an agent can load to perform a specific task the same way every time. Anthropic’s skills repo is a good concrete example: each skill lives in its own folder with a `SKILL.md` file that defines how it should be used.
+A skill is a small, organized bundle of instructions, scripts, and resources that an agent can load to perform a specific task the same way every time. Anthropic’s [skill-creator example](https://github.com/anthropics/skills/tree/main/skills/skill-creator) is a good concrete reference. Each skill lives in its own folder with a `SKILL.md` file that defines how it should be used.
 
 The runtime can see that a skill exists (and what it’s for), but it doesn’t need every instruction and script sitting in context all the time. When the agent decides it needs the procedure, it reads the `SKILL.md` and executes the scripts/resources in that folder. That progressive disclosure is how you end up with a library of reliable behaviors without bloating every prompt.
 
@@ -71,7 +73,7 @@ MCP gets you the inputs. The skill produces a consistent, reviewable result.
 
 Here’s the quick test I use:
 
-Build an **MCP server/tool** when:
+Build or [find](https://code.claude.com/docs/en/mcp) an **MCP server/tool** when:
 
 - you need durable access to an external system,
 - permissions and safety matter,
@@ -92,9 +94,3 @@ Most real workflows use both. Let MCP handle access, and let skills define the p
 The moment a skill matters, manage it like production code. Give it an owner. Put it in version control. Review changes. Add simple tests or golden outputs. When a report or workflow depends on it, you want to know what changed before it surprises you.
 
 That’s how you move from “agents are cool” to “agents are dependable.” When the layers are clear, the work stops feeling like magic and starts feeling like engineering.
-
-## Source
-
-- Video transcript source material: [https://www.youtube.com/watch?v=CEvIs9y1uog](https://www.youtube.com/watch?v=CEvIs9y1uog)
-- MCP specification: [https://modelcontextprotocol.info/specification/](https://modelcontextprotocol.info/specification/)
-- Anthropic skills repo: [https://github.com/anthropics/skills](https://github.com/anthropics/skills)
