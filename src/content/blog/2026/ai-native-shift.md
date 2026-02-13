@@ -105,7 +105,7 @@ Right now, AI can feel almost unreal on short, well-scoped tasks.
 
 Longer tasks are still harder. The failure mode I see is less about raw intelligence and more about stamina: maintaining context, staying aligned, not wandering, not making a single subtle mistake that cascades.
 
-But it’s also getting better fast. In my own recent experiments, I’ve had great outcomes with longer tasks too. The trick is usually to structure the work into checkpoints: define “done,” require intermediate artifacts, and force verification along the way.
+But it’s also getting better fast. In my own recent experiments, I’ve had great outcomes with longer tasks too. The trick is usually to structure the work into checkpoints: define “done,” require intermediate artifacts, and force verification along the way. Most importantly pay for the upgraded accounts and use the latest models.
 
 If you want a good external reference point on how reliability changes as tasks get longer, METR’s time-horizon work is worth reading:
 
@@ -139,4 +139,4 @@ That window will close.
 
 If you want an unfair advantage, build the habit now. If you manage a team, normalize it now. Make it safe to experiment. Share workflows. Teach people how to verify and review.
 
-Then hold on to your butts. It’s going to be wild.
+ The only confident prediction I would make is. The only constant is change. The future is going to be wild.
