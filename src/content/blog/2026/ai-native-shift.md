@@ -4,6 +4,7 @@ description: "AI got great at coding first because it compounds. But the real sh
 pubDatetime: 2026-02-12T15:57:55-08:00
 draft: true
 tags: ["ai", "productivity", "career"]
+heroImage: "/posts/ai-native-shift/hero.jpg"
 ---
 
 I read Matt Shumer’s “Something Big Is Happening,” and one line stuck with me: the labs made a deliberate choice to make AI great at writing code first.
@@ -92,30 +93,17 @@ The output is only useful if you can trust it.
 - For analysis: ask it to show assumptions and sensitivity.
 - For work decisions: ask for risks, failure modes, and what you’d measure.
 
-## A quick reality check (so we don't get sloppy)
+### A note on longer tasks
 
-The upside is real. So are the failure modes. A few grounded counterpoints worth keeping in mind:
+Right now, AI can feel almost unreal on short, well-scoped tasks.
 
-- **Long tasks are still hard.** Even when AI looks great on short, well-scoped work, reliability can drop sharply as tasks get longer and messier. METR's time-horizon work is a good reference point.
-  - https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/
+Longer tasks are still harder. The failure mode I see is less about raw intelligence and more about stamina: maintaining context, staying aligned, not wandering, not making a single subtle mistake that cascades.
 
-- **Verification doesn't go away.** Fluency is not correctness. You still need review, tests, and monitoring, especially in higher-stakes contexts. (OpenAI's GPT-4 system card is a useful primary-source reminder.)
-  - https://cdn.openai.com/papers/gpt-4-system-card.pdf
+But it’s also getting better fast. In my own recent experiments, I’ve had great outcomes with longer tasks too. The trick is usually to structure the work into checkpoints: define “done,” require intermediate artifacts, and force verification along the way.
 
-- **Humans over-trust automation.** "Automation bias" is a known human-factors failure mode: people accept AI outputs even when they're wrong, especially under time pressure.
-  - https://pubmed.ncbi.nlm.nih.gov/21077562/
+If you want a good external reference point on how reliability changes as tasks get longer, METR’s time-horizon work is worth reading:
 
-- **Security and data risk are part of the deal.** Prompt injection, sensitive data exposure, and tool misuse are real problems, not edge cases. OWASP's LLM Top 10 is a great practitioner checklist.
-  - https://owasp.org/www-project-top-10-for-large-language-model-applications/
-  - https://genai.owasp.org/llm-top-10-2023-24/
-
-- **At org scale, you need governance.** If you're rolling this out beyond personal experimentation, frameworks like NIST's AI RMF can help you think in terms of ongoing risk management, not one-time enablement.
-  - https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf
-
-- **For some use cases, oversight becomes a compliance requirement.** Regulation is increasingly explicit about documentation and human oversight (see the EU AI Act).
-  - https://eur-lex.europa.eu/eli/reg/2024/1689/oj
-
-None of these negate the opportunity. They just explain why being "AI-native" also means being more disciplined about review and risk.
+<https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/>
 
 ## The ego trap
 
@@ -129,7 +117,7 @@ It’s me with AI versus me without AI.
 
 And once you accept that, you stop asking whether AI can do everything. You start asking what you can do when the boring parts get cheap.
 
-## Pay for tools. Don’t fetishize token costs.
+## Pay for the leverage
 
 If AI saves you even one hour a month, it’s already worth more than the subscription for most knowledge work.
 
