@@ -58,15 +58,15 @@ That applies to:
 - support teams writing macros and troubleshooting steps
 - anyone staring at a blank page, a spreadsheet, or a backlog
 
-This isn’t about using AI sometimes. It’s about treating it like a default collaborator.
+This isn’t about using AI *sometimes*. It’s about treating it like a default collaborator.
 
 ## A practical way to work (tomorrow morning)
 
 If you want a simple playbook, try this.
 
-### 1) Start with intent, not output
+### 1) Start with context and intent, not output
 
-Write 5–10 sentences that capture:
+Start in your AI tool of choice (ChatGPT, Claude, Gemini) and write 5–10 sentences that capture:
 
 - the goal
 - the constraints
