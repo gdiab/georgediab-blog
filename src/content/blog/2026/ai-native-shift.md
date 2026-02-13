@@ -2,7 +2,7 @@
 title: "The AI-Native Shift: If You Work on a Screen, This Is For You"
 description: "AI got great at coding first because it compounds. But the real shift is for anyone who works on a screen: turn intent into output faster, iterate more, and develop the habit of working with AI as a default collaborator."
 pubDatetime: 2026-02-12T15:57:55-08:00
-draft: true
+draft: false
 tags: ["ai", "productivity", "career"]
 heroImage: "/posts/ai-native-shift/hero.jpg"
 ---
