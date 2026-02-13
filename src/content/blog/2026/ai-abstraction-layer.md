@@ -2,7 +2,7 @@
 title: "AI is a new abstraction layer, not the end of software engineering"
 description: "Grady Booch’s ‘third golden age’ framing is a needed antidote to AI doom. Code generation changes the mechanics of building software, but the engineering job (balancing forces, shipping safely, and owning outcomes) stays." 
 pubDatetime: 2026-02-10T22:00:44-08:00
-draft: true
+draft: false
 tags: ["ai", "agents", "software-engineering", "engineering-management", "architecture"]
 ---
 
