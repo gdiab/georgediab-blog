@@ -131,7 +131,7 @@ Also, the best model changes quickly. The best tool yesterday may not be the bes
 
 ## What happens next
 
-I’m not going to make a bunch of predictions here. The only thing I feel confident saying is this.
+I’m not going to make a bunch of predictions here. I do feel confident saying this:
 
 The window where most people aren’t using this seriously yet is still open.
 
@@ -139,4 +139,4 @@ That window will close.
 
 If you want an unfair advantage, build the habit now. If you manage a team, normalize it now. Make it safe to experiment. Share workflows. Teach people how to verify and review.
 
- The only confident prediction I would make is. The only constant is change. The future is going to be wild.
+The only constant is change. The future is going to be wild.
