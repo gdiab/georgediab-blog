@@ -58,7 +58,7 @@ That applies to:
 - support teams writing macros and troubleshooting steps
 - anyone staring at a blank page, a spreadsheet, or a backlog
 
-This isn’t about using AI sometimes. It’s about treating it like a default collaborator.
+This isn’t about using AI *sometimes*. It’s about treating it like a default collaborator.
 
 ## A practical way to work (tomorrow morning)
 
