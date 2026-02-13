@@ -11,15 +11,21 @@ I read Matt Shumer’s “Something Big Is Happening,” and one line stuck with
 
 Source: <https://shumer.dev/something-big-is-happening>
 
-It’s easy to treat that as a tech-industry detail. I don’t think it is.
+The “coding-first” bet wasn’t about engineers. It was about compounding.
 
 ## Why coding came first (and why that matters to you)
 
 Yes, building AI requires a lot of code. If your models can help you write and maintain that code, you move faster.
 
-But there’s another reason coding was the first battleground: it’s measurable. It’s full of feedback loops. It’s an endless stream of real-world tasks with clear “works or doesn’t work” outcomes. That makes it the perfect place to push capability forward quickly.
+But it’s deeper than that.
 
-And once AI gets good at turning language into working systems, it stops being “a tool for engineers.” It becomes a tool for anyone who uses a computer to think, write, decide, analyze, plan, communicate, and ship work.
+Coding is measurable. It’s full of tight feedback loops. It’s an endless stream of real tasks with clear “works or doesn’t work” outcomes. That makes it the perfect place to push capability forward quickly.
+
+And in the real world, that bet shows up in usage. In OpenRouter’s *State of AI 2025* study (based on OpenRouter platform traffic, which is naturally developer-skewed), programming became the “most consistently expanding” category. They report programming queries going from roughly **~11% of token volume in early 2025** to **over 50% in late 2025** (Figure 19).
+
+Source (PDF): <https://openrouter.ai/assets/State-of-AI.pdf>
+
+Once AI gets good at turning language into working systems, it stops being “a tool for engineers.” It becomes a tool for anyone who uses a computer to think, write, decide, analyze, plan, communicate, and ship work.
 
 If your job happens on a screen, you’re in the blast radius of the upside.
 
