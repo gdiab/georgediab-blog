@@ -84,7 +84,7 @@ Entire creates an audit trail automatically with minimal developer friction.
 
 ### 2) Honest attribution (and honest limits)
 
-“How much of our code is AI-generated?” is a question every engineering leader will face. Entire answers it with data, not vibes.
+“How much of our code is AI-generated?” is a question every engineering leader will face. Entire answers it with actual data.
 
 But that 78% was guided by human research, design decisions, and product thinking. Attribution does not equal understanding, quality, or correctness. It’s a useful signal, not a verdict.
 
@@ -108,7 +108,7 @@ After using Entire across multiple commits in a real session, here’s what I’
 
 ### Better human contribution metrics
 
-The `human_added: 101` value was identical across both our commits, including a 1-line fix and a 357-line feature. That suggests it is measuring something structural rather than literal keystrokes.
+The `human_added: 101` value was identical across both our commits, including a 1-line fix and a 357-line feature. That suggests it is measuring something structural rather than literal keystrokes. But what is it measuring?
 
 I’d want:
 
