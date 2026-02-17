@@ -1,21 +1,12 @@
 ---
 // Analytics component for Vercel Analytics and Speed Insights
+// Using the official Astro integration from @vercel/analytics
+import VercelAnalytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 ---
 
-<!-- Vercel Analytics -->
-<script>
-  if (typeof window !== 'undefined' && import.meta.env.PROD) {
-    import('@vercel/analytics').then(({ inject }) => {
-      inject();
-    });
-  }
-</script>
+<!-- Vercel Analytics with Astro integration -->
+<VercelAnalytics />
 
 <!-- Vercel Speed Insights -->
-<script>
-  if (typeof window !== 'undefined' && import.meta.env.PROD) {
-    import('@vercel/speed-insights').then(({ injectSpeedInsights }) => {
-      injectSpeedInsights();
-    });
-  }
-</script>
+<SpeedInsights />
