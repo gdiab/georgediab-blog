@@ -126,89 +126,16 @@ You pay for it with:
 - observability
 - and careful boundaries
 
-## Practical guidance (what to do next week)
+## Open questions (what we still don’t know)
 
-This is the part that matters if you’re leading a real team.
+I agree with you that prescribing ‘next steps’ here is premature. The right move depends heavily on domain, risk tolerance, and whether the validation story is real.
 
-### 1) Pick a narrow, boring domain
+Questions I’m watching instead:
 
-Treat “Level 4” like self-driving:
-
-- It works in constrained environments.
-- It fails catastrophically outside them.
-
-Pick a domain with:
-
-- crisp APIs
-- high-quality testability
-- low ambiguity
-- low blast radius
-
-Good candidates:
-
-- internal tooling
-- CRUD admin flows
-- data migrations with strong invariants
-- small, well-scoped services
-
-### 2) Build a scenario suite that is not in the repo
-
-Start with 10 scenarios that reflect real user outcomes.
-
-Store them outside the repo (even a private doc works) and treat them like your “truth set.”
-
-If you want to go deeper, StrongDM’s DTU idea is basically this taken to the extreme: build safe clones of third-party dependencies so you can run high-volume scenarios without production constraints. Source: <https://factory.strongdm.ai/techniques>
-
-### 3) Separate generation from validation
-
-If you let the same agent write the code and decide if the code is correct, you are setting yourself up for convincing lies.
-
-Practical version:
-
-- Use one agent to propose.
-- Use a different agent (or different prompt, different model, different context) to critique.
-- Use deterministic checks where possible: typecheck, lint, unit tests.
-- Use scenario checks for end-to-end behavior.
-
-### 4) Upgrade your definition of “done”
-
-When you add agents, the output increases.
-
-So “done” can’t mean “the code compiles.”
-
-It has to mean:
-
-- It passes deterministic gates.
-- It passes scenario gates.
-- It has an observable footprint.
-- It has a rollback story.
-
-### 5) Change staffing assumptions
-
-If you want to move up the automation levels, you need at least one person who:
-
-- loves test design
-- cares about operational correctness
-- can turn vague requirements into crisp constraints
-
-That person is often not your fastest feature coder.
-
-They’re your systems thinker.
-
-### 6) Metrics that actually matter
-
-If you are “AI-native”, you should expect these to move:
-
-- **Lead time for small changes** (should drop)
-- **Review latency** (should drop if validation improves, or spike if you just produce more diffs)
-- **Defect escape rate** (should not rise)
-- **Rollback frequency / incident rate** (should not rise)
-- **Flake rate** (must go down, or agents will thrash)
-- **Scenario satisfaction** (if you adopt scenario validation)
-
-If your lead time drops but defects rise, you didn’t build a factory.
-
-You built a faster bug generator.
+- What does it actually take to make scenario validation robust against reward hacking?
+- How do we measure ‘spec quality’ in a way that predicts outcomes and not just verbosity?
+- What breaks first in brownfield systems: tooling, testability, or organizational trust?
+- What is the real cost curve of these approaches (tokens, infra, and human attention)?
 
 ## Where I agree with the “software factory” vision
 
@@ -221,6 +148,16 @@ I think the “factory” framing is directionally right in a few places:
 StrongDM releasing an “agent” as markdown specs is a fun example of the mindset: Attractor has no code, just specs. Source: <https://github.com/strongdm/attractor>
 
 ## Where I disagree
+
+A spicy dissent worth reading is *Slop review with AI: the dark factory* (<https://medium.com/@polyglot_factotum/slop-review-with-ai-the-dark-factory-ffca22406822>). The author’s core critique is basically: the workflow sounds impressive, but the artifact quality and falsifiability claims are underspecified.
+
+A few points from that dissent that I think land:
+
+- **Show the software.** It’s hard to evaluate a ‘dark factory’ claim without seeing the end product quality, not just the process.
+- **Digital twins can become a mirror.** If the same class of models misunderstand an external API, they can bake the same misunderstanding into both the product and the twin. The harness passes and production fails.
+- **Specs are not formal methods.** Markdown specs can be better than nothing, but they are not a proof. If the pitch is ‘formal software’, the burden is rigor, not rhetoric.
+- **Maintenance debt is still real.** If you do not read code, you are betting that you never need to debug performance pathologies or subtle concurrency issues. That is a big bet in any serious system.
+
 
 Where I think the metaphor misleads:
 
