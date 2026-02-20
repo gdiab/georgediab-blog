@@ -3,34 +3,24 @@ title: "From spicy autocomplete to the software factory: what's real, what's hyp
 description: "A grounded look at the 'software factory' framing for agentic coding: where it helps, where it misleads, and practical steps for engineering leaders."
 pubDatetime: 2026-02-18T18:48:00-08:00
 tags: ["ai", "agents", "software-engineering", "engineering-management", "architecture"]
-draft: true
+draft: false
 ---
 
-## TL;DR
+## THE RABBIT HOLE
 
 - Dan Shapiro's "five levels" is a useful shared language for where teams are in AI-assisted development, and where the next bottlenecks are. Source: <https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/>
 - StrongDM's "software factory" shows a real path to high autonomy, but it mostly proves a different point: **verification systems beat clever prompts**. Source: <https://simonwillison.net/2026/Feb/7/software-factory/>
-- Treat "Level 4" like self-driving: it works in constrained domains with strong guardrails, and it fails in the open world.
-- If you want agents to ship production software safely, the work shifts to: scenarios, evals, holdouts, sandboxes, digital twins, and operational feedback loops.
 
 ## Why this rabbit hole matters
 
-If you build software for a living, you're already feeling the shift:
+If you build software for a living, you're likely already feeling a shift. It's more likely than ever that we're headed toward a "software factory", where specs go in and working software comes out.
 
-- Autocomplete is table stakes.
-- Agents are the new pitch.
-- The bold claim is we're headed toward a "software factory", where specs go in and working software comes out.
-
-This rabbit hole started for me with a video describing StrongDM's software factory, including two rules that are intentionally provocative:
+StrongDM's software factor includes two rules that are intentionally provocative:
 
 - "Code must not be written by humans."
 - "Code must not be even reviewed by humans."
 
-Those lines are from the transcript of the video that kicked this off. (YouTube: <https://www.youtube.com/watch?v=bDcgHzCBgmQ>)
-
-If your first reaction is "nope", that's healthy.
-
-But dismissing it entirely is also a mistake, because there's a real signal buried under the provocation:
+If your first reaction is "no thank you", that's healthy. But dismissing it entirely is also a mistake, because there's a real signal buried under the rhetoric.
 
 **The limiting factor is no longer code generation. It's evidence.**
 
@@ -38,28 +28,24 @@ If your team can create fast, reliable evidence that a change is correct, agents
 
 ## The framing: levels of AI assistance
 
-Dan Shapiro proposes five levels of "driving automation", mapped onto software development. It's explicitly inspired by the NHTSA levels of driving automation. Sources:
-
-- Dan's post: <https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/>
-- NHTSA "Levels of Automation" PDF: <https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-05/Level-of-Automation-052522-tag.pdf>
+Dan Shapiro proposes five levels of "driving automation", mapped onto software development. It's explicitly inspired by the [NHTSA levels of driving automation](https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-05/Level-of-Automation-052522-tag.pdf) and outlined in [Dan's post](https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/).
 
 In Dan's version (my paraphrase, but aligned with his descriptions):
 
 - **Level 0:** Mostly manual. You might use AI like a search engine or for occasional suggestions.
 - **Level 1:** Discrete tasks delegated to an "AI intern" (tests, docstrings, small refactors).
-- **Level 2:** Pairing flow, where AI is a constant collaborator.
+- **Level 2:** Pairing flow, where AI is a constant collaborator. Many engineers I speak to are here.
 - **Level 3:** "Safety driver" era: you manage multiple agent threads and spend your life in diffs.
-- **Level 4:** Robotaxi: you write specs, you monitor, you come back later and see if it worked.
+- **Level 4:** Robotaxi: you write specs, you monitor, you come back later and see if it worked. This is where I feel like I am at.
 - **Level 5:** Dark factory: an end-to-end black box turning specs into software.
 
 I like this framing because it does two things most AI discourse fails to do:
 
 1) It gives you language to describe the step change between "faster typing" and "different job".
-2) It predicts the next pain: Level 3 is a review and coordination bottleneck.
+2) It speaks to the pain that I hear from teams at Level 3. Pr review has become the bottleneck and eats up the time saved using AI to implement and execute work.
 
 That said, the levels can be dangerously motivating if you read them as a ladder every team should climb.
 
-Not every team needs a robotaxi.
 
 ## The pushback: what gets lost in the factory metaphor
 
@@ -73,9 +59,7 @@ A few critiques I'd highlight (paraphrasing Simon's broader argument, not quotin
 
 Simon points to scenario-based validation, holdout scenarios, and a Digital Twin Universe (DTU) as the real story. Source: <https://simonwillison.net/2026/Feb/7/software-factory/>
 
-If Dan's post is a map, Simon's post is the warning label:
 
-**If you skip the verification part, you don't reach Level 4. You just ship faster failure.**
 
 ## What I think is actually happening
 
@@ -92,9 +76,7 @@ In other words:
 
 StrongDM's public "Software Factories and the Agentic Moment" page leans heavily into this idea: specs + scenarios drive agents that converge without human review. Source: <https://factory.strongdm.ai>
 
-That's not "no humans".
-
-That's humans moving up a level:
+That's not really "no humans". It's humans shifting where their effort is placed.
 
 - from writing code
 - to writing constraints
@@ -103,9 +85,7 @@ That's humans moving up a level:
 
 ## The real bottleneck: verification, not generation
 
-"Code must not be reviewed by humans" is only defensible if you have something better than human review.
-
-StrongDM's answer (as described by Simon) centers on scenario testing and a holdout-style evaluation set:
+"Code must not be reviewed by humans" is only defensible if you have something better than human review. StrongDM's answer (as described by Simon) centers on scenario testing and a holdout-style evaluation set:
 
 - Scenarios are end-to-end user stories.
 - Scenarios can be stored outside the codebase so agents cannot overfit or "teach to the test."
@@ -120,22 +100,13 @@ This is the crucial leadership takeaway:
 You pay for it with:
 
 - test harnesses
-- scenario suites
+- good documentation and specs
 - sandboxes
 - simulation environments
 - observability
 - and careful boundaries
 
-## Open questions (what we still don't know)
 
-I agree with you that prescribing 'next steps' here is premature. The right move depends heavily on domain, risk tolerance, and whether the validation story is real.
-
-Questions I'm watching instead:
-
-- What does it actually take to make scenario validation robust against reward hacking?
-- How do we measure 'spec quality' in a way that predicts outcomes and not just verbosity?
-- What breaks first in brownfield systems: tooling, testability, or organizational trust?
-- What is the real cost curve of these approaches (tokens, infra, and human attention)?
 
 ## Where I agree with the "software factory" vision
 
@@ -145,68 +116,35 @@ I think the "factory" framing is directionally right in a few places:
 2) **The job changes.** More time moves into planning, validation, and system design.
 3) **Small teams get disproportionate leverage.** If you can automate validation, headcount scales differently.
 
-StrongDM releasing an "agent" as markdown specs is a fun example of the mindset: Attractor has no code, just specs. Source: <https://github.com/strongdm/attractor>
+
 
 ## Where I disagree
 
-A spicy dissent worth reading is *Slop review with AI: the dark factory* (<https://medium.com/@polyglot_factotum/slop-review-with-ai-the-dark-factory-ffca22406822>). The author's core critique is basically: the workflow sounds impressive, but the artifact quality and falsifiability claims are underspecified.
 
-A few points from that dissent that I think land:
 
 - **Show the software.** It's hard to evaluate a 'dark factory' claim without seeing the end product quality, not just the process. StrongDM invested heavily in publishing a grandiose playbook, but there's no real source code or battle-tested patterns to point at. When you strip away the narrative, you're left wondering: is this a production engineering practice, or is it a fundraising and recruitment story?
-- **Digital twins can become a mirror.** If the same class of models misunderstand an external API, they can bake the same misunderstanding into both the product and the twin. The harness passes and production fails. The "simulations don't represent reality" problem is true for any system, but StrongDM's simulations took days or weeks to build rather than months. When those hit production, they will find the bugs and need to replicate edge cases in their "digital twin" all over again.
+
 - **They're betting on the future, not the present.** StrongDM (and Anthropic, for that matter) are betting that models 6 to 12 months from now will be significantly more capable of navigating and fixing spaghetti code. That might be true. But publishing a Level 4 playbook based on where models will be is a different claim than proving it works today.
-- **Specs are not formal methods.** Markdown specs can be better than nothing, but they are not a proof. If the pitch is 'formal software', the burden is rigor, not rhetoric.
+- **Specs are not formal methods.** Markdown specs do often improve code outputs from agents, but they are not a proof.
 - **Maintenance debt is still real.** If you do not read code, you are betting that you never need to debug performance pathologies or subtle concurrency issues. That is a big bet in any serious system.
 
 
-Where I think the metaphor misleads:
 
-1) It implies linear scaling. In practice, complexity still bites, and coordination still exists.
-2) It suggests code review is optional. It's only optional if something stronger replaces it.
-3) It hides cost tradeoffs. Even Simon calls out the "$1,000/day per engineer" claim as a major constraint. Source: <https://simonwillison.net/2026/Feb/7/software-factory/>
 
 If you want "no human review" and you do not have a serious investment in validation, you are not brave.
 
 You are gambling.
 
-## A useful reframe: autopilot for diffs, not a factory for software
 
-A reframe that lands better for most teams:
+A reframe that I think will make more sense to engineering teams:
 
-- Agents are autopilot for *small changes*.
-- Your CI, tests, scenarios, and observability are the road.
-- Your constraints are the lane markers.
-- Your rollback plan is the brake.
+- Agents are can be trusted more with spec-driven agentic development if... Your CI, tests, documentation, and observability are in place as guardrails and you have a good rollback plan when that fails you.
 
-The goal is not to eliminate humans.
+The goal is not to eliminate engineers.
 
-The goal is to make humans spend time where they're uniquely valuable:
+The goal is to make engineers spend time where they're uniquely valuable:
 
 - defining outcomes
 - designing boundaries
 - deciding what to trust
-
-## Sources
-
-Core sources:
-
-- Dan Shapiro: <https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/>
-- Simon Willison: <https://simonwillison.net/2026/Feb/7/software-factory/>
-- StrongDM: <https://factory.strongdm.ai>
-- StrongDM techniques: <https://factory.strongdm.ai/techniques>
-- NHTSA levels of automation PDF: <https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-05/Level-of-Automation-052522-tag.pdf>
-- YouTube (rabbit hole start): <https://www.youtube.com/watch?v=bDcgHzCBgmQ>
-
-Evidence links (supporting reading):
-
-- StrongDM Attractor (spec-only release): <https://github.com/strongdm/attractor>
-- StrongDM cxdb (AI context store): <https://github.com/strongdm/cxdb>
-- Scenario testing (background): <https://en.wikipedia.org/wiki/Scenario_testing>
-- Simon on proving code works: <https://simonwillison.net/2025/Dec/18/code-proven-to-work/>
-- StrongDM "Techniques" index (DTU, gene transfusion, semports, pyramid summaries): <https://factory.strongdm.ai/techniques>
-- Cursor YOLO mode discussion (historical marker referenced by Simon): <https://forum.cursor.com/t/yolo-mode-is-amazing/36262>
-- Simon on "inflection point" (referenced in the post): <https://simonwillison.net/2026/Jan/4/inflection/>
-- Simon's link to "inhuman mistakes" (referenced in the post): <https://simonwillison.net/2025/Mar/2/kellan-elliott-mccrea/>
-- Organized Ergonomics note on Fanuc dark factory (Dan's analogy): <https://www.organizedergi.com/News/5493/robots-the-maker-of-robots-in-fanuc-s-dark-factory>
 
