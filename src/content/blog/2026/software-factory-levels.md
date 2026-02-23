@@ -3,7 +3,7 @@ title: "From spicy autocomplete to the software factory: what's real, what's hyp
 description: "A grounded look at the 'software factory' framing for agentic coding: where it helps, where it misleads, and practical steps for engineering leaders."
 pubDatetime: 2026-02-18T18:48:00-08:00
 tags: ["ai", "agents", "software-engineering", "engineering-management", "architecture"]
-draft: false
+draft: true
 ---
 
 ## THE RABBIT HOLE
