@@ -1,7 +1,7 @@
 ---
 title: "Building linkledger-cli: A Local-First Memory Layer for AI Agents"
 description: "How we built a local-first memory layer that captures sources quickly and returns compact, provenance-aware evidence packs for AI agents."
-pubDatetime: 2026-02-23T21:47:38-08:00
+pubDatetime: 2026-03-02T09:00:00-08:00
 tags: ["ai", "agents", "software-engineering", "architecture", "tools"]
 heroImage: "/posts/linkledger-cli-agent-memory/hero.jpg"
 draft: true
