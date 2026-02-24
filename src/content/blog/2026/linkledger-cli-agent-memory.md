@@ -7,8 +7,6 @@ heroImage: "/posts/linkledger-cli-agent-memory/hero.jpg"
 draft: true
 ---
 
-# Building `linkledger-cli`: Local-First Memory for AI-Native Engineering
-
 ## Where Our Heads Were At
 
 When we cooked this idea up, we were trying to solve a very boring but expensive problem: great sources were scattered across chats, tabs, and notes, so every new draft started with the same research loop again.
