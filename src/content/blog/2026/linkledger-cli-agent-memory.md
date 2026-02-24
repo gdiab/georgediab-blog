@@ -1,6 +1,6 @@
 ---
-title: "Building linkledger-cli: local-first memory for AI-native engineering"
-description: "How we built a CLI-first memory layer that captures sources quickly and returns compact, provenance-aware evidence packs for agent workflows."
+title: "Building linkledger-cli: A Local-First Memory Layer for AI Agents"
+description: "How we built a local-first memory layer that captures sources quickly and returns compact, provenance-aware evidence packs for AI agents."
 pubDatetime: 2026-02-23T21:47:38-08:00
 tags: ["ai", "agents", "software-engineering", "architecture", "tools"]
 heroImage: "/posts/linkledger-cli-agent-memory/hero.jpg"
@@ -13,7 +13,7 @@ When we cooked this idea up, we were trying to solve a very boring but expensive
 
 Pocket was the reference point. If you never used it, Pocket was a "save this for later" app for links and articles: one place to collect what mattered so you could reuse it later.
 
-We wanted that exact behavior for AI-native workflows, where both humans and agents need the same source memory. Agent memory drift was part of it, but the bigger goal was a Pocket-for-agents system: capture fast, organize lightly, and retrieve compact, high-signal evidence on demand. The implementation bet was to start as developer infrastructure, with a CLI that is fast, scriptable, and deterministic.
+We wanted that exact behavior for AI-agent workflows, where both humans and agents need the same source memory. Agent memory drift was part of it, but the bigger goal was a Pocket-for-agents system: capture fast, organize lightly, and retrieve compact, high-signal evidence on demand. The implementation bet was to start as developer infrastructure, with a CLI that is fast, scriptable, and deterministic.
 
 ## What We Actually Built
 
@@ -26,13 +26,13 @@ We wanted that exact behavior for AI-native workflows, where both humans and age
 
 The system is optimized for low-token retrieval and deterministic machine consumption.
 
-## Why This Shape Works for AI-Native Teams
+## Why This Shape Works for AI Agents
 
-For teams already orchestrating LLM workflows, three constraints matter:
+For teams already orchestrating agent workflows, three constraints matter:
 
 1. Retrieval needs to be cheap and composable.
 2. Evidence needs provenance and confidence metadata.
-3. Tooling needs to run where engineers already work.
+3. Tooling needs to run where agents and operators already work.
 
 That drives the architecture:
 
