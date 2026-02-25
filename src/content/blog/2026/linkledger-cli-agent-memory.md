@@ -1,10 +1,10 @@
 ---
 title: "Building linkledger-cli: A Local-First Memory Layer for AI Agents"
 description: "How I built a local-first memory layer that captures sources quickly and returns compact, source-backed context for AI agents."
-pubDatetime: 2026-03-02T09:00:00-08:00
+pubDatetime: 2026-02-26T10:00:00-08:00
 tags: ["ai", "agents", "software-engineering", "architecture", "tools"]
 heroImage: "/posts/linkledger-cli-agent-memory/hero.jpg"
-draft: true
+draft: false
 ---
 
 ## Where My Head Was At
@@ -28,20 +28,20 @@ The goal is retrieval that's cheap on tokens and predictable enough for machines
 
 ## Why This Shape Works for AI Agents
 
-For teams already orchestrating agent workflows, three constraints matter:
+For me, these three constraints mattered:
 
 1. Retrieval needs to be cheap and composable.
 2. Evidence needs to carry metadata about where it came from and how confident you are in it.
 3. Tooling needs to run where agents and operators already work.
 
-That drives the architecture:
+That drove the following architecture:
 
 - CLI-first interface for scriptability and agent ergonomics.
 - Stable JSON envelope on every command for automation.
 - Local SQLite as the single source of truth, no extra infra to manage.
 - FTS5 + BM25 ranking now, with room for hybrid retrieval later.
 
-This gives you working memory without having to stand up a new service.
+This gave me working memory without having to stand up a new service.
 
 ## System Design in Practice
 
@@ -99,7 +99,7 @@ Full chunk expansion is opt-in, so the default output stays token-efficient.
 
 ### 6. Freshness without cron complexity
 
-A stale revalidation service can enqueue re-ingest jobs for older content (default threshold: 30 days) when content is accessed via retrieval. This keeps memory useful over time without adding cron jobs or a separate scheduler to manage.
+A stale revalidation service can enqueue re-ingest jobs for older content (default threshold: 30 days) when content is accessed via retrieval. This keeps memory useful over time without adding cron jobs or a separate scheduler to manage. I have noticed how many tokens can get burned by a cron job running only to find nothing needing to be acted on.
 
 ## Day-to-Day Workflow
 
@@ -148,17 +148,6 @@ These are deliberate v1 tradeoffs — first-pass decisions based on experience, 
 
 For this stage, reliability and explainability beat sophistication.
 
-## What Surprised Me
-
-The highest leverage feature wasn't "better summarization." It was strict operational clarity:
-
-- explicit ingest states
-- deterministic IDs
-- retry semantics
-- compact retrieval defaults
-
-In other words, agent memory behaves more like a queue-backed data product than a note-taking app.
-
 ## What I Want to Build Next
 
 Near-term extensions are straightforward:
@@ -166,6 +155,7 @@ Near-term extensions are straightforward:
 1. Add hybrid lexical + semantic retrieval behind the same command surface.
 2. Improve enrichment quality with stronger claim extraction and source-aware summarization.
 3. Add a minimal human curation UI only where CLI friction becomes real (inbox, highlight review, retry/status).
+4. The [SKILL file here](https://github.com/gdiab/linkledger-cli/blob/main/skills/linkledger-cli-agent/SKILL.md) is rather specific to my stack of tools. Namely, the `content-board`, which is a Kanban type board where content is managed through different states of readiness from inbox to published. I'd like to make this even more generic so others can just drop in and start having their agent use it.
 
 The main principle remains: keep the memory layer boring, deterministic, and cheap to consume.
 
