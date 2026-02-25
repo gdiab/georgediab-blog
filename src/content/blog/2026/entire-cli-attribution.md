@@ -48,6 +48,37 @@ One line. 0.98%. Same session, same developer, completely different attribution 
 
 This is the kind of granularity that matters if you want to understand how AI coding assistants are actually being used, at commit-level resolution.
 
+## Beyond line counts: behavioral modeling
+
+The attribution numbers are useful, but the logs reveal something more interesting. Entire tracks a full state machine for every interaction:
+
+```
+"" → active → active_committed → idle → ended
+Events: TurnStart, GitCommit, TurnEnd, SessionStop
+```
+
+This is not just logging. It is behavioral modeling. An engineering manager could answer questions like:
+
+- How many turns did it take before the developer committed?
+- How long were idle gaps between prompts? Our weighted randomization session has a 12-hour gap between prompts 4 and 5, showing timestamps of 22:14 one evening and 07:47 the next morning. That tells you something about how the developer worked through the problem: they slept on it.
+- Did the developer review before committing, or commit immediately after the AI finished?
+
+These are the kinds of signals that turn raw attribution data into actual workflow intelligence.
+
+### Subagent tracking: AI spawning AI
+
+Digging deeper into the logs, there is another layer worth noting. Entire tracks when the AI agent spawns sub-agents:
+
+```json
+{"msg": "pre-task", "tool_use_id": "toolu_015PeVq...", ...}
+{"msg": "post-task", "subagent_type": "Explore", "agent_id": "a4f22a2"}
+{"msg": "task checkpoint saved", "checkpoint_type": "task", "subagent_type": "Explore"}
+```
+
+In this case, Claude Code spawned an "Explore" agent to research the codebase before making changes. Entire creates separate task-level checkpoints for these delegated operations.
+
+For governance, this matters. The AI is not just writing code. It is delegating research to child processes, and all of it is tracked. If a team wants to understand not just what was generated but how the AI arrived at its approach, the subagent trail provides that visibility.
+
 ## The human work that does not show up
 
 Here’s what the 78% attribution number does not capture: the human contribution that made it possible.
