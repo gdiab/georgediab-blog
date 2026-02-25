@@ -1,7 +1,7 @@
 ---
 title: "I Tried Entire CLI for AI Code Attribution: What Engineering Teams Should Know"
 description: "A practical look at Entire CLI’s commit-level AI attribution, what it captures well, and what’s still missing for real engineering governance."
-pubDatetime: 2026-02-18T08:00:00-08:00
+pubDatetime: 2026-02-26T08:00:00-08:00
 tags:
   - ai
   - developer-tools
@@ -174,6 +174,18 @@ Finally, the obvious manager view:
 - How does attribution vary by feature type?
 - Where are we seeing the most session rewinds (a proxy for AI mistakes that needed correction)?
 
+## What is already changing
+
+A week after I tested Entire CLI, the team shipped [Dispatch 0x0002](https://entire.io/blog/entire-dispatch-0x0002) with updates that address several of the gaps I flagged above.
+
+**Gemini CLI support is live.** Full transcript parsing, Checkpointing, and session explanations now work with Gemini CLI alongside Claude Code. The underlying multi-agent framework was refactored to make adding new agents faster. This matters: attribution only works if it covers the tools your team actually uses.
+
+**Secret detection is built in.** Checkpoints now run layered secret scanning using gitleaks patterns combined with entropy analysis. Secrets are redacted across all persistence paths, including shadow branches, metadata, and condensed logs. For teams evaluating Entire for compliance, this removes a real blocker.
+
+**Checkpoint reliability improved across the board.** Subagent task modifications are captured correctly, deleted files are tracked, and each Checkpoint produces exactly one commit. Session restore after branch operations (stash, pull, rebase) also works reliably now.
+
+The pace is encouraging. The core product gaps are closing fast.
+
 ## The bottom line
 
 AI coding assistants are not going away. The question is not whether your team uses them. It’s whether you have visibility into how they’re used.
@@ -189,3 +201,4 @@ Sources:
 - [Entire CLI GitHub](https://github.com/entireio/cli)
 - [Entire CLI Strategies Documentation](https://docs.entire.io/cli/strategies)
 - [Tech Edu Byte: Entire CLI Overview](https://www.techedubyte.com/entire-cli-git-based-ai-agent-observability-tool/)
+- [Entire Dispatch 0x0002](https://entire.io/blog/entire-dispatch-0x0002)
