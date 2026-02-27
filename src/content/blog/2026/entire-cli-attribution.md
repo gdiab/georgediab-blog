@@ -1,7 +1,7 @@
 ---
 title: "I Tried Entire CLI for AI Code Attribution: What Engineering Teams Should Know"
 description: "A practical look at Entire CLI’s commit-level AI attribution, what it captures well, and what’s still missing for real engineering governance."
-pubDatetime: 2026-02-28T08:00:00-08:00
+pubDatetime: 2026-03-02T08:00:00-08:00
 tags:
   - ai
   - developer-tools
