@@ -1,7 +1,7 @@
 ---
 title: "I Tried Entire CLI for AI Code Attribution Twice: What Got Clearer"
 description: "A two-run case study of Entire CLI attribution: what the first test made ambiguous, what the second prompt-only run clarified, and what still needs interpretation."
-pubDatetime: 2026-02-27T08:00:00-08:00
+pubDatetime: 2026-03-03T08:00:00-08:00
 tags:
   - ai
   - developer-tools
