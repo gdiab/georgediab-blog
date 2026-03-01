@@ -1,6 +1,6 @@
 ---
-title: "I Tried Entire CLI for AI Code Attribution: What Engineering Teams Should Know"
-description: "A practical look at Entire CLI’s commit-level AI attribution, what it captures well, and what’s still missing for real engineering governance."
+title: "I Tried Entire CLI for AI Code Attribution Twice: What Got Clearer"
+description: "A two-run case study of Entire CLI attribution: what the first test made ambiguous, what the second prompt-only run clarified, and what still needs interpretation."
 pubDatetime: 2026-02-27T08:00:00-08:00
 tags:
   - ai
@@ -10,237 +10,142 @@ tags:
   - productivity
 ---
 
-<!-- P01 -->
-Late last week, I shipped a feature that touched 8 files across the codebase. The attribution data captured by the Entire CLI told a clear story.
+I wrote an earlier draft of this post after an initial Entire CLI test in the repo of one of my personal projects.
 
-## What Entire CLI actually does
+The data was useful, but one metric (`human_added`) raised questions because it stayed fixed across very different commits.
 
-<!-- P02 -->
-[Entire CLI](https://github.com/entireio/cli) hooks into your git workflow and AI coding agent (Claude Code or Gemini CLI) to capture session data: transcripts, file modifications, timestamps, and reasoning.
+So I ran a second test on February 28, 2026. In that run, I only prompted the agent and did not write code directly. That gave me a cleaner signal.
 
-<!-- P03 -->
-It attaches that context to your commits without polluting your main git history. Session data lives on a separate `entire/checkpoints/v1` branch.
+## Version note
 
+I checked the local install history before publishing this update. Both runs were on the same Entire CLI version: `0.4.8` (build `81ddee25`). `brew info --cask entire` shows it was installed on February 14, 2026 at 4:48:50 PM PT, and my first recorded attribution event was a few minutes later (4:53 PM PT).
 
-```json
-{
-  "agent_lines": 357,
-  "human_added": 101,
-  "agent_percentage": 77.95,
-  "total_committed": 458,
-  "files_touched": 8
-}
-```
+So the clearer results in the second run are likely about workflow design (prompt-only test constraints), not an Entire CLI version upgrade between runs.
 
-<!-- P05 -->
-357 lines of AI-generated code across 8 files. 78% of the commit. Full attribution, automatically tracked.
+One thing did change in session metadata: the agent session envelope `version` field moved from `2.1.19` in the earlier run to `2.1.63` in the latest run. I cannot prove that affected attribution behavior, so I am treating this comparison as workflow-driven, not version-driven.
 
-<!-- P06 -->
-Compare that to a small fix I shipped the same day:
+## What Entire CLI does
+
+[Entire CLI](https://github.com/entireio/cli) hooks into your git workflow and coding agent session, then records attribution and context alongside commits. In my usage, metadata was stored in the `entire/checkpoints/v1` branch while my working branch history stayed normal.
+
+## Run 1 (February 14-15, 2026): useful, but ambiguous
+
+In my first run, I saw two very different commit shapes:
+
+### Small fix (February 14, 2026)
 
 ```json
 {
   "agent_lines": 1,
   "human_added": 101,
-  "agent_percentage": 0.98,
+  "human_modified": 0,
+  "human_removed": 0,
   "total_committed": 102,
+  "agent_percentage": 0.98,
   "files_touched": 1
 }
 ```
 
-<!-- P07 -->
-One line. 0.98%. Same session, completely different attribution profiles.
+### Feature commit (February 15, 2026)
 
-<!-- P08 -->
-This is the kind of granularity that matters if you want to understand how AI coding assistants are actually being used, at commit-level resolution.
-
-## Beyond line counts: behavioral modeling
-
-<!-- P09 -->
-The attribution numbers are useful, but the logs reveal something more interesting. Entire tracks a full state machine for every interaction:
-
-```
-"" → active → active_committed → idle → ended
-Events: TurnStart, GitCommit, TurnEnd, SessionStop
-```
-
-<!-- P10 -->
-This is not just logging. It is behavioral modeling. An engineering manager could answer questions like:
-
-- How many turns did it take before the developer committed? (10 turns for 1 commit and 1 turn for the small fix)
-- I could even see the idle gaps between prompts! First session has a 12-hour gap between prompts 4 and 5. That might tell you something about how the developer worked through the problem. (I had slept on it.)
-- Did the developer review before committing, or commit immediately after the AI finished? (for the quick fix, 1 minute. For the larger feature, 2 hours. It was dinner time!)
-
-<!-- P11 -->
-These are the kinds of signals that turn raw attribution data into actual workflow intelligence.
-
-### Subagent tracking: AI spawning AI
-
-<!-- P12 -->
-Digging deeper into the logs, there is another layer worth noting. Entire tracks when the AI agent spawns sub-agents:
-
-<!-- P13 -->
 ```json
-{"msg": "pre-task", "tool_use_id": "toolu_015PeVq...", ...}
-{"msg": "post-task", "subagent_type": "Explore", "agent_id": "a4f22a2"}
-{"msg": "task checkpoint saved", "checkpoint_type": "task", "subagent_type": "Explore"}
+{
+  "agent_lines": 357,
+  "human_added": 101,
+  "human_modified": 0,
+  "human_removed": 0,
+  "total_committed": 458,
+  "agent_percentage": 77.95,
+  "files_touched": 8
+}
 ```
 
-<!-- P14 -->
-In this case, Claude Code spawned an "Explore" agent to research the codebase before making changes. Entire creates separate task-level checkpoints for these delegated operations.
+This is where the first draft started to wobble for me.
 
-<!-- P15 -->
-For governance, this matters. The AI is not just writing code. It is delegating research to child processes, and all of it is tracked. If a team wants to understand not just what was generated but how the AI arrived at its approach, the subagent trail provides that visibility.
+The high-level attribution looked directionally right (small fix vs larger feature), but `human_added: 101` being identical in both commits made me cautious about over-interpreting that field.
 
-## The human work that does not show up
+## Run 2 (February 28, 2026): prompt-only test
 
-<!-- P16 -->
-Here’s what the 78% attribution number does not capture: the human contribution that made it possible.
+For the second run, I constrained myself to prompting only.
 
-<!-- P17 -->
-Before prompting the AI, I:
+I gave requirements, reviewed output, asked for adjustments, and asked for commits/merge. I did not manually author code in the changed files.
 
-- Researched UX patterns for the feature.
-- Evaluated slider interfaces, input fields, and visual representations
-- Made product decisions
-- Considered edge cases
-- Sketched (with words) the user flow and state changes
+Entire recorded two attribution events:
 
-<!-- P18 -->
-I shaped the feature. The AI wrote the code.
+### Main implementation commit (February 28, 2026, 3:57 PM PT)
 
-<!-- P19 -->
-The logs show `human_added: 101`, but that value was consistent across every commit, which suggests it’s tracking something other than feature-specific human contribution. If teams are going to use attribution as governance data, understanding what that metric actually measures matters. I have filled an issue with Entire. We shall see.
+```json
+{
+  "agent_lines": 826,
+  "human_added": 0,
+  "human_modified": 0,
+  "human_removed": 0,
+  "total_committed": 826,
+  "agent_percentage": 100,
+  "accumulated_user_added": 4,
+  "files_touched": 8
+}
+```
 
-## Two strategies: control vs convenience
+### Follow-up UX fix commit (February 28, 2026, 4:59 PM PT)
 
-<!-- P20 -->
-Entire offers two commit strategies.
+```json
+{
+  "agent_lines": 45,
+  "human_added": 0,
+  "human_modified": 0,
+  "human_removed": 0,
+  "total_committed": 45,
+  "agent_percentage": 100,
+  "accumulated_user_added": 12,
+  "files_touched": 1
+}
+```
 
-<!-- P21 -->
-**Manual-commit (default):** Checkpoints are created when you commit. Your git history stays clean. Shadow branches provide safety during active work. If something goes wrong mid-session, you can rewind.
+## What the second run clarified
 
-<!-- P22 -->
-**Auto-commit:** Checkpoints are created after each AI response. You get granular history, but your branch fills with `[entire]` prefixed commits. This is best for feature branches you plan to squash later.
+1. Commit-level attribution can cleanly show a prompt-only workflow.
+2. `human_added/human_modified/human_removed` all being zero in both commits matched what I actually did.
+3. The metric behavior is more believable for governance reporting when workflow constraints are explicit.
 
-<!-- P23 -->
-I used manual-commit. I thought it was right to control the commit message and timing while Entire tracked session metadata quietly in the background. But this was in a shadow/orphan branch that entire creates. The orphan branch grows forever. Every session from every developer — including abandoned PRs and throwaway experiments — accumulates on entire/checkpoints/v1. There's an entire clean command for local shadow branches, but no retention policy for the permanent metadata branch.
+## What is still unclear
 
-It gets pushed automatically via a pre-push git hook. Multiple developers pushing to the same branch works because checkpoint IDs are random 12-hex-char strings, so collisions are essentially impossible. If a push fails (non-fast-forward), the CLI fetches, merges trees, and retries. No merge conflicts possible since it's just a tree union.
+`accumulated_user_added` still increased (`4` then `12`) even while commit-level human code contribution stayed zero.
 
-All that being said, I am not sure exactly what the best practice is around this. Also, do we need to worry about privacy when the whole teams agent conversations are available to be seen with anyone with repo access? 
+My current interpretation is that Entire tracks multiple attribution layers (session/prompt context vs finalized commit diff), and those layers are easy to conflate if you only glance at one field.
+
+So my practical takeaway is:
+
+- Use commit-level fields for "who wrote committed code" style questions.
+- Treat accumulated/session fields as workflow context signals.
+- Validate metric scope before using numbers in policy, performance, or compliance conversations.
 
 ## Why this matters for engineering teams
 
-<!-- P24 -->
-### 1) Compliance and audit trails
+### 1) Better AI usage visibility
 
-<!-- P25 -->
-SOC 2 and ISO audits increasingly ask about AI usage. M&A diligence wants to understand codebase composition. The EU AI Act might also change the landscape further.
+Most teams will be asked, "How much of this code was AI-generated?" Entire can answer with concrete commit-level data.
 
-<!-- P26 -->
-Entire creates an audit trail automatically with minimal developer friction.
+### 2) Better incident forensics
 
-<!-- P27 -->
-### 2) Honest attribution (and honest limits)
+When a change breaks, having prompts + session history + attribution in one trail is useful for root-cause analysis.
 
-<!-- P28 -->
-“How much of our code is AI-generated?” is a question every engineering leader will face. Entire answers it with actual data.
+### 3) Better review strategy
 
-<!-- P29 -->
-Attribution does not equal understanding, quality, or correctness, but it’s still a useful signal.
+A commit with low AI attribution and a commit with 100% AI attribution should not be reviewed the same way.
 
-<!-- P29a -->
-I'm still only exploring this tool personally, so I can't claim anything concrete from our teams yet. In our experience, earlier models correlated with higher defect rates, while newer models appear to have improved that significantly. Review dynamics are mixed: AI-generated code can increase reviewer workload, but using AI as a reviewer is already reducing end-to-end review time.
+## What I would still like to see from Entire
 
-<!-- P30 -->
-### 3) Incident response
+- Clearer definitions in output for fields that mix layers (especially accumulated vs commit-scoped metrics).
+- Built-in PR annotations (e.g., attribution summary attached to PR description/checks).
+- Retention/privacy controls for long-lived checkpoint metadata branches.
+- Easier reviewer UX for seeing prompt context without spelunking raw session artifacts.
 
-<!-- P31 -->
-When something breaks, you can trace back not just what changed, but how it was created:
+## Bottom line
 
-- Was it a human typo or an AI hallucination?
-- What was the prompt?
-- What context did the agent have?
+My first run made me curious. My second run gave me better clarity about how things were tracked and working.
 
-<!-- P32 -->
-Entire preserves this. For changes spanning multiple files, it can save real time during debugging.
-
-<!-- P33 -->
-### 4) Team learning
-
-<!-- P34 -->
-Auto-summarization (Claude-generated) can capture intent, decisions, friction points, and open items. For async teams and onboarding, that context is valuable.
-
-## What would make this better
-
-<!-- P35 -->
-After using Entire across a couple features here’s what I’d want next.
-
-### Better (or maybe more accurate) human contribution metrics
-
-<!-- P36 -->
-The `human_added: 101` value was identical across both our commits, including a 1-line fix and a 357-line feature. That suggests it is measuring something structural rather than literal keystrokes. But what is it measuring?
-
-### PR integration
-
-<!-- P39 -->
-Show attribution automatically in pull request descriptions. Reviewers should know something like:
-
-<!-- P40 -->
-“This PR is 78% AI-generated across 8 files, primarily UI components.”
-
-<!-- P41 -->
-Different attribution profiles should imply different review strategies.
-
-### Risk scoring
-
-<!-- P42 -->
-Not all AI-generated code carries the same risk. Flagging high-risk patterns would help teams apply attention where it matters:
-
-- AI-generated authentication/authorization code
-- AI-generated database migrations or schema changes
-- AI-generated code with no corresponding tests
-- High AI percentage in critical business logic paths
-
-### Session context in code review
-
-<!-- P43 -->
-When reviewing a PR with high AI attribution, let reviewers access the original prompts and AI reasoning, without having to reference the Entire tracking branch. Knowing why the AI made a particular choice often determines whether the reviewer can validate it quickly.
-
-### Full conversation context (not just the triggering prompt)
-
-<!-- P44 -->
-Entire generates a `context.md` file that’s genuinely useful: files changed with descriptions, a feature summary, and key tool actions.
-
-<!-- P45 -->
-But the “Prompt” field only captures the triggering prompt, which can miss most of the real deliberation. The 10+ messages that shape a feature are usually the important part:
-
-<!-- P46 -->
-Entire captures the full transcript in `.jsonl` files. Surfacing that deliberation in `context.md` would transform it from “what was built” to “how and why it was built.”
-
-### Prompt replay
-
-<!-- P47 -->
-Letting me replay a session’s prompts against a newer model to see if the approach changes. That’s useful for evaluating model upgrades, and for catching improvements without rewriting the workflow. It might do this, but it wasn't clear to me how.
-
-### Team analytics
-
-<!-- P49 -->
-Finally, the obvious manager view:
-
-- Which repos have the highest AI contribution?
-- How does attribution vary by feature type?
-- Where are we seeing the most session rewinds (a proxy for AI mistakes that needed correction)?
-
-
-## The bottom line
-
-<!-- P56 -->
-AI coding assistants are not going away. The question is not whether your team uses them. It’s whether you have visibility into how they’re used.
-
-<!-- P57 -->
-Entire CLI gives you that visibility with minimal friction. We shipped a 357-line feature and a 1-line fix in the same session. Both got full attribution. I committed normally, and the data was just there.
+Entire CLI looks genuinely useful for commit-level AI attribution, especially when you need an auditable trail with low process overhead. But if you are using it for governance, you should still read field semantics carefully and separate commit facts from session-level context metrics.
 
 ---
 
