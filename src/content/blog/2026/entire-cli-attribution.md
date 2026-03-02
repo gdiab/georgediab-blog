@@ -1,6 +1,6 @@
 ---
-title: "I Tried Entire CLI for AI Code Attribution Twice: What Got Clearer"
-description: "A two-run case study of Entire CLI attribution: what the first test made ambiguous, what the second prompt-only run clarified, and what still needs interpretation."
+title: "AI Wrote 100% of This Code. Here's the Proof."
+description: "Two runs of Entire CLI for AI code attribution: what the first test made ambiguous, what the second prompt-only run clarified, and what still needs interpretation."
 pubDatetime: 2026-03-03T08:00:00-08:00
 tags:
   - ai
@@ -10,19 +10,9 @@ tags:
   - productivity
 ---
 
-I wrote an earlier draft of this post after an initial Entire CLI test in the repo of one of my personal projects.
+In a prompt-only coding session, Entire CLI recorded 100% AI attribution across 871 lines and 9 files. Zero human-authored code. And it was right.
 
-The data was useful, but one metric (`human_added`) raised questions because it stayed fixed across very different commits.
-
-So I ran a second test on February 28, 2026. In that run, I only prompted the agent and did not write code directly. That gave me a cleaner signal.
-
-## Version note
-
-I checked the local install history before publishing this update. Both runs were on the same Entire CLI version: `0.4.8` (build `81ddee25`). `brew info --cask entire` shows it was installed on February 14, 2026 at 4:48:50 PM PT, and my first recorded attribution event was a few minutes later (4:53 PM PT).
-
-So the clearer results in the second run are likely about workflow design (prompt-only test constraints), not an Entire CLI version upgrade between runs.
-
-One thing did change in session metadata: the agent session envelope `version` field moved from `2.1.19` in the earlier run to `2.1.63` in the latest run. I cannot prove that affected attribution behavior, so I am treating this comparison as workflow-driven, not version-driven.
+But it took two runs to get there. Here's what happened.
 
 ## What Entire CLI does
 
@@ -30,7 +20,7 @@ One thing did change in session metadata: the agent session envelope `version` f
 
 ## Run 1 (February 14-15, 2026): useful, but ambiguous
 
-In my first run, I saw two very different commit shapes:
+I ran my first test on [ListLotto](https://listlotto.com), a personal side project built with React, TypeScript, and Supabase. I saw two very different commit shapes:
 
 ### Small fix (February 14, 2026)
 
@@ -60,13 +50,11 @@ In my first run, I saw two very different commit shapes:
 }
 ```
 
-This is where the first draft started to wobble for me.
-
 The high-level attribution looked directionally right (small fix vs larger feature), but `human_added: 101` being identical in both commits made me cautious about over-interpreting that field.
 
 ## Run 2 (February 28, 2026): prompt-only test
 
-For the second run, I constrained myself to prompting only.
+So I ran a second test. This time I constrained myself to prompting only.
 
 I gave requirements, reviewed output, asked for adjustments, and asked for commits/merge. I did not manually author code in the changed files.
 
@@ -147,11 +135,8 @@ My first run made me curious. My second run gave me better clarity about how thi
 
 Entire CLI looks genuinely useful for commit-level AI attribution, especially when you need an auditable trail with low process overhead. But if you are using it for governance, you should still read field semantics carefully and separate commit facts from session-level context metrics.
 
+**A note on versions:** Both runs used the same Entire CLI version (`0.4.8`, build `81ddee25`), installed February 14, 2026. The agent session envelope `version` field moved from `2.1.19` to `2.1.63` between runs, but I'm treating this comparison as workflow-driven, not version-driven.
+
 ---
 
-Helpful Links:
-
-- [Entire CLI GitHub](https://github.com/entireio/cli)
-- [Entire CLI Strategies Documentation](https://docs.entire.io/cli/strategies)
-- [Tech Edu Byte: Entire CLI Overview](https://www.techedubyte.com/entire-cli-git-based-ai-agent-observability-tool/)
-- [Entire Dispatch 0x0002](https://entire.io/blog/entire-dispatch-0x0002)
+**Links:** [Entire CLI on GitHub](https://github.com/entireio/cli) | [Entire CLI Strategies Docs](https://docs.entire.io/cli/strategies) | [Tech Edu Byte Overview](https://www.techedubyte.com/entire-cli-git-based-ai-agent-observability-tool/) | [Entire Dispatch 0x0002](https://entire.io/blog/entire-dispatch-0x0002)
