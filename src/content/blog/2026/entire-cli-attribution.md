@@ -1,5 +1,5 @@
 ---
-title: "I Tried Entire CLI for AI Code Attribution Twice: What Got Clearer"
+title: "Experimenting with the Entire CLI for AI Code Attribution"
 description: "A two-run case study of Entire CLI attribution: what the first test made ambiguous, what the second prompt-only run clarified, and what still needs interpretation."
 pubDatetime: 2026-03-03T08:00:00-08:00
 tags:
@@ -54,7 +54,7 @@ In my first run, I saw two very different commit shapes:
 }
 ```
 
-This is where the first draft started to wobble for me.
+This is where things got confusing.
 
 The high-level attribution looked directionally right (small fix vs larger feature), but `human_added: 101` being identical in both commits — a 1-line fix and a 357-line feature — made me cautious about over-interpreting that field.
 
