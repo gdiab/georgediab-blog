@@ -4,13 +4,18 @@
   "description": "Ideas, experiments, and build notes from georgediab.com",
   "icons": [
     {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
       "src": "/favicon.ico",
       "sizes": "16x16 32x32 48x48",
       "type": "image/x-icon"
     },
     {
       "src": "/avatar-placeholder.svg",
-      "sizes": "192x192",
+      "sizes": "192x192 512x512",
       "type": "image/svg+xml"
     }
   ],

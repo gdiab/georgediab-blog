@@ -1,10 +1,12 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import postFilter from "@/utils/postFilter";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
 import { calculateReadingTime } from "../../utils/readingTime";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const allPosts = await getCollection("blog");
+  const posts = allPosts.filter(postFilter);
 
   return posts
     .map((post) => {
