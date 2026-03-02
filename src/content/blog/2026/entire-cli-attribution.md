@@ -10,23 +10,17 @@ tags:
   - productivity
 ---
 
-I wrote an earlier draft of this post after an initial Entire CLI test in the repo of one of my personal projects.
+As AI agents write more production code, engineering teams face a straightforward question: who actually wrote what? Git tracks commits, but it does not distinguish between lines a human typed and lines an agent generated. That gap matters for code review, incident response, and compliance.
 
-The data was useful, but one metric (`human_added`) raised questions because it stayed fixed across very different commits.
-
-So I ran a second test on February 28, 2026. In that run, I only prompted the agent and did not write code directly. That gave me a cleaner signal.
-
-## Version note
-
-I checked the local install history before publishing this update. Both runs were on the same Entire CLI version: `0.4.8` (build `81ddee25`). `brew info --cask entire` shows it was installed on February 14, 2026 at 4:48:50 PM PT, and my first recorded attribution event was a few minutes later (4:53 PM PT).
-
-So the clearer results in the second run are likely about workflow design (prompt-only test constraints), not an Entire CLI version upgrade between runs.
-
-One thing did change in session metadata: the agent session envelope `version` field moved from `2.1.19` in the earlier run to `2.1.63` in the latest run. I cannot prove that affected attribution behavior, so I am treating this comparison as workflow-driven, not version-driven.
+I tested [Entire CLI](https://github.com/entireio/cli) twice on one of my personal projects to see how well it fills that gap. The first run surfaced useful data but left me with questions. The second run, where I constrained myself to prompting only, gave me clearer answers.
 
 ## What Entire CLI does
 
-[Entire CLI](https://github.com/entireio/cli) hooks into your git workflow and coding agent session, then records attribution and context alongside commits. In my usage, metadata was stored in the `entire/checkpoints/v1` branch while my working branch history stayed normal.
+Entire CLI hooks into your git workflow and coding agent session, then records attribution and context alongside commits. In my usage, metadata was stored in the `entire/checkpoints/v1` branch while my working branch history stayed normal.
+
+Setup took about two minutes. I installed via Homebrew (`brew tap entireio/tap && brew install entireio/tap/entire`), ran `entire enable` in my project directory, and selected Claude Code as my agent. It also supports Gemini CLI, OpenCode, and Cursor. After that, it runs in the background with no workflow changes needed.
+
+**A note on versions:** Both runs used Entire CLI `0.4.8` (build `81ddee25`), installed via Homebrew on February 14, 2026. The agent session envelope `version` field did change between runs (`2.1.19` → `2.1.63`), but I cannot confirm that affected attribution behavior. I am treating the differences between runs as workflow-driven, not version-driven.
 
 ## Run 1 (February 14-15, 2026): useful, but ambiguous
 
@@ -62,7 +56,7 @@ In my first run, I saw two very different commit shapes:
 
 This is where the first draft started to wobble for me.
 
-The high-level attribution looked directionally right (small fix vs larger feature), but `human_added: 101` being identical in both commits made me cautious about over-interpreting that field.
+The high-level attribution looked directionally right (small fix vs larger feature), but `human_added: 101` being identical in both commits — a 1-line fix and a 357-line feature — made me cautious about over-interpreting that field.
 
 ## Run 2 (February 28, 2026): prompt-only test
 
@@ -104,9 +98,7 @@ Entire recorded two attribution events:
 
 ## What the second run clarified
 
-1. Commit-level attribution can cleanly show a prompt-only workflow.
-2. `human_added/human_modified/human_removed` all being zero in both commits matched what I actually did.
-3. The metric behavior is more believable for governance reporting when workflow constraints are explicit.
+The second run resolved my main question from Run 1. With zero manual code edits, the commit-level fields (`human_added`, `human_modified`, `human_removed`) all came back zero — matching exactly what I did. That is the kind of signal that makes governance reporting believable: when you can point to a controlled workflow and the numbers line up.
 
 ## What is still unclear
 
