@@ -17,7 +17,7 @@ I wanted that exact behavior for AI-agent workflows, where both humans and agent
 
 ## What I Actually Built
 
-`linkledger-cli` is the CLI-first core of a Pocket-for-agents system:
+[`linkledger-cli`](https://github.com/gdiab/linkledger-cli) is the CLI-first core of a Pocket-for-agents system:
 
 - Save URLs fast.
 - Ingest and normalize content asynchronously.
