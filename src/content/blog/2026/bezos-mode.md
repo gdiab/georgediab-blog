@@ -3,7 +3,7 @@ title: "Bezos Mode"
 description: "AI doesn't reduce your cognitive load. It concentrates it. That distinction matters more than you think."
 pubDatetime: 2026-03-15T15:30:00-08:00
 tags: ["ai", "engineering-management", "agents", "burnout", "team-design"]
-heroImage: "/posts/bezos-mode/hero.png"
+heroImage: "/posts/bezos-mode/hero.jpg"
 draft: true
 ---
 
@@ -33,7 +33,7 @@ Steve Yegge described managing twenty-plus agent swarms and experiencing what he
 
 > "High-end vibe coding is fucking with our sleep cycles... I have a pillow and blanket on the floor next to my workstation. I'll just dive in and be knocked out for 90 minutes, once or often twice a day. At lunch, they surprised me by telling me that vibe coding at scale has messed up their sleep. They get blasted by the nap-strike almost daily, and are looking into installing nap pods in their shared workspace."
 
-![A developer asleep at their desk, monitors still glowing](/posts/bezos-mode/nap-desk.png)
+![A developer asleep at their desk, monitors still glowing](/posts/bezos-mode/nap-desk.jpg)
 
 Ajit Banerjee, Ryan Snodgrass, Geoffrey Huntley all reported the same thing independently. Agent orchestration at scale is cognitively punishing. Not the kind of tired you push through. The kind where your brain decides it's done — and ninety minutes on the floor is the only thing that resets it.
 
