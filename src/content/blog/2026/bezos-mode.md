@@ -1,7 +1,7 @@
 ---
 title: "Bezos Mode"
 description: "AI doesn't reduce your cognitive load. It concentrates it. That distinction matters more than you think."
-pubDatetime: 2026-03-15T15:30:00-08:00
+pubDatetime: 2026-03-16T15:30:00-08:00
 tags: ["ai", "engineering-management", "agents", "burnout", "team-design"]
 heroImage: "/posts/bezos-mode/hero.jpg"
 draft: true
