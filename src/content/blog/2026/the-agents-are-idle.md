@@ -49,7 +49,7 @@ AI handles the easy problems: the boilerplate, the test scaffolding, the first-d
 
 But what's left in your queue when the easy problems are gone? Only the hard ones.
 
-Hard problems don't queue. They stack. Every one requires full engagement. Every one demands judgment. You're not clearing work faster; you're clearing clearable work faster while the genuinely difficult decisions accumulate. And you're accumulating them alongside the new job of managing whatever the agents produced.
+Hard problems don't queue. They stack. Every one requires full engagement. Every one demands judgment. You're not clearing work faster; you're clearing *clearable* work faster while the genuinely difficult decisions accumulate. And you're accumulating them alongside the new job of managing whatever the agents produced.
 
 [The HBR study](https://hbr.org/2026/03/generative-ai-when-using-ai-leads-to-brain-fry) found that workers with high AI oversight expended 14% more mental effort, reported 12% more mental fatigue, and experienced 19% more information overload than those with low oversight. Offloading repetitive tasks to AI does help; it predicts lower burnout. But the oversight tax more than eats the savings.
 
