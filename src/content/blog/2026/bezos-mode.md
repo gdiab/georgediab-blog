@@ -89,7 +89,7 @@ Back to me, in bed, phone in hand, checking in with my agents.
 
 I know that's not great. The exhilaration is real and the exhaustion is real, and at some point those two things are going to meet. I'm not ready to stop. The progress is too good, the momentum too valuable. But I can see the shape of what happens if I don't eventually put the phone down.
 
-Even as I write this, I sm thinking about how my agents are idle. I feel like I am failing to maximize something I'm supposed to be maximizing.
+Even as I write this, I am thinking about how my agents are idle. I feel like I am failing to maximize something I'm supposed to be maximizing.
 
 Brain fry is real. The high is real too. The question is whether you design your workflow before the crash does it for you.
 
