@@ -91,7 +91,7 @@ I know that's not great. The exhilaration is real and the exhaustion is real, an
 
 Even as I write this, I am thinking about how my agents are idle. I feel like I am failing to maximize something I'm supposed to be maximizing.
 
-Brain fry is real. The high is real too. The question is whether you design your workflow before the crash does it for you.
+Brain fry is real. The high is real too. At some point those two things are going to meet. The only question is whether you see it coming.
 
 More agents mean more work, not less. Sleep, stay hydrated, and take care of yourselves... crashing out isn't going to do you, your team or your family any favors.
 
