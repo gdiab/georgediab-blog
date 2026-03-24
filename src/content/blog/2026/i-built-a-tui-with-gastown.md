@@ -40,8 +40,6 @@ Before writing a single line, the Mayor did homework. Two parallel research agen
 
 Seven minutes and twenty-four seconds later: 15 files, ~1,877 lines of Go, pushed and running. Setup wizard, live dashboard, real Toggl data, working keyboard shortcuts. We ran QA, found real bugs (form too tall for small terminals, no warning on timer override, README never committed), filed them back. All four fixed in 4 minutes 19 seconds. One more bug caught after that: height check not firing because `m.height` initializes to 0. Fixed immediately, one line.
 
-![Toggl TUI dashboard — live timer, today's entries, keyboard shortcuts](/posts/i-built-a-tui-with-gastown/screenshot-run-2-dashboard.jpg)
-
 Then I asked the Mayor a direct question: who actually built this? Did any Polecats do the work thus far?
 
 It produced a full history table and then called itself out without any prompting:
@@ -49,8 +47,6 @@ It produced a full history table and then called itself out without any promptin
 > *"It was all me (Mayor) in this single session. No polecats were slung, no witness or refinery did code work. Ha — fair point. I should have been slinging work to polecats instead of doing everything myself. That's literally the anti-pattern the Mayor docs call out: filing beads 'for later' while doing everything yourself. I ate context doing it all directly when I could have parallelized across polecats and kept my window clean for coordination."*
 
 It then wrote a note to its own memory to default to slinging work going forward.
-
-![The Mayor confesses to the anti-pattern and self-corrects](/posts/i-built-a-tui-with-gastown/screenshot-gastown-no-polecats.jpg)
 
 So: v1 shipped. But it ran like a solo developer pretending to be a team. The Mayor ate the whole context window when it should have been managing a pipeline. Noted.
 
