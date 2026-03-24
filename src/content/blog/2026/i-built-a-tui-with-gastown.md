@@ -1,24 +1,26 @@
 ---
-title: "I Let an AI Agent Team Build My Toggl TUI. Here's What Actually Happened."
-description: "A working terminal app, 15 files, ~1,900 lines of Go, in 7 minutes 24 seconds. That part went fine. What got interesting was everything after."
-pubDatetime: 2026-03-20T08:00:00-08:00
+title: "I Let GasTown Build A Toggl TUI"
+description: "I let GasTown build a Toggl TUI. Speed was impressive, but the bigger insight was watching a Mayor agent shift from solo coding agent to effective multi-agent coordinator."
+pubDatetime: 2026-03-24T13:00:00-08:00
 tags: ["ai", "agents", "gastown", "vibe-coding", "engineering", "tools", "open-source"]
-draft: true
+draft: false
 ---
 
-A working terminal app, 15 files, ~1,900 lines of Go, in 7 minutes 24 seconds. That part went fine. What got interesting was everything after.
+I let GasTown build a Toggl TUI, and it shipped fast. What got really interesting was watching the Mayor shift from solo coding to multi-agent coordination.
 
 ---
 
-I'd been looking for an excuse to try [GasTown](https://github.com/steveyegge/gastown) for a while. A colleague built a native Linux Toggl app on his own, a few of us decided we wanted a TUI instead, and I figured: real project, blank repo, good enough excuse. Let's see what this thing actually does.
+I'd been looking for an excuse to try [GasTown](https://github.com/steveyegge/gastown) for a while. A colleague built a native Linux [Toggl Track](https://toggl.com/track/) app, and a few of us thought a Toggl TUI would be awesome.
 
-## What GasTown Is (and Why It's Not Just "Claude with extra steps")
+I'm always looking for a new project when looking to explore a new model, framework, or AI tool. So owning creating a Toggl TUI gave me this perfect test case: real project, blank repo, and a clear ask. I wanted to see whether GasTown would just generate code quickly, or actually run as a coordinated multi-agent system.
 
-Steve Yegge built GasTown. If you know the name, it's probably from his legendarily long blog posts — the ones that rewired how a generation of engineers thought about platforms, language design, and organizational dysfunction. He spent years at Amazon and Google, then joined Sourcegraph, wrote a book called *Vibe Coding*, and somewhere in late 2025 shipped GasTown as an open-source orchestration layer for running fleets of AI coding agents.
+## What GasTown Is (Beyond "Claude with extra steps")
+
+Steve Yegge built GasTown. If you know the name, it's probably from his legendarily long blog posts — the ones that rewired how a generation of engineers thought about platforms, language design, and organizational dysfunction. He spent years at Amazon and Google, then joined Sourcegraph (and later left in 2026), wrote a book called *Vibe Coding*, and somewhere in late 2025 shipped GasTown as an open-source orchestration layer for running fleets of AI coding agents.
 
 His pitch: a single AI agent can code just fine. The problem is context windows running dry, lost state on restart, and no ability to parallelize. GasTown is the factory floor, not another coding assistant.
 
-The core model is a hierarchy with real names:
+The core model is a hierarchy with roles/personas:
 
 - **The Mayor** — your AI coordinator. It doesn't write code. Its job is to decompose work, spawn agents, track progress, and keep the convoy moving. You talk to the Mayor; the Mayor manages everyone else.
 - **Polecats** — worker agents. Ephemeral sessions (they end when a task is done) but persistent identity and work history. Think staff engineers, not temps.
@@ -38,7 +40,7 @@ Before writing a single line, the Mayor did homework. Two parallel research agen
 
 Seven minutes and twenty-four seconds later: 15 files, ~1,877 lines of Go, pushed and running. Setup wizard, live dashboard, real Toggl data, working keyboard shortcuts. We ran QA, found real bugs (form too tall for small terminals, no warning on timer override, README never committed), filed them back. All four fixed in 4 minutes 19 seconds. One more bug caught after that: height check not firing because `m.height` initializes to 0. Fixed immediately, one line.
 
-Then I asked the Mayor a direct question: who actually built this? Did any Polecats do the work?
+Then I asked the Mayor a direct question: who actually built this? Did any Polecats do the work thus far?
 
 It produced a full history table and then called itself out without any prompting:
 
@@ -68,7 +70,7 @@ The dependency graph it built was a real DAG (directed acyclic graph, if you wan
 - `tt-tx3` (day detail screen) → blocked on `tt-jbe`, runs parallel to `tt-2rm`
 - `tt-bts` (wiring + README) → blocked until both screens merged
 
-When `tt-jbe` merged, the Mayor dispatched the two screen beads simultaneously: `tt-2rm` to furiosa, `tt-tx3` to a fresh Polecat named *nux*. Two agents, two git branches, two isolated repo clones, two tmux sessions, running in parallel while the Mayor watched the convoy table.
+When `tt-jbe` merged, the Mayor dispatched the two screen beads simultaneously: `tt-2rm` to a Polecat (agent) named *furiosa*, `tt-tx3` to a fresh Polecat named *nux*. Two agents, two git branches, two isolated repo clones, two tmux sessions, running in parallel while the Mayor watched the convoy table.
 
 842 lines added across 4 PRs. Weekly view, day detail drill-down, full test coverage. The Mayor wrote zero lines of app code.
 
@@ -82,13 +84,13 @@ Bead filed, rig started, work dispatched, new Polecat spawned. From one word.
 
 At the end of the session I asked for a full history — every bead, every agent, every commit. The Mayor queried the Beads ledger and git log and delivered a sprint summary: 4 releases shipped (v0.1.2 to v0.2.3), 7 beads completed, 2 Polecats used (furiosa with 7 beads, nux with 1), 15 commits, 21 files changed. Then: *"Happy testing — let me know what you find."*
 
-That's a PM closing out a sprint.
+That's not too dissimilar to a PM closing out a sprint.
 
 ## The Honest Take
 
 **What worked:**
 
-The research-before-coding discipline is real. The Mayor read actual API docs and studied real Bubble Tea projects before writing a line. The architecture it produced was clean enough that bugs landed in obvious places and fixed fast. Human QA to AI fix cycles ran under 5 minutes. That's not slow.
+The research-before-coding discipline was impressive. The Mayor read actual API docs and studied real Bubble Tea projects before writing a line. It's something I would normally do myself before asking an agent to work on something, so that saved me time. The architecture it produced was clean enough that bugs landed in obvious places and fixed fast. Human QA to AI fix cycles ran under 5 minutes.
 
 The session handoff protocol is legitimately impressive. Between v1 and v2, the Mayor booted into a fresh session, checked its hook, found a self-written message from the previous session, read it, verified state, docked the rig, and reported in. All automatically, zero context loss. That's the thing GasTown is actually built for.
 
