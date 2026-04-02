@@ -1,19 +1,19 @@
 ---
 title: "The Identity Crisis AI Created for Engineers"
-description: "One of my engineers was openly skeptical about AI for months. Then he said something that stopped me. Here's what it looks like when your team goes through an AI-driven identity crisis — and what comes out the other side."
+description: "An engineer I mentor was openly skeptical about AI for months. Then he said something that stopped me. Here's what it looks like when your team goes through an AI-driven identity crisis — and what comes out the other side."
 pubDatetime: 2026-04-07T07:00:00-07:00
 tags: ["ai", "engineering-management", "culture", "team-design", "career"]
 draft: false
 heroImage: "/posts/ai-identity-crisis/hero.jpg"
 ---
 
-One of my engineers said something to me a few weeks ago that I've been thinking about ever since.
+An engineer I mentor said something to me a few weeks ago that I've been thinking about ever since.
 
-For many months, he took every chance he got to roll his eyes at AI. He'd dismiss it in meetings, joke about it, and say pretty directly that he didn't buy the hype. This wasn't someone checked out. This was someone who loved the craft of writing code, had spent over a decade getting excellent at it, and wasn't ready to pretend this shift felt comfortable.
+For many months, he took every chance he got to roll his eyes at AI. He'd dismiss it in conversation, joke about it, and say pretty directly that he didn't buy the hype. This wasn't someone checked out. This was someone who loved the craft of writing code, had spent over a decade getting excellent at it, and wasn't ready to pretend this shift felt comfortable.
 
 Over time, I started seeing a change. He began asking better questions about prompts, tools, and model choice. He started experimenting more and talking more openly about what this might mean for his career.
 
-Then one day he came by and said: "I do have good product sense and good taste. Maybe I'll be ok."
+Then one day he told me: "I do have good product sense and good taste. Maybe I'll be ok."
 
 I didn't say anything for a second. That's a hard sentence to arrive at when your identity has been tied to code for years. But when he said it, I could tell he was starting to find his footing again.
 
@@ -33,7 +33,7 @@ Kübler-Ross's five stages were about death, but they describe identity loss too
 
 The denial shows up as dismissal: "AI-generated code is garbage, I'd never use it." The anger shows up as resentment toward colleagues who do use it, or toward leadership for encouraging it. Bargaining sounds like: "OK, I'll use it for boilerplate, but the real architecture is still mine." Depression is the quiet withdrawal, the engineer who used to be the most engaged person in the room and now just ships tickets without much commentary.
 
-And acceptance, when it comes, looks like my engineer. Not defeated. Reoriented.
+And acceptance, when it comes, looks like that engineer. Not defeated. Reoriented.
 
 As a manager, your job at this stage isn't to talk people out of their grief. Recognize where each person is. Don't rush them. Someone in the anger stage doesn't need a pep talk about AI productivity, they need to feel heard. Someone in depression might need a 1:1 that has nothing to do with tickets.
 
@@ -49,7 +49,7 @@ The tension this creates inside a team is real and worth naming. You have people
 
 ## What Comes Out the Other Side
 
-Back to my engineer.
+Back to that engineer.
 
 "I have good product sense and good taste."
 
