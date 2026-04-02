@@ -1,10 +1,10 @@
 ---
-
 title: "The Identity Crisis AI Created for Engineers"
 description: "One of my engineers was openly skeptical about AI for months. Then he said something that stopped me. Here's what it looks like when your team goes through an AI-driven identity crisis — and what comes out the other side."
 pubDatetime: 2026-04-02T09:45:00-07:00
 tags: ["ai", "engineering-management", "culture", "team-design", "career"]
 draft: false
+---
 
 One of my engineers said something to me a few weeks ago that I've been thinking about ever since.
 
