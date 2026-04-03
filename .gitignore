@@ -38,3 +38,6 @@ src/content/temp/
 
 # jetbrains setting folder
 .idea/
+
+# Claude session memory
+.remember/
