@@ -1,6 +1,6 @@
 ---
 title: "The Identity Crisis AI Created for Engineers"
-description: "An engineer I mentor was openly skeptical about AI for months. Then he said something that stopped me. Here's what it looks like when your team goes through an AI-driven identity crisis — and what comes out the other side."
+description: "An engineer I mentor was openly skeptical about AI for months. Then they said something that stopped me. Here's what it looks like when your team goes through an AI-driven identity crisis — and what comes out the other side."
 pubDatetime: 2026-04-07T07:00:00-07:00
 tags: ["ai", "engineering-management", "culture", "team-design", "career"]
 draft: false
@@ -9,13 +9,13 @@ heroImage: "/posts/ai-identity-crisis/hero.jpg"
 
 An engineer I mentor said something to me a few weeks ago that I've been thinking about ever since.
 
-For many months, he took every chance he got to roll his eyes at AI. He'd dismiss it in conversation, joke about it, and say pretty directly that he didn't buy the hype. This wasn't someone checked out. This was someone who loved the craft of writing code, had spent over a decade getting excellent at it, and wasn't ready to pretend this shift felt comfortable.
+For many months, they took every chance they got to roll their eyes at AI. They'd dismiss it in conversation, joke about it, and say pretty directly that they didn't buy the hype. This wasn't someone checked out. This was someone who loved the craft of writing code, had spent over a decade getting excellent at it, and wasn't ready to pretend this shift felt comfortable.
 
-Over time, I started seeing a change. He began asking better questions about prompts, tools, and model choice. He started experimenting more and talking more openly about what this might mean for his career.
+Over time, I started seeing a change. They began asking better questions about prompts, tools, and model choice. They started experimenting more and talking more openly about what this might mean for their career.
 
-Then one day he told me: "I do have good product sense and good taste. Maybe I'll be ok."
+Then one day they told me: "I do have good product sense and good taste. Maybe I'll be ok."
 
-I didn't say anything for a second. That's a hard sentence to arrive at when your identity has been tied to code for years. But when he said it, I could tell he was starting to find his footing again.
+I didn't say anything for a second. That's a hard sentence to arrive at when your identity has been tied to code for years. But when they said it, I could tell they were starting to find their footing again.
 
 ## The Grief Is Real
 
@@ -29,7 +29,7 @@ And this isn't just a programmer problem. Operations, legal, finance, anyone who
 
 ## Your Team Is Somewhere on This Map
 
-Kübler-Ross's five stages were about death, but they describe identity loss too. And if you manage a team right now, you're probably seeing different people in different stages at the same time.
+Kübler-Ross's five stages were about grief, and they describe identity loss too. And if you manage a team right now, you're probably seeing different people in different stages at the same time.
 
 The denial shows up as dismissal: "AI-generated code is garbage, I'd never use it." The anger shows up as resentment toward colleagues who do use it, or toward leadership for encouraging it. Bargaining sounds like: "OK, I'll use it for boilerplate, but the real architecture is still mine." Depression is the quiet withdrawal, the engineer who used to be the most engaged person in the room and now just ships tickets without much commentary.
 
@@ -67,4 +67,4 @@ Your job isn't to convince anyone that AI is good. It's to help your team find t
 
 ---
 
-That engineer who told me he has good product sense and good taste is going to be more than ok. He found the skill AI struggles to replace: deciding what's worth building in the first place. The identity crisis is real, and so is the way through it. It takes time, and it helps to have a manager who can tell the difference between someone who's stuck and someone who's still on their way.
+That engineer who told me they have good product sense and good taste is going to be more than ok. They found the skill AI struggles to replace: deciding what's worth building in the first place. The identity crisis is real, and so is the way through it. It takes time, and it helps to have a manager who can tell the difference between someone who's stuck and someone who's still on their way.
