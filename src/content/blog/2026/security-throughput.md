@@ -12,6 +12,8 @@ That assumption is getting shakier.
 
 Anthropic’s [Project Glasswing](https://www.anthropic.com/glasswing) is interesting for the obvious reason: it suggests frontier models may be getting much better at finding serious vulnerabilities. But the more useful way to read the announcement is not as a product story. It is as an operating-model warning.
 
+Anthropic’s own release behavior makes that warning harder to dismiss. In the [Claude Opus 4.7 announcement](https://www.anthropic.com/news/claude-opus-4-7), the company says it is keeping Claude Mythos Preview limited, testing new cyber safeguards on a less capable model first, and that it experimented with efforts to "differentially reduce" Opus 4.7’s cyber capabilities relative to Mythos. That is not proof of anything by itself, and it is still Anthropic talking about Anthropic. But it is a meaningful signal that even the company building these systems seems to think the capability threshold is real enough to require staged release, capability shaping, and live safeguards.
+
 If vulnerability discovery throughput goes up materially, the bottleneck does not disappear. It moves.
 
 And where it moves matters a lot more than the demo.
