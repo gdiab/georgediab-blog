@@ -1,6 +1,6 @@
 ---
 title: "Getting More Out of Claude Code With Remember and Superpowers"
-description: "Remember and Superpowers didn't make Claude Code feel smarter. They made it more practical by reducing friction around context, planning, and execution."
+description: "These two plugins made Claude Code easier to use for real engineering work by tightening the loop around context, planning, execution, and review."
 pubDatetime: 2026-04-28T07:29:01-07:00
 tags: ["ai", "developer-tools", "productivity", "engineering", "tools"]
 draft: false
