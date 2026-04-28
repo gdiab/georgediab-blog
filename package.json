@@ -5,6 +5,9 @@
   "version": "0.0.1",
   "author": "George Diab",
   "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
