@@ -1,10 +1,10 @@
 ---
-title: "What Made Claude Code Click for Me"
+title: "Getting More Out of Claude Code With Remember and Superpowers"
 description: "Remember and Superpowers didn't make Claude Code feel smarter. They made it more practical by reducing friction around context, planning, and execution."
 pubDatetime: 2026-04-27T16:29:01-07:00
 tags: ["ai", "developer-tools", "productivity", "engineering", "tools"]
 draft: true
-heroImage: "/posts/what-made-claude-code-click/hero.jpg"
+heroImage: "/posts/remember-superpowers-claude-code/hero.jpg"
 ---
 
 I've been trying a lot of AI coding tools lately, and most of them fall into one of two buckets: impressive for five minutes, or actually useful for real work.
