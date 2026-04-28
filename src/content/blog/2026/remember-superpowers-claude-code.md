@@ -13,8 +13,6 @@ Two Claude plugins recently landed in the second bucket for me: [Remember](https
 
 What made them stand out wasn't that they suddenly turned Claude Code into some magical senior engineer. They helped with the parts around the code. Reloading context. Restarting sessions. Turning a rough idea into a workable plan. Keeping momentum once the work started.
 
-That's what changed things for me.
-
 ## Remember fixed the part I was already tired of
 
 One of the most annoying parts of using AI coding tools is session amnesia.
