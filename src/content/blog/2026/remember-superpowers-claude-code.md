@@ -7,7 +7,7 @@ draft: true
 heroImage: "/posts/remember-superpowers-claude-code/hero.jpg"
 ---
 
-I've been trying a lot of AI coding tools lately, and most of them fall into one of two buckets: impressive for five minutes, or actually useful for real work.
+I've been trying a lot of AI coding tools lately, and most of them fall into one of two buckets: mostly hype, or actually useful for real work.
 
 Two Claude plugins recently landed in the second bucket for me: [Remember](https://claude.com/plugins/remember) and [Superpowers](https://claude.com/plugins/superpowers).
 
