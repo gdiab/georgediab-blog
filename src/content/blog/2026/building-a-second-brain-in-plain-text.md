@@ -4,7 +4,8 @@ description: "What I learned building a markdown second brain with Tolaria, git,
 pubDatetime: 2026-05-17T09:00:00-07:00
 tags: ["ai", "tools", "productivity", "software-engineering"]
 heroImage: "/posts/building-a-second-brain-in-plain-text/hero.jpg"
-draft: true
+draft: false
+unlisted: true
 ---
 
 A few weeks ago, Andrej Karpathy [posted](https://x.com/karpathy/status/2039805659525644595) about using LLMs to build personal knowledge bases.
