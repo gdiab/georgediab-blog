@@ -16,23 +16,23 @@ Within days, implementations were everywhere. Karpathy [shared a gist](https://g
 
 I read a chunk of them, skimmed a pile of repos doing variations on the idea, sat with the pattern for a couple of days, and decided to try something different.
 
-## The two bets
+## The choice I'm making
 
 The Karpathy pattern rests on one premise. From his gist:
 
 > "The tedious part of maintaining a knowledge base is not reading or thinking. It's the bookkeeping."
 
-If you accept that premise, the LLM-as-compiler approach makes sense. The bookkeeping is the friction. Automate the friction and the wiki becomes the LLM's domain.
+There's a lot of truth in that. Bookkeeping is friction: filing notes, linking related ideas, deciding what belongs where, noticing when a stub has become a real topic. That work matters, and I definitely want help with it. I just don't want the system to assume every note, every synthesis, and every piece of writing should be generated for me.
 
-I'm not sure I accept the premise. The bookkeeping is annoying, but it isn't the part I want help with. The part I want help with is capture friction and structural judgment. Reddit blocks fetchers. X paywalls everything. LinkedIn gates content. Notes need to land somewhere useful. Hubs need to emerge at the right time, not because I got excited after saving one article.
+That's where I get cautious about the jump from "LLMs can handle the bookkeeping" to "the wiki becomes the LLM's domain." Some writing I want to do myself, because that's where the thinking happens. Some writing I'm happy to have the AI draft, especially if the stakes are low or the structure is obvious. What matters is keeping that choice.
 
-Those are the places where a smart collaborator saves me effort. The writing is what I want to keep, because that's the value, not the cost.
+The places where I most want help are capture friction and structural judgment. Reddit blocks fetchers. X paywalls everything. LinkedIn gates content. Notes need to land somewhere useful. Hubs need to emerge at the right time, not because I got excited after saving one article. That's where the agent saves me real effort.
 
-So I'm running a different bet. I author the notes. The AI handles capture friction and helps me think about structure. I keep the wiki small and the structure intentional, and I let the AI suggest where things should go instead of generating the things themselves.
+So the version I'm building keeps the agent near the friction points of the wiki, where the drag lives. Help me capture. Help me file. Help me notice structure. Draft when I ask. Stay out of the way when the writing is mine.
 
-I don't know yet if this is the better bet. The vault is still young, and the way it feels right today might not survive a month of real use. But it's a real choice with real costs on both sides. Plenty of people are running the LLM-as-compiler bet and getting value out of it. Mark Chen's two-domain-wiki writeup is one I keep coming back to. He took the bet I didn't, and from his account it works.
+I don't know yet if this approach will hold up. The vault is still young, and the way it feels right today might not survive a month of real use. But it's a real choice with real costs on both sides. Plenty of people are getting value from the LLM-as-compiler approach. Mark Chen's two-domain-wiki writeup is one I keep coming back to. He chose a more generated path, and from his account it works.
 
-This isn't me arguing that everyone else is wrong. It's me explaining why I chose the other path.
+This isn't a case against how anyone else builds theirs. It's just the version I chose.
 
 ## What I picked
 
@@ -40,7 +40,7 @@ I ended up using [Tolaria](https://github.com/refactoringhq/tolaria), a desktop 
 
 The app is a UI on top of plain files: notes with YAML frontmatter, wikilinks for connections, and saved views as YAML files in a `views/` folder. The vault is grep-able, editable in any text editor, and survives any future tool migration because it's just text and folders. The same vault works without Tolaria. The app is a viewer and editor, not a database.
 
-I picked it for two specific reasons. First, the companion app gave me a useful interface without trapping the data. I could have built my own viewer against whatever folder structure I chose, and at some point I probably would have, but Tolaria already understood the conventions I wanted. Second, it's git-native out of the gate. Obsidian never stuck with me. The git story was part of why. It has options, but the product wants to sell you on paid sync instead. Tolaria treats every vault as a git repo by default. I liked that, and the decision got easier.
+I picked Tolaria for two specific reasons. First, the companion app gave me a useful interface without trapping the data. I could have built my own viewer against whatever folder structure I chose, and at some point I probably would have, but Tolaria already understood the conventions I wanted. Second, it's git-native out of the gate. Obsidian never stuck with me. The git story was part of why. It has options, but the product wants to sell you on paid sync instead. Tolaria treats every vault as a git repo by default. I liked that, and the decision got easier.
 
 ## The system grew with the agent
 
@@ -96,9 +96,7 @@ That became a rule:
 
 That seems like a small rule. It isn't. A second brain is only useful if the metadata means what you think it means. If `read` starts meaning "an agent fetched it," the system eventually lies to you.
 
-The whole thing only works because the agent treats my conventions as load-bearing. It doesn't toggle Tolaria-managed state on its own. It doesn't create hubs without asking. When I asked it to track a personal savings goal in a git-tracked vault, it flagged that the file would live in repo history forever and laid out options before touching anything.
-
-Without that posture, the system would drift into something I couldn't trust.
+The whole thing only works because the agent treats my conventions as load-bearing. It doesn't toggle Tolaria-managed state on its own. It doesn't create hubs without asking. When I asked it to track a personal savings goal in a git-tracked vault, it flagged that the file would live in repo history forever and laid out options before touching anything. Without that posture, the system would drift into something I couldn't trust.
 
 ## Rules that have held up
 
@@ -116,9 +114,7 @@ The value isn't in writing every note myself. It's in building a system that cap
 
 ## Plain text made customization boring
 
-The whole vault is plain text, so customization is mostly a matter of deciding what to write down.
-
-Frontmatter is just YAML. Add a field, and the agent can read it. Future views can filter on it. Tolaria rendered custom fields as first-class properties in the sidebar without me doing anything special.
+The whole vault is plain text, so customization is mostly a matter of deciding what to write down. Frontmatter is just YAML. Add a field, and the agent can read it. Future views can filter on it. Tolaria rendered custom fields as first-class properties in the sidebar without me doing anything special.
 
 ![Tolaria rendering custom YAML frontmatter fields as sidebar properties](/posts/building-a-second-brain-in-plain-text/tolaria-frontmatter.png)
 
@@ -142,7 +138,7 @@ Tolaria does bundle its own MCP server inside the desktop app, but it is intenti
 
 That matters because the app is not trying to become the source of truth. It closes the loop with the running UI, so a note I just created appears in my tab bar without me alt-tabbing, but the substrate stays plain text.
 
-That is the test for this kind of tool: when one feature of the host falls behind, can you route around it without migrating data? If you can, the bet held. If you're trapped, the bet failed.
+That is the test for this kind of tool: when one feature of the host falls behind, can you route around it without migrating data? If you can, the system stays flexible. If you're trapped, the substrate made too many decisions for you.
 
 ## The hard parts are still hard
 
@@ -158,8 +154,6 @@ I started this experiment thinking I was choosing a note app. I don't think that
 
 That also changes where the collaborator can live. Claude Code's [Remote Control](https://code.claude.com/docs/en/remote-control) lets me drive a session running on my laptop from my phone, an iPad, or any browser. The local environment stays where it is. API access, MCP servers, and the vault itself stay on the laptop. Only the input surface changes. The same pattern extends to OpenClaw or another agent, as long as repo hygiene stays boring: pull before changing, commit intentionally, push when done.
 
-The LLM-wiki pattern says: let the model compile the knowledge base for you. My bet is different: let the model reduce the friction around capture, retrieval, and structure, while I keep authorship and judgment close to me.
+The LLM-wiki pattern says: let the model compile the knowledge base for you. The version I want is different: let the model reduce the friction around capture, retrieval, and structure, while I keep authorship and judgment close to me.
 
-Maybe that changes later. Maybe the vault gets big enough that I want more generated summaries, more compiled views, or more automation than I want today. But right now, the system feels useful because it bends to me instead of asking me to bend to it.
-
-This is the version of a second brain I actually want: not a giant generated wiki I occasionally query, but a plain-text working memory I can shape with a collaborator sitting next to me.
+Maybe that changes later. Maybe the vault gets big enough that I want more generated summaries, more compiled views, or more automation than I want today. But right now, the system feels useful because it bends to me instead of asking me to bend to it. This is the version of a second brain I actually want: not a giant generated wiki I occasionally query, but a plain-text working memory I can shape with a collaborator sitting next to me.
