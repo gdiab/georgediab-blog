@@ -78,6 +78,8 @@ That one rule probably saved the system from becoming useless.
 
 A lot of the content I want to save lives behind some kind of fetcher block. Reddit returns 429s to anonymous fetchers with empty user agents. X requires API access. LinkedIn gates most content beyond public previews. Each time we hit a wall, we solved it once and codified the workaround.
 
+The bookmark flow is the part that feels like a read-it-later app rebuilt for agents. If you ever used Pocket, the shape will feel familiar, except the saved link does not just sit there waiting for you to come back. I send the agent a URL, and it does the boring first pass: fetches what it can, creates the bookmark, adds a short summary, captures the main sections, pulls out a few standout quotes to verify later, fills in author and published date when it can, and suggests relationships to existing hubs. If it looks like blog material, it adds a few angles I might riff on later. The note still stays `unread` until I personally read it, but it is no longer an inert URL sitting in a pile.
+
 These started as one-off fixes in chat. The useful question became: where should each fix live? The agent's framing was simple:
 
 > "Could a stranger using this vault on their own machine sensibly use this?" Put it in the vault instructions. "Does it only make sense with my exact account names, Keychain entries, or install paths?" Keep it in private memory.
@@ -130,15 +132,9 @@ Views are filters, not folders. The same note appears in multiple views. Nothing
 
 A few days in, I asked what else Tolaria could do besides edit files. I expected to find some kind of search index, because tools that maintain indexes usually need a way to recover when the index falls out of sync.
 
-There isn't one. Search is a naive case-insensitive substring scan over every Markdown file on each call. No tokenization, no inverted index, no embeddings, no semantic ranking. At 50 notes it's invisibly fast. At 50,000 it would likely crawl. That's a real ceiling.
+There isn't one. Search is a naive case-insensitive substring scan over every Markdown file on each call. No tokenization, no inverted index, no embeddings, no semantic ranking. At 50 notes it's invisibly fast. At 50,000 it would likely crawl. That's a real ceiling, but it does not threaten the vault itself because there is no proprietary state: no derived index, no embeddings, no database. If I outgrow the in-app search, I can point [ripgrep](https://github.com/BurntSushi/ripgrep), [SQLite FTS5](https://www.sqlite.org/fts5.html), [Meilisearch](https://www.meilisearch.com/docs), [Obsidian](https://obsidian.md/), or [Logseq](https://logseq.com/) at the same folder without migrating the data.
 
-But the interesting part is what that ceiling does not break. The vault has no proprietary state: no derived index, no embeddings, no database. Search is therefore a swappable surface. If I outgrow the in-app search before Tolaria ships a better one, the immediate low-friction answer is [ripgrep](https://github.com/BurntSushi/ripgrep). More serious indexed-search options would be something like [SQLite FTS5](https://www.sqlite.org/fts5.html) or [Meilisearch](https://www.meilisearch.com/docs) pointed at the same folder.
-
-A sibling Markdown app like [Obsidian](https://obsidian.md/) or [Logseq](https://logseq.com/) is a different kind of escape hatch. Not necessarily better search at scale, but another editing and navigation layer that can sit on the same files without a migration.
-
-Tolaria does bundle its own MCP server inside the desktop app, but it is intentionally limited. It exposes tools to search a note, read a note, get vault orientation, open a note in the running UI, highlight a UI element, and trigger a rescan. None of them writes. The agent's authoring path is the same as a human's: edit a file on disk. Tolaria's UI monitors the filesystem and detects the change on its own.
-
-That matters because the app is not trying to become the source of truth. It closes the loop with the running UI, so a note I just created appears in my tab bar without me alt-tabbing, but the substrate stays plain text.
+Tolaria also bundles a limited MCP server inside the desktop app. It can search, read, orient the agent, open a note in the running UI, highlight an element, and trigger a rescan, but it does not write. The agent's authoring path is the same as a human's: edit a file on disk and let Tolaria notice the change.
 
 That is the test for this kind of tool: when one feature of the host falls behind, can you route around it without migrating data? If you can, the system stays flexible. If you're trapped, the substrate made too many decisions for you.
 
