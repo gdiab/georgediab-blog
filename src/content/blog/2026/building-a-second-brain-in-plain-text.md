@@ -92,9 +92,7 @@ These started as one-off fixes in chat. The useful question became: where should
 
 > "Could a stranger using this vault on their own machine sensibly use this?" Put it in the vault instructions. "Does it only make sense with my exact account names, Keychain entries, or install paths?" Keep it in private memory.
 
-It felt like bookkeeping at first, but it gave the agent a clean boundary: reusable behavior goes in the repo; private machine details stay out. So the Reddit workaround and the hub-creation rule became project instructions, and the local credentials stayed private.
-
-That's the kind of boring rule that makes an AI-assisted system safer over time. The workarounds for capture friction and the rules for agent behavior share the same origin: something went wrong once, then got codified.
+On one hand, this vault is going to stay private and I won't have any collaborators, so are we overthinking this? But still, it gave the agent a clean boundary: reusable behavior goes in the repo; private machine details stay out. So the Reddit workaround and the hub-creation rule became project instructions, and the local credentials stayed private.
 
 ## The conventions are load-bearing
 
@@ -104,9 +102,7 @@ That became a rule:
 
 > The `status` field tracks whether I have personally read the source. It does not track whether the agent enriched the bookmark.
 
-That seems like a small rule. It isn't. A second brain is only useful if the metadata means what you think it means. If `read` starts meaning "an agent fetched it," the system eventually lies to you.
-
-The whole thing only works because the agent treats my conventions as load-bearing. It doesn't toggle Tolaria-managed state on its own. It doesn't create hubs without asking. When I asked it to track a personal savings goal in a git-tracked vault, it flagged that the file would live in repo history forever and laid out options before touching anything. Without that posture, the system would drift into something I couldn't trust.
+A second brain is only useful if the metadata means what you think it means. If `read` starts meaning "an agent fetched it," the system eventually lies to you. For this to work ***for me***, the agent must treat my conventions as load-bearing. It doesn't toggle Tolaria-managed state on its own. It doesn't create hubs without asking. When I asked it to track a personal savings goal in a git-tracked vault, it flagged that the file would live in repo history forever and laid out options before touching anything. Without that posture, the system would drift into something I couldn't trust.
 
 ## Rules that have held up
 
@@ -121,8 +117,6 @@ If you're building your own version of this, these are the rules that have held 
 That can sound abstract until the structure has to survive real use. Right now, the vault has 239 notes, 5 note types in active use, 9 saved views, and 6 hubs. The inbox is 96.7% organized. There are no dangling wikilinks, and `related_to` is consistent across 228 uses. The type distribution is also surprisingly even: Notes at 27%, Bookmarks at 26%, Questions at 22%, and Concepts at 20%. Nothing looks abandoned yet.
 
 That matters because this is where personal knowledge systems usually start to rot. The structure gets exciting for a week, then the inbox turns into a junk drawer, tags multiply, and half the metadata stops meaning anything. So far, at least, the conventions are doing their job.
-
-The value isn't in writing every note myself. It's in keeping useful material from dying in a pile of links.
 
 ## Plain text made customization boring
 
@@ -142,9 +136,9 @@ A few days in, I asked what else Tolaria could do besides edit files. I expected
 
 There isn't one. Search is a naive case-insensitive substring scan over every Markdown file on each call. There is no real index and no semantic ranking. At 50 notes it's invisibly fast. At 50,000 it would likely crawl. That's a real ceiling, but it does not threaten the vault itself because there is no proprietary state. The notes are still just files.
 
-If I outgrow the in-app search, the specific replacement matters less than the job it does. [ripgrep](https://github.com/BurntSushi/ripgrep) gives me very fast text search across a folder. [SQLite FTS5](https://www.sqlite.org/fts5.html), a module built into the SQLite database, adds full-text search without any extra server to run. [Meilisearch](https://www.meilisearch.com/docs) is the heavier option when I want search that feels more like a product: typo-tolerant, ranked, and fast. [Obsidian](https://obsidian.md/) or [Logseq](https://logseq.com/) are different escape hatches: not search engines, but alternate editing and navigation layers that can sit on the same files without a migration.
+If I outgrow the in-app search, the specific replacement matters less than the job it does. [ripgrep](https://github.com/BurntSushi/ripgrep) could give the agent very fast text search across a folder. [SQLite FTS5](https://www.sqlite.org/fts5.html), a module built into the SQLite database, could add full-text search without any extra server to run. [Obsidian](https://obsidian.md/) or [Logseq](https://logseq.com/) are different escape hatches: not search engines, but alternate editing and navigation layers that can sit on the same files without a migration.
 
-Tolaria also bundles a limited MCP server inside the desktop app. It can search, read, orient the agent, open a note in the running UI, highlight an element, and trigger a rescan, but it does not write. The agent's authoring path is the same as a human's: edit a file on disk and let Tolaria notice the change.
+Tolaria also bundles a limited MCP server inside the desktop app. It can search, read, orient the agent, open a note in the running UI, highlight an element, but it does not write. The agent's authoring path is the same as a human's: edit a file on disk and let Tolaria notice the change.
 
 That is the test for this kind of tool: when one feature of the host falls behind, can you route around it without migrating data? If you can, the system stays flexible. If you're trapped, the substrate made too many decisions for you.
 
@@ -152,16 +146,14 @@ That is the test for this kind of tool: when one feature of the host falls behin
 
 This setup is working, but it still has rough edges. The line between "this deserves a hub" and "this is a one-off" is genuinely hard when I only have one example. I've made the call both ways in the same session and won't know which was right for months.
 
-Personal data in a git-tracked vault wants explicit thought: per-file gitignore, subfolder gitignore, or accept that history is permanent in a private repo. There's no clean default.
-
 Multi-`related_to` is great for discoverability and bad for navigation overload. A note in five views shows up in five contexts, which can be useful or noisy depending on what I'm trying to find. I haven't fully resolved this, and I expect the agent to keep evolving the relationships as we use the system more. Finding over-linked notes is exactly the kind of tending I want it doing.
 
 ## What I think this is really about
 
-I started this experiment thinking I was choosing a note app. I don't think that's the interesting part anymore. The interesting part is the substrate: plain text, git, clear conventions, and an AI collaborator that respects the boundaries of the system.
+I started this experiment thinking I was just choosing a note/memory system and app. I don't think that's the interesting part anymore. The interesting part is the substrate: plain text, git, clear conventions, and an AI collaborator that respects the boundaries of the system.
 
-That also changes where the collaborator can live. Claude Code's [Remote Control](https://code.claude.com/docs/en/remote-control) lets me drive a session running on my laptop from my phone, an iPad, or any browser. The local environment stays where it is. API access, MCP servers, and the vault itself stay on the laptop. Only the input surface changes. The same pattern extends to OpenClaw or another agent, as long as repo hygiene stays boring: pull before changing, commit intentionally, push when done.
+That also changes where the collaborator can live. Claude Code's [Remote Control](https://code.claude.com/docs/en/remote-control) lets me drive a session running on my laptop from my phone, an iPad, or any browser. The local environment stays where it is. API access, MCP servers, and the vault itself stay on the laptop. Only the input surface changes. The same pattern extends to OpenClaw or another agent, as long as repo hygiene stays healthy: pull before changing, commit intentionally, push when done.
 
 The LLM-wiki pattern says: let the model compile the knowledge base for you. The version I want is different: let the model handle the drag around getting material into the system and finding it again, while I keep authorship and judgment close to me.
 
-Maybe that changes later. Maybe the vault gets big enough that I want the model doing more synthesis than I want today. But right now, the system feels useful because it bends to me instead of asking me to bend to it. This is the version of a second brain I actually want: not a giant generated wiki I occasionally query, but a plain-text working memory I can shape with a collaborator sitting next to me.
+Maybe that changes later. Maybe the vault gets big enough that I want the model doing more synthesis than I want today. Maybe I will need to split notes into two vaults with different purposes. But right now, the system feels useful because it bends to me instead of asking me to bend to it. This is the version of a second brain I actually want: not a giant generated wiki I occasionally query, but a plain-text working memory I can shape with an AI collaborator working with me.
