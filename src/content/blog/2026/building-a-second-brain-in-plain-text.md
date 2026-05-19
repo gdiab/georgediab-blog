@@ -5,7 +5,6 @@ pubDatetime: 2026-05-19T07:00:00-07:00
 tags: ["ai", "tools", "productivity", "software-engineering"]
 heroImage: "/posts/building-a-second-brain-in-plain-text/hero.jpg"
 draft: false
-unlisted: true
 ---
 
 In early April, Andrej Karpathy [posted](https://x.com/karpathy/status/2039805659525644595) about using LLMs to build personal knowledge bases.
