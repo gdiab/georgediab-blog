@@ -50,9 +50,11 @@ I picked Tolaria for two specific reasons. First, the companion app gave me a us
 
 I started with one generic Bookmark type and nothing else. No hubs, no views, no conventions.
 
-About ten saves in, recurring themes started showing up: tools I wanted to evaluate, AI industry news, blog-idea fodder, prompt templates worth trying. Each became a hub when the pattern earned it, not before.
+About ten saves in, recurring themes started showing up: tools I wanted to evaluate, AI industry news, blog-idea fodder, prompt templates worth trying.
 
-The agent's job here was watching the cluster, not naming it. `tools-to-try` was the first hub. `ai-news` came next. When a tool turned up that I'd already adopted in my daily setup, we promoted it into its own hub called `tools-i-use`: same shape as `tools-to-try`, different lifecycle position.
+In this setup, a hub is just a note for a recurring theme. It gives related material a shared home without turning the whole vault into a rigid taxonomy. Each hub appeared when the pattern earned it, not before.
+
+The agent's job here was watching the cluster, not naming it. `tools-to-try` was the first hub. `ai-news` came next. When a tool turned up that I'd already adopted in my daily setup, we promoted it into `tools-i-use`. Same shape as `tools-to-try`, different lifecycle position.
 
 Other potential hubs got declined. I saved a Medium post on engineering management, a topic I obviously care about, and the agent's call was:
 
@@ -116,11 +118,11 @@ If you're building your own version of this, these are the rules that have held 
 - Ask before structural moves: hub creation, file deletion, schema changes.
 - Codify durable patterns into repo instructions. Keep machine-specific details in private memory.
 
-That can sound abstract until the structure has to survive real use. Right now, the vault has 239 notes, 5 note types in active use, 9 saved views, and 6 hubs. The inbox is 96.7% organized. There are no dangling wikilinks, and `related_to` is consistent across 228 uses. The type distribution is also surprisingly even: Notes at 27%, Bookmarks at 26%, Questions at 22%, and Concepts at 20%. No dead types, no orphaned structure, no obvious convention drift.
+That can sound abstract until the structure has to survive real use. Right now, the vault has 239 notes, 5 note types in active use, 9 saved views, and 6 hubs. The inbox is 96.7% organized. There are no dangling wikilinks, and `related_to` is consistent across 228 uses. The type distribution is also surprisingly even: Notes at 27%, Bookmarks at 26%, Questions at 22%, and Concepts at 20%. Nothing looks abandoned yet.
 
 That matters because this is where personal knowledge systems usually start to rot. The structure gets exciting for a week, then the inbox turns into a junk drawer, tags multiply, and half the metadata stops meaning anything. So far, at least, the conventions are doing their job.
 
-The value isn't in writing every note myself. It's in building a system that captures, organizes, and resurfaces the material faster than I could manage by hand.
+The value isn't in writing every note myself. It's in keeping useful material from dying in a pile of links.
 
 ## Plain text made customization boring
 
@@ -138,7 +140,7 @@ Views are filters, not folders. The same note appears in multiple views. Nothing
 
 A few days in, I asked what else Tolaria could do besides edit files. I expected to find some kind of search index, because tools that maintain indexes usually need a way to recover when the index falls out of sync.
 
-There isn't one. Search is a naive case-insensitive substring scan over every Markdown file on each call. No tokenization, no inverted index, no embeddings, no semantic ranking. At 50 notes it's invisibly fast. At 50,000 it would likely crawl. That's a real ceiling, but it does not threaten the vault itself because there is no proprietary state: no derived index, no embeddings, no database.
+There isn't one. Search is a naive case-insensitive substring scan over every Markdown file on each call. There is no real index and no semantic ranking. At 50 notes it's invisibly fast. At 50,000 it would likely crawl. That's a real ceiling, but it does not threaten the vault itself because there is no proprietary state. The notes are still just files.
 
 If I outgrow the in-app search, the specific replacement matters less than the job it does. [ripgrep](https://github.com/BurntSushi/ripgrep) gives me very fast text search across a folder. [SQLite FTS5](https://www.sqlite.org/fts5.html), a module built into the SQLite database, adds full-text search without any extra server to run. [Meilisearch](https://www.meilisearch.com/docs) is the heavier option when I want search that feels more like a product: typo-tolerant, ranked, and fast. [Obsidian](https://obsidian.md/) or [Logseq](https://logseq.com/) are different escape hatches: not search engines, but alternate editing and navigation layers that can sit on the same files without a migration.
 
@@ -160,6 +162,6 @@ I started this experiment thinking I was choosing a note app. I don't think that
 
 That also changes where the collaborator can live. Claude Code's [Remote Control](https://code.claude.com/docs/en/remote-control) lets me drive a session running on my laptop from my phone, an iPad, or any browser. The local environment stays where it is. API access, MCP servers, and the vault itself stay on the laptop. Only the input surface changes. The same pattern extends to OpenClaw or another agent, as long as repo hygiene stays boring: pull before changing, commit intentionally, push when done.
 
-The LLM-wiki pattern says: let the model compile the knowledge base for you. The version I want is different: let the model reduce the friction around capture, retrieval, and structure, while I keep authorship and judgment close to me.
+The LLM-wiki pattern says: let the model compile the knowledge base for you. The version I want is different: let the model handle the drag around getting material into the system and finding it again, while I keep authorship and judgment close to me.
 
-Maybe that changes later. Maybe the vault gets big enough that I want more generated summaries, more compiled views, or more automation than I want today. But right now, the system feels useful because it bends to me instead of asking me to bend to it. This is the version of a second brain I actually want: not a giant generated wiki I occasionally query, but a plain-text working memory I can shape with a collaborator sitting next to me.
+Maybe that changes later. Maybe the vault gets big enough that I want the model doing more synthesis than I want today. But right now, the system feels useful because it bends to me instead of asking me to bend to it. This is the version of a second brain I actually want: not a giant generated wiki I occasionally query, but a plain-text working memory I can shape with a collaborator sitting next to me.
