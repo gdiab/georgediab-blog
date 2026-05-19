@@ -8,11 +8,32 @@ The site is built on top of the AstroPaper theme, with custom content structure,
 
 Blog posts live in `src/content/blog/` and are organized by year. Most posts are Markdown files with frontmatter for title, description, publish date, tags, and optional hero images.
 
+Use `https://www.georgediab.com` for public links. Prefer durable date wording in posts when possible, for example "in early April" instead of "a few weeks ago."
+
+### Post frontmatter
+
+Common fields:
+
+```yaml
+title: "Post title"
+description: "Short social/search description."
+pubDatetime: 2026-05-19T07:00:00-07:00
+tags: ["ai", "tools", "software-engineering"]
+heroImage: "/posts/post-slug/hero.jpg"
+draft: false
+```
+
+Use `unlisted: true` only when a post should be available by direct URL but hidden from the posts list/feed. Remove it before publishing normally.
+
+### Images
+
 Post-specific images live under `public/posts/<post-slug>/` and are referenced from Markdown using root-relative paths, for example:
 
 ```md
 ![Alt text](/posts/example-post/image.jpg)
 ```
+
+For generated hero or inline illustrations, start with `docs/hero-image-style.md` so new images match the site's visual system.
 
 ## Project structure
 
@@ -50,9 +71,15 @@ Post-specific images live under `public/posts/<post-slug>/` and are referenced f
 | `npm run lint` | Run Biome linting |
 | `npm run check` | Run Biome checks |
 
-## Deployment
+## Publishing workflow
 
-The site deploys through Vercel. Changes merged to `main` rebuild and deploy automatically.
+`main` is protected, so changes should go through a pull request. Before merging content or site changes, run:
+
+```sh
+npm run build:check
+```
+
+After merge, Vercel rebuilds and deploys automatically. If a post is not appearing on the site, check `draft`, `unlisted`, publish date, and the Vercel deployment first.
 
 ## License
 
