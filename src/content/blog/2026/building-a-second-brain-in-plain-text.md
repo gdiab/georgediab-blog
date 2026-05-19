@@ -92,7 +92,7 @@ These started as one-off fixes in chat. The useful question became: where should
 
 > "Could a stranger using this vault on their own machine sensibly use this?" Put it in the vault instructions. "Does it only make sense with my exact account names, Keychain entries, or install paths?" Keep it in private memory.
 
-It felt like bookkeeping at first, but it gave the agent a clean boundary: reusable behavior goes in the repo; private machine details stay out. So the Reddit workaround and the hub-creation rule became project instructions. Local credentials stayed private.
+It felt like bookkeeping at first, but it gave the agent a clean boundary: reusable behavior goes in the repo; private machine details stay out. So the Reddit workaround and the hub-creation rule became project instructions, and the local credentials stayed private.
 
 That's the kind of boring rule that makes an AI-assisted system safer over time. The workarounds for capture friction and the rules for agent behavior share the same origin: something went wrong once, then got codified.
 
