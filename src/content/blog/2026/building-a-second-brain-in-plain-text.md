@@ -26,7 +26,11 @@ There's a lot of truth in that. Bookkeeping is friction: filing notes, linking r
 
 That's where I get cautious about the jump from "LLMs can handle the bookkeeping" to "the wiki becomes the LLM's domain." Some writing I want to do myself, because that's where the thinking happens. Some writing I'm happy to have the AI draft, especially if the stakes are low or the structure is obvious. What matters is keeping that choice.
 
-The places where I most want help are capture friction and structural judgment. Reddit blocks fetchers. X paywalls everything. LinkedIn gates content. Notes need to land somewhere useful. Hubs need to emerge at the right time, not because I got excited after saving one article. That's where the agent saves me real effort.
+The two places I most want help are reducing capture friction and improving structural judgment.
+
+By capture friction, I mean all the little steps between "I found something worth saving" and "this is now in the right place, with enough context that future-me can use it." Reddit blocks automated tools that try to pull content. X paywalls everything. LinkedIn gates most content behind a login wall. Notes need to land somewhere useful, and getting there is more work than it looks.
+
+By structural judgment, I mean the harder call after capture: where does this belong, what is it related to, and when has a recurring theme earned its own hub? Hubs need to emerge at the right time, not because I got excited after saving one article. That's where the agent saves me real effort.
 
 So the version I'm building keeps the agent near the friction points of the wiki, where the drag lives. Help me capture. Help me file. Help me notice structure. Draft when I ask. Stay out of the way when the writing is mine.
 
@@ -53,6 +57,8 @@ The agent's job here was watching the cluster, not naming it. `tools-to-try` was
 Other potential hubs got declined. I saved a Medium post on engineering management, a topic I obviously care about, and the agent's call was:
 
 > If engineering-management becomes a recurring theme for you, the same hub-note + view pattern would apply, but with N=1 I wouldn't create a hub yet.
+
+That N=1 shorthand is just a compact way of saying, "one example might be a fluke." I don't want a new hub every time one article looks interesting. I want the structure to appear after a pattern starts earning its keep.
 
 The same afternoon, it made the opposite call for a disciplined ChatGPT prompt I saved:
 
@@ -90,7 +96,7 @@ That's the kind of boring rule that makes an AI-assisted system safer over time.
 
 ## The conventions are load-bearing
 
-Some of the best rules came from corrections, not design. At one point, the agent marked a paywalled Pragmatic Engineer post as `read` because it had hydrated the body. I corrected it. I hadn't personally read the source yet.
+Some of the best rules came from corrections, not design. At one point, the agent marked a paywalled Pragmatic Engineer post as `read` because it had enriched the bookmark with the article body. I corrected it. I hadn't personally read the source yet.
 
 That became a rule:
 
@@ -104,7 +110,7 @@ The whole thing only works because the agent treats my conventions as load-beari
 
 If you're building your own version of this, these are the rules that have held up best:
 
-- Default to N=2 before creating a hub. Resist spawning structure at N=1.
+- Default to two examples before creating a hub. One example might be a fluke; two starts to look like a pattern.
 - The inbox is for unfiled notes only. Action discovery happens through saved views.
 - `status` reflects whether you personally read the source, not whether an agent enriched it.
 - Ask before structural moves: hub creation, file deletion, schema changes.
@@ -132,7 +138,9 @@ Views are filters, not folders. The same note appears in multiple views. Nothing
 
 A few days in, I asked what else Tolaria could do besides edit files. I expected to find some kind of search index, because tools that maintain indexes usually need a way to recover when the index falls out of sync.
 
-There isn't one. Search is a naive case-insensitive substring scan over every Markdown file on each call. No tokenization, no inverted index, no embeddings, no semantic ranking. At 50 notes it's invisibly fast. At 50,000 it would likely crawl. That's a real ceiling, but it does not threaten the vault itself because there is no proprietary state: no derived index, no embeddings, no database. If I outgrow the in-app search, I can point [ripgrep](https://github.com/BurntSushi/ripgrep), [SQLite FTS5](https://www.sqlite.org/fts5.html), [Meilisearch](https://www.meilisearch.com/docs), [Obsidian](https://obsidian.md/), or [Logseq](https://logseq.com/) at the same folder without migrating the data.
+There isn't one. Search is a naive case-insensitive substring scan over every Markdown file on each call. No tokenization, no inverted index, no embeddings, no semantic ranking. At 50 notes it's invisibly fast. At 50,000 it would likely crawl. That's a real ceiling, but it does not threaten the vault itself because there is no proprietary state: no derived index, no embeddings, no database.
+
+If I outgrow the in-app search, the specific replacement matters less than the job it does. [ripgrep](https://github.com/BurntSushi/ripgrep) gives me very fast text search across a folder. [SQLite FTS5](https://www.sqlite.org/fts5.html), a module built into the SQLite database, adds full-text search without any extra server to run. [Meilisearch](https://www.meilisearch.com/docs) is the heavier option when I want search that feels more like a product: typo-tolerant, ranked, and fast. [Obsidian](https://obsidian.md/) or [Logseq](https://logseq.com/) are different escape hatches: not search engines, but alternate editing and navigation layers that can sit on the same files without a migration.
 
 Tolaria also bundles a limited MCP server inside the desktop app. It can search, read, orient the agent, open a note in the running UI, highlight an element, and trigger a rescan, but it does not write. The agent's authoring path is the same as a human's: edit a file on disk and let Tolaria notice the change.
 
@@ -140,7 +148,7 @@ That is the test for this kind of tool: when one feature of the host falls behin
 
 ## The hard parts are still hard
 
-This setup is working, but it still has rough edges. The line between "this deserves a hub" and "this is a one-off" is genuinely hard at N=1. I've made the call both ways in the same session and won't know which was right for months.
+This setup is working, but it still has rough edges. The line between "this deserves a hub" and "this is a one-off" is genuinely hard when I only have one example. I've made the call both ways in the same session and won't know which was right for months.
 
 Personal data in a git-tracked vault wants explicit thought: per-file gitignore, subfolder gitignore, or accept that history is permanent in a private repo. There's no clean default.
 
