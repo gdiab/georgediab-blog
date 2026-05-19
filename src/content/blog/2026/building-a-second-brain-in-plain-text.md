@@ -22,7 +22,7 @@ The Karpathy pattern rests on one premise. From his gist:
 
 > "The tedious part of maintaining a knowledge base is not reading or thinking. It's the bookkeeping."
 
-There's a lot of truth in that. Bookkeeping is friction: filing notes, linking related ideas, deciding what belongs where, noticing when a stub has become a real topic. That work matters, and I definitely want help with it. I just don't want the system to assume every note, every synthesis, and every piece of writing should be generated for me.
+There's a lot of truth in that. Bookkeeping is friction: filing notes, linking related ideas, deciding what belongs where, noticing when a stub has become a real topic. I want help with that part. I just don't want the system to assume it should generate the thinking for me.
 
 That's where I get cautious about the jump from "LLMs can handle the bookkeeping" to "the wiki becomes the LLM's domain." Some writing I want to do myself, because that's where the thinking happens. Some writing I'm happy to have the AI draft, especially if the stakes are low or the structure is obvious. What matters is keeping that choice.
 
