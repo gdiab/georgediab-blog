@@ -108,7 +108,9 @@ If you're building your own version of this, these are the rules that have held 
 - Ask before structural moves: hub creation, file deletion, schema changes.
 - Codify durable patterns into repo instructions. Keep machine-specific details in private memory.
 
-That can sound abstract until the numbers start moving. In a little over a week, this vault grew to more than 225 notes and roughly 90,000 words of source material captured, enriched, and structured with AI help: saved articles, hydrated source notes, summaries, prompts, tool evaluations, and hub notes that tie related material together.
+That can sound abstract until the structure has to survive real use. Right now, the vault has 239 notes, 5 note types in active use, 9 saved views, and 6 hubs. The inbox is 96.7% organized. There are no dangling wikilinks, and `related_to` is consistent across 228 uses. The type distribution is also surprisingly even: Notes at 27%, Bookmarks at 26%, Questions at 22%, and Concepts at 20%. No dead types, no orphaned structure, no obvious convention drift.
+
+That matters because this is where personal knowledge systems usually start to rot. The structure gets exciting for a week, then the inbox turns into a junk drawer, tags multiply, and half the metadata stops meaning anything. So far, at least, the conventions are doing their job.
 
 The value isn't in writing every note myself. It's in building a system that captures, organizes, and resurfaces the material faster than I could manage by hand.
 
