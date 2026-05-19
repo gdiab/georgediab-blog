@@ -116,6 +116,10 @@ If you're building your own version of this, these are the rules that have held 
 
 That can sound abstract until the structure has to survive real use. Right now, the vault has 239 notes, 5 note types in active use, 9 saved views, and 6 hubs. The inbox is 96.7% organized. There are no dangling wikilinks, and `related_to` is consistent across 228 uses. The type distribution is also surprisingly even: Notes at 27%, Bookmarks at 26%, Questions at 22%, and Concepts at 20%. Nothing looks abandoned yet.
 
+<figure class="not-prose sm:float-right sm:w-5/12 sm:ml-6 mb-4 mt-1">
+  <img src="/posts/building-a-second-brain-in-plain-text/junk-drawer-vault-rot.jpg" alt="A knowledge vault dashboard drifting into a junk drawer of loose cards, duplicate tags, and orphaned nodes" class="w-full rounded-xl border-2 border-border" />
+</figure>
+
 That matters because this is where personal knowledge systems usually start to rot. The structure gets exciting for a week, then the inbox turns into a junk drawer, tags multiply, and half the metadata stops meaning anything. So far, at least, the conventions are doing their job.
 
 ## Plain text made customization boring
