@@ -92,7 +92,7 @@ These started as one-off fixes in chat. The useful question became: where should
 
 > "Could a stranger using this vault on their own machine sensibly use this?" Put it in the vault instructions. "Does it only make sense with my exact account names, Keychain entries, or install paths?" Keep it in private memory.
 
-That distinction matters. A Reddit fetch pattern is portable. A local token location is not. A convention about when to create hubs belongs in the repo. A personal path on my machine does not.
+That sounds fussy, but it kept us from mixing reusable instructions with private machine details. The Reddit workaround belongs in the repo. So does the rule for when to create hubs. My account names, Keychain entries, and local paths do not.
 
 That's the kind of boring rule that makes an AI-assisted system safer over time. The workarounds for capture friction and the rules for agent behavior share the same origin: something went wrong once, then got codified.
 
