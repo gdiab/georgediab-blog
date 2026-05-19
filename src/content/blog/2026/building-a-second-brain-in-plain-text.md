@@ -8,7 +8,7 @@ draft: false
 unlisted: true
 ---
 
-A few weeks ago, Andrej Karpathy [posted](https://x.com/karpathy/status/2039805659525644595) about using LLMs to build personal knowledge bases.
+In early April, Andrej Karpathy [posted](https://x.com/karpathy/status/2039805659525644595) about using LLMs to build personal knowledge bases.
 
 The pattern is pretty simple: put raw documents in one folder, have an LLM compile a markdown wiki from them, then ask the wiki questions instead of digging through the original material. In his case, the research wiki had 100 articles and roughly 400K words of LLM-generated content, and he rarely touched it directly.
 
