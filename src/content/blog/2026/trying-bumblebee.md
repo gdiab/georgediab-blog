@@ -1,25 +1,26 @@
 ---
 title: "Trying Bumblebee"
 description: "Notes from running Perplexity's new read-only developer-endpoint scanner. Zero findings against the catalogues, sixty-three MCP servers I didn't install, and one freshness pattern worth knowing."
-pubDatetime: 2026-05-26T15:41:53-07:00
+pubDatetime: 2026-05-27T15:00:28-07:00
 tags: ["ai", "developer-tools", "mcp", "software-engineering", "tools"]
-draft: true
+draft: false
+unlisted: false
 heroImage: "/posts/trying-bumblebee/hero.jpg"
 ---
 
-Perplexity open-sourced [Bumblebee](https://github.com/perplexityai/bumblebee) last week. It's a read-only developer-endpoint scanner. When a supply-chain attack hits the news and a package or extension you might have installed gets named, Bumblebee answers one specific question fast: is the compromised version sitting in your lockfiles right now? I ran it on my laptop the night I came across it. Notes from the install and the first few scans below.
+Perplexity open-sourced [Bumblebee](https://github.com/perplexityai/bumblebee) last week. It's a read-only scanner looking for any suspect extensions, packages or AI tool configurations. It's what Perplexity [runs on their developer machines](https://www.perplexity.ai/hub/blog/perplexity-is-open-sourcing-bumblebee) and they wanted to give back by sharing it with the engineering community. When a supply-chain attack hits the news and a package or extension you might have installed gets named, Bumblebee answers one specific question fast: is the compromised version sitting in your lockfiles right now? I ran it on my laptop the night I came across it. Notes from the install and the first few scans below.
 
-[Perplexity](https://www.perplexity.ai) is best known for their AI answer engine. They've since expanded into a browser (Comet) and an agent platform (Computer). Bumblebee's threat catalogues are themselves built using Perplexity Computer, per the project README.
+[Perplexity](https://www.perplexity.ai) is best known for their AI answer engine. They've since expanded into a browser (Comet) and an agent platform (Computer). Bumblebee's threat catalogues are themselves built using Perplexity Computer, per the project README. Eat your own dog food!
 
 ## What it does
 
-Bumblebee walks a file tree from wherever you point it. It opens lockfiles, package-manager install metadata, editor extension manifests, browser extension manifests, and MCP host configs. It does not open source code, run any package manager, or execute lifecycle scripts. The whole design is that you can scan for compromised packages without accidentally triggering them.
+Bumblebee walks a file tree from wherever you point it. It opens lockfiles, package-manager install metadata, editor extension manifests, browser extension manifests, and MCP host configs. It does not read source code, run any package manager, or execute lifecycle scripts (npm's `postinstall` and friends). The whole design is that you can scan for compromised packages without accidentally triggering them.
 
-From those metadata files it extracts `(ecosystem, name, version)` tuples and matches them against catalogues of known supply-chain campaigns. Perplexity ships eight catalogues in the repo today: variants of shai-hulud, nx-console-vscode, laravel-lang, gemstuffer, node-ipc, shopsprint, and trapdoor. New ones land as pull requests when a campaign breaks.
+From those metadata files it extracts `(ecosystem, name, version)` tuples and matches them against catalogues of known supply-chain campaigns. Perplexity ships eight catalogues in the repo today. They cover node-ipc, nx-console-vscode, laravel-lang, gemstuffer, shopsprint, and trapdoor, plus two shai-hulud variants (the mini and AntV waves). New ones land as pull requests when a campaign breaks.
 
 ## Install
 
-Three megabytes, one binary, no dependencies. The release page has prebuilt darwin-arm64, darwin-amd64, and Linux binaries. I dropped it in a throwaway directory:
+It's a single 3 MB binary with no dependencies. The release page has prebuilt darwin-arm64, darwin-amd64, and Linux binaries. I dropped it in a throwaway directory:
 
 ```sh
 curl -L -o bb.tar.gz \
@@ -30,7 +31,7 @@ tar -xzf bb.tar.gz
 
 Selftest runs against embedded fake-package fixtures and exits non-zero if the install is broken. Useful as a fleet rollout smoke test.
 
-The tarball also drops the eight catalogues into `./threat_intel/`.
+The tarball also drops six catalogues into `./threat_intel/`.
 
 ## First scans
 
@@ -48,7 +49,13 @@ On my laptop:
 - Baseline: 4 seconds, 7,198 package records across six ecosystems (npm, go, mcp, browser-extension, editor-extension, pypi).
 - Deep against `$HOME`: 52 seconds, 3 million files walked, 128 thousand packages parsed, **zero findings**.
 
-Zero findings is reassuring but worth being precise about. It means none of the exact compromised tuples in those eight catalogues are sitting on my machine. It is not a vulnerability scan, not antivirus, not a comprehensive security check. The catalogue covers eight named incidents. Anything else is invisible.
+Zero findings is reassuring but worth being precise about. It means none of the exact compromised tuples in those eight catalogues are sitting on my machine. It is not a vulnerability scanner, an antivirus, or a general security audit. The catalogue covers eight named incidents. Anything else is invisible.
+
+To show what a hit looks like without pretending I had one, I faked a tiny `node_modules/node-ipc/package.json` with `version: "12.0.1"` and pointed Bumblebee at it:
+
+![A fake Bumblebee package exposure finding for node-ipc version 12.0.1](/posts/trying-bumblebee/fake-node-ipc-hit.png)
+
+That output is NDJSON, one object per finding. The useful bits are the catalogue name, the package tuple, the file Bumblebee matched, and the evidence line with exact name and version match.
 
 ## Things worth knowing
 
@@ -78,4 +85,4 @@ The scan finishes in under a minute and tells you whether any of the named campa
 
 The inventory output is useful even when nothing fires. If you've installed any AI coding tool with a plugin marketplace (Claude Code, Cursor, Windsurf, Antigravity, Codex), you have an MCP inventory worth looking at, and Bumblebee surfaces it cleanly without trying to be more than it is.
 
-The honest limit: this is an incident-response matcher, not a security posture. A clean Bumblebee scan tells you that you're not exposed to a specific known list. It tells you nothing else. The teams that get the most out of tools like this are the ones that treat the result as the start of a question, not the end of one.
+A clean scan tells you something concrete. None of the packages in your lockfiles match a known-compromised release, none of your editor or browser extensions are on the malicious list, and nothing has quietly rewritten your MCP configs. That's measured against the eight campaigns catalogued today, and new ones land as they break. So the tool earns its keep when you keep it current and rescan, not when you run it once and forget it.
