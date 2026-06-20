@@ -2,7 +2,7 @@
 import { SITE, SOCIALS } from "@/config";
 
 export interface Props {
-  type: "BlogPosting" | "Person" | "WebSite";
+  type: "BlogPosting" | "Person" | "WebSite" | "BreadcrumbList";
   data: any;
 }
 
@@ -73,6 +73,17 @@ if (type === "BlogPosting") {
       target: `${siteUrl}/search?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
+  };
+} else if (type === "BreadcrumbList") {
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: (data.items as { name: string; url: string }[]).map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
   };
 }
 ---

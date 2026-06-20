@@ -1,6 +1,6 @@
 ---
 title: "Building a Second Brain in Plain Text"
-description: "What I learned building a markdown second brain with Tolaria, git, and an AI collaborator that helps with capture and structure instead of writing the notes for me."
+description: "What I learned building a markdown second brain with Tolaria, git, and an AI collaborator that helps with capture and structure, not writing the notes for me."
 pubDatetime: 2026-05-19T07:00:00-07:00
 tags: ["ai", "tools", "productivity", "software-engineering"]
 heroImage: "/posts/building-a-second-brain-in-plain-text/hero.jpg"

@@ -1,6 +1,6 @@
 ---
 title: "The Mill - It's official!"
-description: "Max and I have been accepted to The Mill startup accelerator in Downtown Las Vegas. Everything began as a Facebook experiment designed to boost audience engagement."
+description: "Max and I have been accepted to The Mill startup accelerator in Downtown Las Vegas. It all began as a Facebook experiment to boost audience engagement."
 pubDatetime: 2014-07-03T00:00:00-08:00
 tags: ["startup", "accelerator"]
 draft: false
