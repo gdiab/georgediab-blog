@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getPath } from "@/utils/getPath";
+import { calculateReadingTime } from "@/utils/readingTime";
+
+export interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <section
+      data-pagefind-ignore
+      aria-labelledby="related-posts-heading"
+      class="mt-12"
+    >
+      <h2 id="related-posts-heading" class="text-lg font-semibold">
+        Related posts
+      </h2>
+      <ul class="mt-4 flex flex-col gap-4">
+        {posts.map(({ data, id, filePath, body }) => (
+          <li>
+            <a
+              href={getPath(id, filePath)}
+              class="text-base font-medium text-accent decoration-dashed underline-offset-4 hover:underline focus-visible:no-underline"
+            >
+              {data.title}
+            </a>
+            <p class="mt-1 text-sm opacity-80">
+              {data.description}
+            </p>
+            <span class="text-xs italic opacity-70">
+              {calculateReadingTime(body ?? "")}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

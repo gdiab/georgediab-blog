@@ -1,6 +1,6 @@
 ---
 title: "It's PanelPicker Time!"
-description: "Founding teams represent a critical component of startup success. Understanding what each member brings becomes essential to building effective organizational dynamics."
+description: "Founding teams are a critical component of startup success, and understanding what each member brings is essential to building effective team dynamics."
 pubDatetime: 2014-08-10T00:00:00-08:00
 tags: ["ceo", "cto", "panelpicker", "programming", "sxsw", "startup"]
 draft: false

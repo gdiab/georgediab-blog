@@ -1,6 +1,6 @@
 ---
 title: "Trying Bumblebee"
-description: "Notes from running Perplexity's new read-only developer-endpoint scanner. Zero findings against the catalogues, sixty-three MCP servers I didn't install, and one freshness pattern worth knowing."
+description: "Running Perplexity's read-only endpoint scanner: zero catalogue findings, sixty-three MCP servers I never installed, and one freshness pattern worth knowing."
 pubDatetime: 2026-05-27T15:00:28-07:00
 tags: ["ai", "developer-tools", "mcp", "software-engineering", "tools"]
 draft: false

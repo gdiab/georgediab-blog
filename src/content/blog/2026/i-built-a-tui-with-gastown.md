@@ -1,6 +1,6 @@
 ---
 title: "I Let GasTown Build A Toggl TUI"
-description: "I let GasTown build a Toggl TUI. Speed was impressive, but the bigger insight was watching a Mayor agent shift from solo coding agent to effective multi-agent coordinator."
+description: "I let GasTown build a Toggl TUI. The speed impressed me, but the real insight was watching a Mayor agent shift from solo coder to multi-agent coordinator."
 pubDatetime: 2026-03-24T13:00:00-08:00
 tags: ["ai", "agents", "gastown", "vibe-coding", "engineering", "tools", "open-source"]
 draft: false

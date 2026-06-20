@@ -1,6 +1,6 @@
 ---
 title: "Experimenting with the Entire CLI for AI Code Attribution"
-description: "A two-run case study of Entire CLI attribution: what the first test made ambiguous, what the second prompt-only run clarified, and what still needs interpretation."
+description: "A two-run case study of Entire CLI attribution: what the first test left ambiguous, what the prompt-only rerun clarified, and what still needs interpretation."
 pubDatetime: 2026-03-03T08:00:00-08:00
 tags:
   - ai
