@@ -4,7 +4,8 @@ description: "Three words got a frontier AI model pulled off the internet. The e
 pubDatetime: 2026-06-22T10:00:00-07:00
 tags: ["ai", "ai-policy", "security", "anthropic", "regulation"]
 heroImage: "/posts/fix-this-code/hero.jpg"
-draft: true
+draft: false
+unlisted: true
 ---
 
 *Three words pulled a frontier model off the internet. The export control disarmed the people it was meant to protect.*
