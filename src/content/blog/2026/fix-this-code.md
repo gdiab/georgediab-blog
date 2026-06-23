@@ -5,7 +5,7 @@ pubDatetime: 2026-06-23T07:00:00-07:00
 tags: ["ai", "ai-policy", "security", "anthropic", "regulation"]
 heroImage: "/posts/fix-this-code/hero.jpg"
 draft: false
-unlisted: true
+unlisted: false
 ---
 
 *Three words pulled a frontier model off the internet. The export control disarmed the people it was meant to protect.*
