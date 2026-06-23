@@ -26,7 +26,7 @@ She is not a lone voice. Around four hundred security researchers signed [an ope
 
 The people who do this for a living are close to unanimous. The ban hits defense, not offense. To understand how a "fix this code" prompt became a national-security event, you have to back up four months.
 
-## Back up four months
+## Four months earlier, Anthropic said no
 
 In February, the Department of War [asked Anthropic to allow Claude for "any lawful use"](https://www.anthropic.com/news/statement-department-of-war). Anthropic said no. It refused to drop two safeguards specifically: no mass domestic surveillance, and no fully autonomous weapons, on the grounds that "frontier AI systems are simply not reliable enough" for the latter. Anthropic's CEO, [Dario Amodei](https://darioamodei.com), called the government's posture contradictory, since the same administration was calling Anthropic both a security risk and essential to national security.
 
@@ -44,11 +44,11 @@ You cannot hand a vulnerability-finder to defenders only. The same model that fi
 
 That is why an export control is the wrong instrument. Anthropic could only comply by pulling Fable worldwide, so American defenders lost it too. Adversaries who want the same capability have other frontier models, or will train their own, because Fable is not uniquely good at this. The ban took the tool from the people who follow US law and left it with everyone who doesn't. If the goal was national security, the directive damaged the thing it was named after.
 
-## I pay for Claude
+## I vote with my wallet
 
 I pay for Claude, and I pay for it on purpose. Anthropic seemed to be the lab that took safety and the human stakes seriously, and I wanted my money going to the company making the choices I would want made. The uncomfortable part of this episode is that the posture I was paying for, the willingness to tell the government no, is plausibly what made Anthropic the easy target.
 
-The clean response is to vote with my wallet: reward the labs that hold the line, starve the ones that fold. I believe in that, and in practice it barely works, including for me. I pay for Codex too, and I'll pay for whatever I need to test next. If you forced me down to one two-hundred-dollar subscription I'd keep Claude and drop the rest, but nobody's forcing the choice, so I don't make it. There are too many models, they turn over too fast, and the honest truth is my clients often pick the provider and I build with what they picked. The market for "I'll pay more for a company with principles" is real but thin, and it thins a little more every time switching costs drop and a new model tops the benchmarks. Allegiance is easy to feel and hard to act on.
+The clean response is to vote with my wallet: reward the labs that hold the line, starve the ones that fold. I believe in that, and in practice it barely works, including for me. I pay for Codex too, and I'll pay for whatever I need to test next. If you forced me down to one two-hundred-dollar subscription I'd keep Claude and drop the rest, but nobody's forcing the choice, so I don't make it. There are too many models, they turn over too fast, and the right tool keeps changing with the work. The market for "I'll pay more for a company with principles" is real but thin, and it thins a little more every time switching costs drop and a new model tops the benchmarks. Allegiance is easy to feel and hard to act on.
 
 ## Intelligence is a supply line now
 
