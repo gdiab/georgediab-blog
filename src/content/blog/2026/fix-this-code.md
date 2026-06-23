@@ -44,7 +44,7 @@ You cannot hand a vulnerability-finder to defenders only. The same model that fi
 
 That is why an export control is the wrong instrument. Anthropic could only comply by pulling Fable worldwide, so American defenders lost it too. Adversaries who want the same capability have other frontier models, or will train their own, because Fable is not uniquely good at this. The ban took the tool from the people who follow US law and left it with everyone who doesn't. If the goal was national security, the directive damaged the thing it was named after.
 
-## I vote with my wallet
+## Allegiance is hard to act on
 
 I pay for Claude, and I pay for it on purpose. Anthropic seemed to be the lab that took safety and the human stakes seriously, and I wanted my money going to the company making the choices I would want made. The uncomfortable part of this episode is that the posture I was paying for, the willingness to tell the government no, is plausibly what made Anthropic the easy target.
 
