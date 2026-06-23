@@ -28,6 +28,13 @@ If the request doesn’t specify these, ask 1–3 quick clarifiers:
   - `draft: true` (until George merges/decides otherwise)
 - Optional fields only when useful: `modDatetime`, `featured`, `unlisted`, `ogImage`, `heroImage`, `canonicalURL`, `timezone`, `source`.
 
+### SEO/GEO constraints (per PR #47 audit)
+- `description` ≤ 160 chars (meta/snippet limit — gets truncated in search + AI answers).
+- `title` ≤ 60 chars (SERP limit).
+- Do **not** hand-add internal "related posts" links or JSON-LD schema — both are
+  auto-generated (RelatedPosts component + PostDetails BlogPosting/BreadcrumbList).
+  Same for `/llms.txt`, which is built from published posts automatically.
+
 ### Drafting workflow (quality + rigor)
 - Start with an outline and iterate section-by-section.
 - **No hallucinated facts/quotes**. If a claim needs support:
@@ -47,6 +54,7 @@ If the request doesn’t specify these, ask 1–3 quick clarifiers:
 ### PR checklist
 Before opening the PR:
 - Ensure the post renders (run `npm run build:check` if feasible).
+- Verify `description` ≤ 160 and `title` ≤ 60 chars.
 - Ensure tags look consistent with existing posts.
 - Check links are valid and sources are included where needed.
 - Commit message should be clear (e.g. `draft: <title>`).
