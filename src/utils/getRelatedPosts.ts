@@ -16,13 +16,13 @@ const getRelatedPosts = (
   posts: CollectionEntry<"blog">[],
   limit = 3
 ) => {
-  const candidates = getSortedPosts(posts).filter(p => p.id !== post.id);
+  const candidates = getSortedPosts(posts).filter((p) => p.id !== post.id);
   const currentTags = new Set(post.data.tags ?? []);
 
   const scored = candidates
-    .map(p => ({
+    .map((p) => ({
       post: p,
-      score: (p.data.tags ?? []).filter(tag => currentTags.has(tag)).length,
+      score: (p.data.tags ?? []).filter((tag) => currentTags.has(tag)).length,
     }))
     .sort((a, b) => b.score - a.score); // recency order preserved within equal scores
 
@@ -30,7 +30,7 @@ const getRelatedPosts = (
 
   // Top up with recent posts if there aren't enough tag matches.
   if (related.length < limit) {
-    const relatedIds = new Set(related.map(p => p.id));
+    const relatedIds = new Set(related.map((p) => p.id));
     for (const p of candidates) {
       if (related.length >= limit) break;
       if (!relatedIds.has(p.id)) related.push(p);
