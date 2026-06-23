@@ -1,7 +1,7 @@
 ---
 title: "Fix this code"
 description: "Three words pulled a frontier AI model off the internet. The export control meant to protect national security disarmed the people it was supposed to defend."
-pubDatetime: 2026-06-22T10:00:00-07:00
+pubDatetime: 2026-06-23T07:00:00-07:00
 tags: ["ai", "ai-policy", "security", "anthropic", "regulation"]
 heroImage: "/posts/fix-this-code/hero.jpg"
 draft: false
