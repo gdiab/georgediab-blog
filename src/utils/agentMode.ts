@@ -28,7 +28,7 @@ interface GetPromptsArgs {
 export function getLinkedInPrompt(postUrl: string): { label: string; text: string } {
   return {
     label: "Draft a LinkedIn post",
-    text: `I just read this post by ${SITE.author} and want to share it on LinkedIn. First, ask me 2–3 short questions about my honest reaction — what stood out, why it matters to me, and how it connects to my own work. Then write a brief LinkedIn post in my voice that shares this as something I read and recommend — NOT something I wrote or did myself. Base it on my answers, keep it to a few tight lines, and close by crediting ${SITE.author} and linking to the original (${postUrl}) so people can read the full post.`,
+    text: `I just read this post by ${SITE.author} and want to share it on LinkedIn. First, interview me about my honest reaction — what stood out, why it matters to me, how it connects to my own work — asking ONE short question at a time and waiting for my answer before the next (about 3 questions, and follow up if an answer opens something up). Once you've heard me out, write a brief LinkedIn post in my voice that shares this as something I read and recommend — NOT something I wrote or did myself. Base it on my answers, keep it to a few tight lines, and close by crediting ${SITE.author} and linking to the original (${postUrl}) so people can read the full post.`,
   };
 }
 
