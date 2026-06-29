@@ -5,6 +5,12 @@ pubDatetime: 2026-02-12T15:57:55-08:00
 draft: false
 tags: ["ai", "productivity", "career"]
 heroImage: "/posts/ai-native-shift/hero.jpg"
+agentSummary: "The labs made coding the first AI frontier because it compounds — tight feedback loops, measurable outcomes — but once AI can turn language into working systems, the payoff extends to anyone who works on a screen. This post argues that the separating habit is treating AI as a default collaborator before any task, not a fallback. Includes a five-step practical workflow for any knowledge worker."
+agentPrompts:
+  - "Walk me through adopting the five-step AI-native workflow for a specific project I'm working on right now."
+  - "What does it look like to use AI as a default collaborator in my specific role — engineering, product, ops, or sales?"
+  - "Where am I still defaulting to 'I can do this better myself' when the honest comparison is me-with-AI versus me-without?"
+  - "How do I help my team build the AI-native habit without mandating tools or adding ceremony?"
 ---
 
 I read Matt Shumer’s “Something Big Is Happening,” and one line stuck with me: the labs made a deliberate choice to make AI great at writing code first.

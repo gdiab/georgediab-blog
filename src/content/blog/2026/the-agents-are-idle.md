@@ -5,6 +5,12 @@ pubDatetime: 2026-03-16T15:30:00-08:00
 tags: ["ai", "engineering-management", "agents", "burnout", "team-design"]
 heroImage: "/posts/the-agents-are-idle/hero.jpg"
 draft: false
+agentSummary: "Running parallel AI agents feels exhilarating but concentrates cognitive load rather than reducing it. The 'Bezos Mode' effect means your queue fills with only the hardest, most unresolvable problems, while an HBR study of 1,488 workers found heavy AI users reported 14% more mental effort and 12% more fatigue. More agents means more decision surface, not more throughput. This post names the experience from inside and what managing through it looks like."
+agentPrompts:
+  - "What are early warning signs that I'm hitting AI-induced cognitive overload rather than productive flow?"
+  - "How do I structure my agent orchestration so I'm not stuck in Bezos Mode making only hard decisions all day?"
+  - "What should I proactively check in with my engineers about if they're running fast with AI-assisted work?"
+  - "How do I set personal boundaries around agent work hours when agents are always available and the work never feels done?"
 ---
 
 *AI doesn't reduce your cognitive load. It concentrates it.*

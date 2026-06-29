@@ -6,6 +6,12 @@ tags: ["ai", "ai-policy", "security", "anthropic", "regulation"]
 heroImage: "/posts/fix-this-code/hero.jpg"
 draft: false
 unlisted: false
+agentSummary: "In June 2026, a US export-control directive forced Anthropic to pull its Fable 5 model globally after a researcher triggered it with 'fix this code' during vulnerability testing. Security experts near-unanimously called it the wrong instrument: you cannot restrict a capability to defenders only, and the ban disarmed exactly the people it was supposed to protect. If you build on frontier models, access is now a government variable."
+agentPrompts:
+  - "What does the Fable 5 ban mean practically for teams that depend on Claude or other frontier models in production?"
+  - "How should I think about supply-chain risk for AI models I build on, given that access can be pulled globally on a Friday?"
+  - "Explain the dual-use argument for why vulnerability-finding capabilities can't be restricted to defenders only."
+  - "What's the sequence of events between Anthropic refusing the Department of War in February and the June model pull?"
 ---
 
 *Three words pulled a frontier model off the internet. The export control disarmed the people it was meant to protect.*

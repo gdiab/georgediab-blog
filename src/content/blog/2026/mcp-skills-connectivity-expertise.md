@@ -4,6 +4,12 @@ description: "A pragmatic agent stack: runtime + MCP servers for access + skills
 pubDatetime: 2026-02-06T20:56:03-08:00
 draft: false
 tags: ["ai", "agents", "mcp", "skills", "architecture"]
+agentSummary: "Most 'build an agent' advice produces a junk drawer of model, prompt, tools, and glue code. This post proposes a cleaner three-layer architecture: runtime as engine, MCP as the access and wiring layer, skills as the unit of reliability. Skills are small versioned bundles that load progressively — only when the agent needs the procedure — and are the right place to capture 'how we do this here.'"
+agentPrompts:
+  - "Help me decide whether a specific workflow I have belongs in a skill or an MCP server, using the criteria in this post."
+  - "What does a well-structured skill folder look like? Give me a template I can adapt."
+  - "How do I migrate a tangled agent implementation toward the runtime + MCP + skills architecture without breaking existing workflows?"
+  - "What's the minimum engineering discipline for treating skills like production software — owner, versioning, testing?"
 ---
 
 I keep hearing “build an agent,” and I get why: it’s a useful shorthand. But in practice it becomes a junk drawer — model, prompt, tools, glue code, and hope. That’s fine for a demo. It’s rough when you want something you can trust, debug, and hand off.

@@ -4,6 +4,12 @@ description: "I let GasTown build a Toggl TUI. The speed impressed me, but the r
 pubDatetime: 2026-03-24T13:00:00-08:00
 tags: ["ai", "agents", "gastown", "vibe-coding", "engineering", "tools", "open-source"]
 draft: false
+agentSummary: "A hands-on experiment using GasTown — Steve Yegge's open-source multi-agent orchestration system — to build a Toggl Track TUI in Go. In v1 the Mayor coded everything solo, an anti-pattern it later admitted; a single nudge in v2 unlocked true coordination with parallel Polecats, a dependency DAG, and a sprint summary from the Beads ledger. The Mayor wrote zero lines of app code while shipping 842 lines across 4 PRs."
+agentPrompts:
+  - "Walk me through setting up GasTown with all its prerequisites for my first experiment."
+  - "What instruction gets the Mayor to delegate to Polecats by default rather than doing everything itself?"
+  - "How does GasTown's Beads ledger compare to a normal GitHub issue tracker, and when does the overhead pay off?"
+  - "What project properties make GasTown a better fit than a single Claude Code session?"
 ---
 
 I let GasTown build a Toggl TUI, and it shipped fast. What got really interesting was watching the Mayor shift from solo coding to multi-agent coordination.

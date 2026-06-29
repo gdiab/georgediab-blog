@@ -5,6 +5,12 @@ pubDatetime: 2026-04-28T07:29:01-07:00
 tags: ["ai", "developer-tools", "productivity", "engineering", "tools"]
 draft: false
 heroImage: "/posts/remember-superpowers-claude-code/hero.jpg"
+agentSummary: "Two Claude Code plugins that address the friction around the code: Remember captures and reloads project-scoped session context across restarts, eliminating the re-explanation loop; Superpowers adds structured workflow for planning, debugging, subagent delegation, and review. Together they make Claude Code more practical for sustained engineering work rather than one-off demos."
+agentPrompts:
+  - "Walk me through setting up Remember and Superpowers in my Claude Code environment, including the auto-compact setting I need to change."
+  - "When should I trigger Superpowers' planning flow versus jumping straight into implementation?"
+  - "How do I use the /remember handoff command so my next session picks up exactly where I left off?"
+  - "What review and security discipline should I maintain when these tools let me move faster than usual?"
 ---
 
 I've been trying a lot of AI coding tools lately, and most of them fall into one of two buckets: mostly hype, or actually useful for real work.
