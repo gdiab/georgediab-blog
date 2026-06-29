@@ -60,6 +60,7 @@ npm run preview
    - Include proper frontmatter (title, description, pubDate, etc.)
    - Format dates in ISO-8601 format: `YYYY-MM-DDTHH:MM:SS+HH:MM`
    - Format tags as arrays: `tags: ["tag1", "tag2"]`
+   - Optionally add `agentSummary` (2–3 sentence agent-facing TL;DR) and `agentPrompts` (2–4 reader-voice prompts) to frontmatter — run the `/aeo` skill to generate both, then review and commit. Omit either to fall back (summary → `description`, prompts → generic defaults).
 
 2. **Modifying site configuration**:
 
