@@ -1,0 +1,183 @@
+---
+import { type AgentPrompt, buildAgentLinks } from "@/utils/agentMode";
+
+interface Props {
+  prompts: AgentPrompt[];
+  summary: string;
+  mdUrl: string;
+  postUrl: string;
+  markdown: string;
+}
+
+const { prompts, summary, mdUrl, markdown } = Astro.props;
+---
+
+<div class="agent-mode mb-6" data-agent-mode>
+  <div role="tablist" aria-label="Reading mode" class="inline-flex rounded-md border border-border text-sm">
+    <button
+      type="button"
+      role="tab"
+      id="tab-read"
+      aria-selected="true"
+      aria-controls="article"
+      data-mode-tab="read"
+      class="px-3 py-1.5 rounded-l-md aria-selected:bg-accent aria-selected:text-background"
+    >
+      Read
+    </button>
+    <button
+      type="button"
+      role="tab"
+      id="tab-agent"
+      aria-selected="false"
+      aria-controls="panel-agent"
+      data-mode-tab="agent"
+      class="px-3 py-1.5 rounded-r-md aria-selected:bg-accent aria-selected:text-background"
+    >
+      🤖 Agent
+    </button>
+  </div>
+
+  <section
+    id="panel-agent"
+    role="tabpanel"
+    aria-labelledby="tab-agent"
+    hidden
+    data-agent-panel
+    class="mt-4 rounded-md border border-border p-4"
+  >
+    <p class="agent-summary text-foreground/90">{summary}</p>
+
+    <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+      <button
+        type="button"
+        class="rounded bg-muted px-2 py-1 font-medium"
+        data-copy={markdown}
+        data-copy-label="Copy post (markdown)"
+      >
+        Copy post (markdown)
+      </button>
+      <a href={mdUrl} class="underline hover:opacity-75">View raw markdown</a>
+    </div>
+
+    <ul class="mt-4 space-y-3 list-none pl-0">
+      {
+        prompts.map((p: AgentPrompt) => {
+          const links = buildAgentLinks(p.linkPayload);
+          return (
+            <li class="rounded-md border border-border p-3">
+              <p class="text-xs uppercase tracking-wide text-foreground/60">{p.label}</p>
+              <p class="mt-1">{p.text}</p>
+              <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
+                <button
+                  type="button"
+                  class="rounded bg-accent px-2 py-1 font-medium text-background"
+                  data-copy={p.copyPayload}
+                  data-copy-label="Copy"
+                >
+                  Copy
+                </button>
+                <a href={links.chatgpt} target="_blank" rel="noopener" class="underline hover:opacity-75">
+                  ChatGPT
+                </a>
+                <a href={links.claude} target="_blank" rel="noopener" class="underline hover:opacity-75">
+                  Claude
+                </a>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+
+  <template data-agent-banner>
+    <aside class="agent-banner my-8 rounded-md border border-dashed border-accent/60 p-4" data-pagefind-ignore>
+      <strong>Would you rather read this with an agent?</strong>
+      <span class="block text-foreground/80">Grab ready-to-run prompts in a copy-ready version.</span>
+      <button type="button" class="mt-2 underline hover:opacity-75" data-agent-banner-cta>
+        Open agent view →
+      </button>
+    </aside>
+  </template>
+</div>
+
+<script>
+  function initAgentMode() {
+    const root = document.querySelector<HTMLElement>("[data-agent-mode]");
+    const article = document.querySelector<HTMLElement>("#article");
+    if (!root || !article) return;
+
+    const tabRead = root.querySelector<HTMLButtonElement>("#tab-read");
+    const tabAgent = root.querySelector<HTMLButtonElement>("#tab-agent");
+    const panel = root.querySelector<HTMLElement>("[data-agent-panel]");
+    if (!tabRead || !tabAgent || !panel) return;
+
+    function showRead() {
+      tabRead!.setAttribute("aria-selected", "true");
+      tabAgent!.setAttribute("aria-selected", "false");
+      panel!.hidden = true;
+      article!.hidden = false;
+      if (location.hash === "#agent") {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+    }
+
+    function showAgent() {
+      tabRead!.setAttribute("aria-selected", "false");
+      tabAgent!.setAttribute("aria-selected", "true");
+      panel!.hidden = false;
+      article!.hidden = true;
+      if (location.hash !== "#agent") {
+        history.replaceState(null, "", "#agent");
+      }
+    }
+
+    tabRead.addEventListener("click", showRead);
+    tabAgent.addEventListener("click", showAgent);
+
+    // Clipboard copy with transient feedback for any [data-copy] button.
+    root.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
+      const label = btn.getAttribute("data-copy-label") ?? "Copy";
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(btn.getAttribute("data-copy") ?? "");
+          btn.textContent = "Copied";
+          setTimeout(() => {
+            btn.textContent = label;
+          }, 900);
+        } catch {
+          btn.textContent = "Copy failed";
+          setTimeout(() => {
+            btn.textContent = label;
+          }, 900);
+        }
+      });
+    });
+
+    // Inject the mid-post banner near the middle of the article (Read view only;
+    // it lives inside #article so it hides automatically in Agent view).
+    const tpl = root.querySelector<HTMLTemplateElement>("[data-agent-banner]");
+    if (tpl && !article.querySelector(".agent-banner")) {
+      const node = tpl.content.firstElementChild?.cloneNode(true) as HTMLElement | undefined;
+      if (node) {
+        const paras = article.querySelectorAll(":scope > p");
+        const mid = paras.length ? paras[Math.floor(paras.length / 2)] : null;
+        if (mid) {
+          mid.insertAdjacentElement("beforebegin", node);
+        } else {
+          article.appendChild(node);
+        }
+        node.querySelector("[data-agent-banner-cta]")?.addEventListener("click", showAgent);
+      }
+    }
+
+    // #agent deep-link activates the Agent view on load.
+    if (location.hash === "#agent") {
+      showAgent();
+    }
+  }
+
+  initAgentMode();
+  document.addEventListener("astro:page-load", initAgentMode);
+</script>
