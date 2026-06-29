@@ -5,6 +5,12 @@ pubDatetime: 2026-04-06T12:00:00-07:00
 tags: ["ai", "engineering-management", "culture", "team-design", "career"]
 draft: false
 heroImage: "/posts/ai-identity-crisis/hero.jpg"
+agentSummary: "When AI threatens the craft that anchors an engineer's identity, the response follows a grief curve — denial, anger, bargaining, depression, acceptance. This post maps where individuals land on that curve, why teams fracture when people are at different stages simultaneously, and what managers can do to create space for the transition. The new moat for engineers is judgment and taste, not code authorship."
+agentPrompts:
+  - "Which of the five grief stages is most common on my team right now, and what does each one look like in practice?"
+  - "How do I have a 1:1 with an engineer who seems stuck in depression after the AI shift, without making it awkward?"
+  - "What are concrete ways to make engineering taste and judgment visible and celebrated on my team?"
+  - "Write a short message I can share with my team that names the identity shift honestly without dismissing either the grief or the opportunity."
 ---
 
 An engineer I mentor said something to me a few weeks ago that I've been thinking about ever since.

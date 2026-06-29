@@ -4,6 +4,12 @@ description: "A grounded look at the 'software factory' framing for agentic codi
 pubDatetime: 2026-02-18T18:48:00-08:00
 tags: ["ai", "agents", "software-engineering", "engineering-management", "architecture"]
 draft: true
+agentSummary: "Dan Shapiro's five levels give teams shared language for their current AI development posture, from spicy autocomplete to dark factory. StrongDM's 'no human review' claim is only defensible when verification replaces PR review with something stronger: scenario harnesses, holdout eval sets, and probabilistic satisfaction scores. The bottleneck is evidence, not generation, and teams that skip verification are gambling."
+agentPrompts:
+  - "Which of Shapiro's five levels honestly describes where my team is today, and what's the actual bottleneck at that level?"
+  - "What does an early verification pipeline look like for a team at Level 2 or 3 that wants to move toward more autonomy safely?"
+  - "Explain the 'assert true' self-justification risk when both implementation and tests come from the same agent."
+  - "What investment should my team make in the next 90 days to build evidence systems before increasing AI autonomy?"
 ---
 
 ## THE RABBIT HOLE

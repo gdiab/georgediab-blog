@@ -98,3 +98,10 @@ export const ICON_MAP: Record<string, string> = {
   RSS: "rss",
   Email: "mail",
 };
+
+// Agent deep-link endpoints (secondary, browsing-capable agents).
+// Edit here if a provider changes its prefill URL.
+export const AGENT_TOOLS = {
+  chatgpt: { label: "ChatGPT", base: "https://chatgpt.com/?q=" },
+  claude: { label: "Claude", base: "https://claude.ai/new?q=" },
+};

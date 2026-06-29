@@ -4,6 +4,12 @@ description: "Grady Booch’s ‘third golden age’ framing is a needed antidot
 pubDatetime: 2026-02-10T22:00:44-08:00
 draft: true
 tags: ["ai", "agents", "software-engineering", "engineering-management", "architecture"]
+agentSummary: "Drawing on Grady Booch's 'third golden age' framing, this post argues that software engineering is about balancing technical, economic, human, and safety constraints — not typing code. AI-assisted development is another abstraction shift, like compilers or high-level languages, and the engineering job remains. The new constraint is verification: how fast can you review, test, and recover when AI multiplies change volume?"
+agentPrompts:
+  - "What fundamentals should I invest in right now to stay valuable as AI handles more code generation?"
+  - "How should my team redesign its review and CI workflow to handle higher AI-generated change volume safely?"
+  - "What does 'boring reliability' investment look like in practice — give me a concrete checklist for our engineering setup?"
+  - "How do I explain the abstraction-layer argument to a nervous engineer on my team who thinks AI will replace them?"
 ---
 
 Software engineering is having an existential moment.

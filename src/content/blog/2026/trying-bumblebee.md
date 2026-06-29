@@ -6,6 +6,12 @@ tags: ["ai", "developer-tools", "mcp", "software-engineering", "tools"]
 draft: false
 unlisted: false
 heroImage: "/posts/trying-bumblebee/hero.jpg"
+agentSummary: "Bumblebee is Perplexity's open-source supply-chain scanner: a single binary that walks file trees, extracts package tuples from lockfiles and MCP configs, and matches them against catalogues of known compromised releases. Running it on a developer laptop returned zero findings but surfaced 63 MCP servers and a malformed config file. The inventory output is often more valuable than the findings themselves, and catalogue freshness requires an external runner."
+agentPrompts:
+  - "Walk me through running Bumblebee on my developer machine: install, selftest, baseline scan, and deep scan commands."
+  - "How do I keep Bumblebee's threat catalogues current so my scans reflect the latest known supply-chain campaigns?"
+  - "What does my Bumblebee MCP inventory tell me about my actual attack surface, and how do I reduce it?"
+  - "How should I integrate Bumblebee into a fleet MDM setup or CI pipeline for recurring developer endpoint scans?"
 ---
 
 Perplexity open-sourced [Bumblebee](https://github.com/perplexityai/bumblebee) last week. It's a read-only scanner looking for any suspect extensions, packages or AI tool configurations. It's what Perplexity [runs on their developer machines](https://www.perplexity.ai/hub/blog/perplexity-is-open-sourcing-bumblebee) and they wanted to give back by sharing it with the engineering community. When a supply-chain attack hits the news and a package or extension you might have installed gets named, Bumblebee answers one specific question fast: is the compromised version sitting in your lockfiles right now? I ran it on my laptop the night I came across it. Notes from the install and the first few scans below.

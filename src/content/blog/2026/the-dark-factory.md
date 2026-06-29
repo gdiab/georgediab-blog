@@ -5,6 +5,12 @@ pubDatetime: 2026-02-23T09:10:20-08:00
 tags: ["ai", "agents", "software-engineering", "engineering-management", "architecture"]
 heroImage: "/posts/the-dark-factory/hero.jpg"
 draft: false
+agentSummary: "Most teams do not need a dark factory — they need a better way to prove AI-generated changes are safe to ship. This post provides a practical framework: use Shapiro's autonomy levels as diagnostics rather than a ladder to climb, invest in verification before pushing for more autonomy, and build three explicit pipelines — generation, verification, and governance. Includes 90-day action lists for engineers and engineering leaders."
+agentPrompts:
+  - "Run me through the 90-day action plan from this post for an engineering leader wanting to safely increase AI coding autonomy."
+  - "What categories of change should always require mandatory human review even when my team has strong automated verification?"
+  - "Help me define autonomy tiers by system criticality for my team's specific product and risk profile."
+  - "What's the difference between a 'human-repositioned' system and actually removing engineers from the delivery loop?"
 ---
 
 Most teams do not need a "dark factory." They need a better way to prove that AI-generated changes are safe to ship.

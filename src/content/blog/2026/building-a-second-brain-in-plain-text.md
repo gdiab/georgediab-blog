@@ -5,6 +5,12 @@ pubDatetime: 2026-05-19T07:00:00-07:00
 tags: ["ai", "tools", "productivity", "software-engineering"]
 heroImage: "/posts/building-a-second-brain-in-plain-text/hero.jpg"
 draft: false
+agentSummary: "This post documents building a markdown-based second brain using Tolaria, git, and an AI agent as collaborator. The core design choice is keeping the agent near capture friction and structural judgment, not generating the thinking itself. Rules that held up across 239 notes: create hubs at N=2 examples, keep the inbox for unfiled only, and let status mean personally read — not agent-enriched."
+agentPrompts:
+  - "Help me design a hub structure for my own vault based on the topics I actually care about, following the N=2 rule."
+  - "What conventions should I codify as project instructions from day one so my knowledge vault doesn't turn into a junk drawer?"
+  - "Summarize the Karpathy LLM-wiki pattern and compare it to the Tolaria/agent-as-collaborator approach to help me choose."
+  - "What's the load-bearing rule about inbox versus saved views, and how do I implement it in my own setup?"
 ---
 
 In early April, Andrej Karpathy [posted](https://x.com/karpathy/status/2039805659525644595) about using LLMs to build personal knowledge bases.

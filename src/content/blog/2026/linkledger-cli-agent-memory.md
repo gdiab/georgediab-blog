@@ -5,6 +5,12 @@ pubDatetime: 2026-02-26T10:00:00-08:00
 tags: ["ai", "agents", "software-engineering", "architecture", "tools"]
 heroImage: "/posts/linkledger-cli-agent-memory/hero.jpg"
 draft: false
+agentSummary: "linkledger-cli is a local-first, SQLite-backed CLI tool built as a Pocket-for-agents memory layer: fast URL capture, async content ingest, BM25-ranked retrieval, and a stable JSON envelope agents can consume without custom glue. This post walks through the architecture — async ingest lifecycle, adapter chains with fallbacks, highlight-first retrieval, and freshness without cron — and the deliberate v1 tradeoffs."
+agentPrompts:
+  - "How does linkledger-cli fit into a Claude Code workflow? Walk me through the save → worker → find loop."
+  - "What data model decisions here would I need to change if I wanted team memory instead of single-operator memory?"
+  - "When should I add hybrid lexical + semantic retrieval on top of the BM25 baseline, and what would that change?"
+  - "What's the minimum setup to get linkledger-cli working as persistent memory for my own AI coding agent?"
 ---
 
 ## Where My Head Was At

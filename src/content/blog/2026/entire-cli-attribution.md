@@ -8,6 +8,12 @@ tags:
   - engineering-management
   - governance
   - productivity
+agentSummary: "A two-run case study of Entire CLI, which records attribution metadata alongside git commits when coding with AI agents. A prompt-only second run clarified which fields are governance-safe: commit-level fields accurately reflect who wrote committed code, while accumulated/session fields are workflow context signals, not compliance numbers. Validate metric scope before using attribution data in policy or performance conversations."
+agentPrompts:
+  - "How should I set up Entire CLI on my project, and what workflow changes does it require day to day?"
+  - "Which Entire CLI fields should I cite in a compliance or audit conversation, and which ones should I treat as context-only?"
+  - "Draft a team policy for AI code attribution that uses Entire CLI commit-level data as the evidence layer."
+  - "What questions should I ask about any AI attribution tool before using its numbers in a governance or performance context?"
 ---
 
 As AI agents write more production code, engineering teams face a straightforward question: who actually wrote what? Git tracks commits, but it does not distinguish between lines a human typed and lines an agent generated. That gap matters for code review, incident response, and compliance.
