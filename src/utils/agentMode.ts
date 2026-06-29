@@ -18,9 +18,21 @@ interface GetPromptsArgs {
 }
 
 /**
+ * The "share to LinkedIn" prompt — a single source of truth so it stays
+ * identical whether it appears inside the default set or is appended to a
+ * post's custom prompts. Embeds the canonical post URL so the drafted post
+ * links back to the original (the traffic-driving goal of the feature).
+ */
+export function getLinkedInPrompt(postUrl: string): { label: string; text: string } {
+  return {
+    label: "Draft a LinkedIn post",
+    text: `Write a LinkedIn post summarizing my takeaways from this in my voice — hook, 3 short takeaways, and end with a link to the original post (${postUrl}) so people can read it.`,
+  };
+}
+
+/**
  * Generic default prompts shown on every post that doesn't define its own.
- * Voice: the reader's ("me"/"my"). The LinkedIn prompt embeds the canonical
- * post URL so the drafted post links back to the original.
+ * Voice: the reader's ("me"/"my"). Includes the LinkedIn share prompt at #3.
  */
 export function getDefaultPrompts(postUrl: string): { label: string; text: string }[] {
   return [
@@ -32,10 +44,7 @@ export function getDefaultPrompts(postUrl: string): { label: string; text: strin
       label: "Make it actionable",
       text: "Turn this post into a step-by-step checklist I could actually follow this week.",
     },
-    {
-      label: "Draft a LinkedIn post",
-      text: `Write a LinkedIn post summarizing my takeaways from this in my voice — hook, 3 short takeaways, and end with a link to the original post (${postUrl}) so people can read it.`,
-    },
+    getLinkedInPrompt(postUrl),
     {
       label: "Apply to me",
       text: "Ask me 3 questions about my situation, then tell me how the ideas in this post apply to me specifically.",
@@ -50,7 +59,9 @@ export function getDefaultPrompts(postUrl: string): { label: string; text: strin
 /**
  * Returns the prompt cards for a post. Uses `post.data.agentPrompts` if present
  * (labelled "Prompt 1..N" since custom prompts are bare strings), else the
- * generic default set. Each card carries a self-contained `copyPayload`
+ * generic default set. The LinkedIn share prompt is always present: it lives at
+ * #3 in the default set, and is appended to custom prompts so every post can
+ * drive traffic back to itself. Each card carries a self-contained `copyPayload`
  * (prompt + full markdown) and a `linkPayload` (prompt + .md URL).
  */
 export function getAgentPrompts({ post, mdUrl, postUrl }: GetPromptsArgs): AgentPrompt[] {
@@ -59,7 +70,10 @@ export function getAgentPrompts({ post, mdUrl, postUrl }: GetPromptsArgs): Agent
 
   const base =
     custom && custom.length > 0
-      ? custom.map((text, i) => ({ label: `Prompt ${i + 1}`, text }))
+      ? [
+          ...custom.map((text, i) => ({ label: `Prompt ${i + 1}`, text })),
+          getLinkedInPrompt(postUrl),
+        ]
       : getDefaultPrompts(postUrl);
 
   return base.map(({ label, text }) => ({
