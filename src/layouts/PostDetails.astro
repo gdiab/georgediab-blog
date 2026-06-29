@@ -2,6 +2,7 @@
 import { type CollectionEntry, render } from "astro:content";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
+import AgentMode from "@/components/AgentMode.astro";
 import BackButton from "@/components/BackButton.astro";
 import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
@@ -14,6 +15,7 @@ import StructuredData from "@/components/StructuredData.astro";
 import Tag from "@/components/Tag.astro";
 import { SITE } from "@/config";
 import Layout from "@/layouts/Layout.astro";
+import { getAgentPrompts, getAgentSummary } from "@/utils/agentMode";
 import { getPath } from "@/utils/getPath";
 import getRelatedPosts from "@/utils/getRelatedPosts";
 import { calculateReadingTime } from "@/utils/readingTime";
@@ -66,6 +68,13 @@ const computedCanonicalURL =
   canonicalURL ||
   (Astro.site ? new URL(postPath, Astro.site).href : new URL(postPath, Astro.url.origin).href);
 
+/* ========== Agent layer (AEO) ========== */
+const mdUrl = (
+  Astro.site ? new URL(`${postPath}.md`, Astro.site) : new URL(`${postPath}.md`, Astro.url.origin)
+).href;
+const agentSummary = getAgentSummary(post);
+const agentPrompts = getAgentPrompts({ post, mdUrl, postUrl: computedCanonicalURL });
+
 const layoutProps = {
   title: `${title} | ${SITE.title}`,
   author,
@@ -102,6 +111,7 @@ const wordCount = (post.body ?? "").split(/\s+/).length;
     data={{
       title,
       description,
+      abstract: agentSummary,
       author,
       pubDatetime,
       modDatetime,
@@ -151,6 +161,13 @@ const wordCount = (post.body ?? "").split(/\s+/).length;
         }
       </div>
     </div>
+    <AgentMode
+      prompts={agentPrompts}
+      summary={agentSummary}
+      mdUrl={mdUrl}
+      postUrl={computedCanonicalURL}
+      markdown={post.body ?? ""}
+    />
     <article id="article" class="mx-auto prose mt-6 max-w-3xl">
       {
         heroImage && (
