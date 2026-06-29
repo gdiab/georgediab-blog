@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content";
-import { AGENT_TOOLS } from "@/config";
+import { AGENT_TOOLS, SITE } from "@/config";
 
 export interface AgentPrompt {
   label: string;
@@ -20,13 +20,15 @@ interface GetPromptsArgs {
 /**
  * The "share to LinkedIn" prompt — a single source of truth so it stays
  * identical whether it appears inside the default set or is appended to a
- * post's custom prompts. Embeds the canonical post URL so the drafted post
- * links back to the original (the traffic-driving goal of the feature).
+ * post's custom prompts. Interviews the reader for THEIR reaction and frames
+ * the post as something they read and are passing on (crediting the author and
+ * linking back) — so the draft never claims the reader wrote it or did the
+ * things in it. Embeds the canonical post URL (the traffic-driving goal).
  */
 export function getLinkedInPrompt(postUrl: string): { label: string; text: string } {
   return {
     label: "Draft a LinkedIn post",
-    text: `Write a LinkedIn post summarizing my takeaways from this in my voice — hook, 3 short takeaways, and end with a link to the original post (${postUrl}) so people can read it.`,
+    text: `I just read this post by ${SITE.author} and want to share it on LinkedIn. First, ask me 2–3 short questions about my honest reaction — what stood out, why it matters to me, and how it connects to my own work. Then write a brief LinkedIn post in my voice that shares this as something I read and recommend — NOT something I wrote or did myself. Base it on my answers, keep it to a few tight lines, and close by crediting ${SITE.author} and linking to the original (${postUrl}) so people can read the full post.`,
   };
 }
 
