@@ -889,3 +889,22 @@ Run the full spec verification checklist:
 **Type consistency:** `AgentPrompt` (`label`/`text`/`copyPayload`/`linkPayload`), `getAgentPrompts`/`getAgentSummary`/`buildAgentLinks` signatures, `AgentMode` Props (`prompts`/`summary`/`mdUrl`/`postUrl`/`markdown`), and `AGENT_TOOLS.{chatgpt,claude}.base` are used identically in Tasks 2, 5, and 6.
 
 **Adaptation noted:** The repo has no unit-test framework and CLAUDE.md mandates build-based verification, so the writing-plans TDD code-test cycle is replaced by `npm run build` + `dist/` assertions + `astro check`/`biome check`. The one thing the build can't verify — interactive toggle/copy/banner behavior — is covered by the manual `npm run preview` spot-check in Final Verification.
+
+---
+
+## Post-implementation refinements (2026-06-29)
+
+Made during local testing after the 8 tasks merged into the branch. Task 2's
+`getAgentPrompts`/`getLinkedInPrompt` code above reflects the *original* plan; the
+shipped behavior was refined as follows (full rationale in the design spec's
+"Post-implementation refinements" section):
+
+1. **LinkedIn share prompt always present** — extracted to `getLinkedInPrompt()` and
+   appended to custom-prompt posts (kept at #3 in the default set, no duplication),
+   so all posts — including the 14 backfilled ones — can drive traffic.
+2. **LinkedIn prompt reworked to interview the reader** one question at a time and
+   frame the share as the reader recommending the author's post (crediting
+   `SITE.author` + link), instead of auto-summarizing "my takeaways" — which had
+   wrongly attributed the author's first-person results to the reader.
+
+Shipped on the `feat/aeo-agent-experience` branch (PR #49) after the plan's 8 tasks.

@@ -81,6 +81,10 @@ browsing-capable agents.
      - `copyPayload` = `text + "\n\n---\n\n" + fullMarkdown` (primary copy action),
      - `linkPayload` = `text + "\n\nSource: " + mdUrl` (secondary deep-links).
      The LinkedIn prompt additionally embeds the human `postUrl` in its `text`.
+     **The LinkedIn share prompt is always present** (single source of truth,
+     `getLinkedInPrompt(postUrl)`): it sits at #3 in the default set and is
+     *appended* to custom prompts, so every post can drive traffic regardless of
+     whether the author wrote custom prompts. (See Post-implementation refinements.)
    - `getAgentSummary(post): string` — returns `post.data.agentSummary` or falls
      back to `post.data.description`.
    - `buildAgentLinks(linkPayload): { chatgpt: string, claude: string }`
@@ -133,9 +137,16 @@ Voice: the reader's ("me"/"my").
    bullets, then the one idea most worth remembering."
 2. **Make it actionable** — "Turn this post into a step-by-step checklist I could
    actually follow this week."
-3. **Draft a LinkedIn post** — "Write a LinkedIn post summarizing my takeaways from
-   this in my voice — hook, 3 short takeaways, and end with a link to the original
-   post (`<postUrl>`) so people can read it."
+3. **Draft a LinkedIn post** — "I just read this post by `<author>` and want to
+   share it on LinkedIn. First, interview me about my honest reaction — what stood
+   out, why it matters to me, how it connects to my own work — asking ONE short
+   question at a time and waiting for my answer before the next (about 3 questions,
+   and follow up if an answer opens something up). Once you've heard me out, write a
+   brief LinkedIn post in my voice that shares this as something I read and
+   recommend — NOT something I wrote or did myself. Base it on my answers, keep it
+   to a few tight lines, and close by crediting `<author>` and linking to the
+   original (`<postUrl>`) so people can read the full post." (See Post-implementation
+   refinements for why this is interview-style rather than auto-summarize.)
 4. **Apply to me** — "Ask me 3 questions about my situation, then tell me how the
    ideas in this post apply to me specifically."
 5. **Go deeper** — "What did this post assume or skip that I should understand?
@@ -143,7 +154,8 @@ Voice: the reader's ("me"/"my").
 
 Copy payload per prompt = `text + "\n\n---\n\n" + fullMarkdown` (self-contained).
 Deep-link payload = `text + "\n\nSource: " + mdUrl`. The LinkedIn prompt embeds the
-human `postUrl` in its text so the drafted post links to the canonical page.
+author name (`SITE.author`) and human `postUrl` in its text so the drafted post
+credits the author and links to the canonical page.
 
 ### Mid-post banner copy
 
@@ -212,6 +224,29 @@ upgraded later, post-by-post, with the same skill.
   /Claude with prompt + URL prefilled.
 - Confirm the Read/Agent toggle (full-swap), `#agent` deep-link, and mid-post
   banner all work.
+
+## Post-implementation refinements (2026-06-29)
+
+Two deliberate changes made after the spec was approved, during local testing of
+the merged feature. Both refine decisions the spec had left in tension.
+
+1. **LinkedIn share prompt is always present (not just on default-prompt posts).**
+   The spec had custom `agentPrompts` *fully replace* the default set, which
+   silently dropped the share prompt — a stated goal ("drive traffic back to the
+   post") — on exactly the 14 backfilled posts most likely to be shared. Resolved
+   by extracting the prompt to a single source of truth (`getLinkedInPrompt`) and
+   **appending it to custom prompts** (it already lived at #3 in the defaults, so
+   default-prompt posts are unchanged and never duplicate it).
+
+2. **LinkedIn prompt interviews the reader instead of auto-summarizing.** The
+   original text ("summarize my takeaways in my voice") caused readers' drafts to
+   claim the *reader* performed the author's first-person results (e.g. "I ran the
+   tool and got these numbers" — actually the author's). Reworked so the prompt
+   **interviews the reader one question at a time** about their own reaction, then
+   drafts a post that **shares the piece as something they read and recommend**
+   (explicitly *not* something they wrote or did), crediting the author by name
+   (`SITE.author`) and linking back. This makes attribution correct and the share
+   genuinely the reader's.
 
 ## Deferred
 
