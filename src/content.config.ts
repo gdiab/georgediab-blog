@@ -25,6 +25,9 @@ const blog = defineCollection({
       // Additional fields from existing posts
       source: z.string().optional(),
       AIDescription: z.boolean().optional(),
+      // Agent Experience (AEO) — both optional with fallbacks
+      agentSummary: z.string().optional(), // 2–3 sentence authored TL;DR (~60 words); agent-facing only
+      agentPrompts: z.array(z.string()).optional(), // tailored prompts; else generic defaults
     }),
 });
 
