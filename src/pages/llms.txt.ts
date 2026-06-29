@@ -19,6 +19,8 @@ export async function GET() {
     "",
     `Author: ${SITE.author}. Canonical site: ${SITE.website}`,
     "",
+    "> Append `.md` to any post URL for clean markdown (e.g. /posts/<slug>.md).",
+    "",
     "## Posts",
     "",
     ...sortedPosts.map(({ data, id, filePath }) => {
