@@ -1,7 +1,7 @@
 ---
 title: "Your senior isn't behind, they're untrained"
 description: "On a flat curve the model stops being the differentiator and training takes over. How to upskill a mixed-skill team without a mandate that backfires."
-pubDatetime: 2026-07-02T12:12:24-07:00
+pubDatetime: 2026-07-03T16:24:42-07:00
 tags: ["ai", "engineering-management", "team-design", "productivity", "culture"]
 heroImage: "/posts/your-senior-isnt-behind-theyre-untrained/hero.jpg"
 draft: false
@@ -68,6 +68,6 @@ But it breaks on individual opt-in, because the lone volunteer has no cover and 
 
 ## The plateau is the opening
 
-You don't have to buy the lockdown story to take the bet. In June a government directive pulled Anthropic's most capable model worldwide over a security prompt, which I wrote about in ["Fix this code"](https://www.georgediab.com/posts/2026/fix-this-code), and a lot of us started wondering whether Yegge's flat curve was already arriving. Then the administration reversed itself: on July 1 the controls came off and Fable was back. Inside a few weeks the frontier got walled off and reopened. Bet your workflow on the ban and you were wrong; bet on the reprieve and you were wrong the other way. The training argument doesn't depend on which way it breaks. The judgment underneath (what to delegate, how to slice it, when not to spend at all) is what survives a model that moves and a model that doesn't, a model pulled on a Friday and restored the next. If Yegge's right, the flat curve makes the lesson more urgent. If he's wrong, you've still trained the only thing that compounds either way.
+In June a government directive pulled Anthropic's most capable model worldwide over a security prompt, which I wrote about in ["Fix this code"](https://www.georgediab.com/posts/2026/fix-this-code), and a lot of us started wondering whether Yegge's flat curve was already arriving. Then the administration reversed itself, and on July 1 the controls came off and Fable was back. Inside a few weeks the frontier got walled off and reopened. Yegge's premise was never about Fable specifically. It's about the next model over the line, the one too dangerous to hand out, and it might be only months away. You don't need to wait for that to happen. The training argument doesn't depend on which way it breaks. The judgment underneath (what to delegate, how to slice it, when not to spend at all) is what survives either way. If Yegge's right, the flat curve makes the lesson more urgent. If he's wrong, you've still trained the only thing that compounds no matter what the models do.
 
-The manager who treats literacy as a training problem, with real time and real constraints, ends up with a team that compounds. The manager who sets a tokens-per-day target gets a number that goes up and a team that has quietly checked out. The curve looking flat does not decide which one you get. You do.
+The manager who treats agentic engineering literacy as a training problem, with real time and real constraints, ends up with a team that compounds. Set a tokens-per-day target instead, and you get a number that goes up and a team that quietly checks out. The curve looking flat does not decide which one you get. You do.
