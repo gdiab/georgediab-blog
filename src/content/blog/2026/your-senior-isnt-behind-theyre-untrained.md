@@ -4,7 +4,7 @@ description: "On a flat curve the model stops being the differentiator and train
 pubDatetime: 2026-07-02T12:12:24-07:00
 tags: ["ai", "engineering-management", "team-design", "productivity", "culture"]
 heroImage: "/posts/your-senior-isnt-behind-theyre-untrained/hero.jpg"
-draft: true
+draft: false
 unlisted: false
 agentSummary: "Steve Yegge's 'Flat Curve Society' argues that once frontier models get locked down, the gap between engineers stops being which model they have and becomes how well they use the one everyone has. The bottleneck is training, task decomposition, and knowing when not to spend a token. This post agrees, then works the problem one level up, where a manager turns the study's token cohorts into a team target. A Netflix study shows cohorts move up in about five hours of the right training (team-level opt-in, manager in the room, real work), but the diagnostic 'tokens per day' becomes poison the moment a manager turns it into a target. The skill being trained is judgment about what to delegate and how to slice it, not token volume. The skeptical senior is not behind; their skepticism is the asset, and they move when given a trusted guide and room, not a mandate."
 agentPrompts:
@@ -14,7 +14,7 @@ agentPrompts:
   - "What's the actual skill being trained when teams get better at AI-assisted work, if it isn't burning more tokens?"
 ---
 
-*On the substance Yegge and I barely disagree: low token spend is the skill, mandates backfire. My angle is one level up, from the manager's chair, where "our best people burn the most tokens" quietly becomes an order to burn more, and the skeptic who resists is the one reading it right.*
+*The skill is spending fewer tokens, not more. Mandate the opposite and the skeptic who resists is the one reading it right.*
 
 ---
 
@@ -54,7 +54,7 @@ Skepticism is a feature. I trust the engineer who asks why before adopting a too
 
 I have one in mind. I wrote about them a while back, in a [piece about the identity crisis AI created for engineers](https://www.georgediab.com/posts/2026/ai-identity-crisis): a senior I respect who was grieving the part of the craft AI was eroding. They're still in that bottom cohort, but moving, slowly, to the next cohort. They use the tools for planning and for reviewing, but they aren't convinced the tools write the best code, and when they hand one a real task they usually end up re-steering it back on course. Some of that is the model. A lot of it is that they're working in a legacy-ish codebase the agent doesn't have the context to navigate, and they haven't yet hit the point of frustration where they sit down and write the codebase's opinions into a CLAUDE.md so the agent stops guessing. The mandate framing would read all of this as resistance to be overcome. It isn't. It's a skilled person making an accurate call about where the tool currently fails them. Even though they're still in that bottom bracket, they're slowly guiding themselves (with a bit of help from me) to that next level.
 
-What actually moved them wasn't pressure. It was people. They started trying new models and tools after following voices they already trusted: peers and teachers who'd shaped their growth years ago and have since moved into AI. Matt Pocock is the clearest example: the TypeScript teacher they'd learned from is now teaching AI practices for engineers, much of it [free on his YouTube channel](https://www.youtube.com/@mattpocockuk). TThat's the lesson I'd hand any manager staring at a holdout: you don't argue a skeptic into the higher cohort, you give them a guide they already respect, a framework to follow, and room to do the work on company time.
+What actually moved them wasn't pressure. It was people. They started trying new models and tools after following voices they already trusted: peers and teachers who'd shaped their growth years ago and have since moved into AI. Matt Pocock is the clearest example: the TypeScript teacher they'd learned from is now teaching AI practices for engineers, much of it [free on his YouTube channel](https://www.youtube.com/@mattpocockuk). That's the lesson I'd hand any manager staring at a holdout: you don't argue a skeptic into the higher cohort, you give them a guide they already respect, a framework to follow, and room to do the work on company time.
 
 Training is empowerment with constraints, which is the only kind of empowerment that works. "Empower your team" on its own produces chaos. The Netflix recipe lands because the constraints are doing the work: team-level opt-in so nobody is exposed alone, the manager in the room so it is not "you go learn this while I keep doing the real job," real work on the table so the skill has somewhere to bite. The constraints are what make the autonomy safe to hand over.
 
