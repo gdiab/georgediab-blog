@@ -20,7 +20,7 @@ agentPrompts:
 
 Steve Yegge has a new essay, [*The Flat Curve Society*](https://steve-yegge.medium.com/the-flat-curve-society-36c8b01eb33b), and I want to tag my thoughts on to it.
 
-His argument runs like this. The most capable models, the ones a notch above what you can access today, get locked down the way governments lock down weapons-grade nuclear material. There's a threshold of capability where a model becomes a national-security object, and past it the frontier disappears behind government walls. So the intelligence curve you can actually use goes flat, even as the real one keeps climbing in private. The tell is the spending: the data-center buildout only makes sense if the curve behind the wall is still exponential, even though from where you and I stand it looks like a plateau. From there Yegge splits the room. If you bet your career on the next model shipping, a plateau reads as a threat. If you were exhausted by the pace, it reads as relief. His move is to say both reactions miss it. The bottleneck was never the model. It's training, task decomposition, and knowing when to spend a token and when not to. On a flat curve, the difference between people stops being which model they have and starts being how well they use the one everyone has.
+His argument runs like this. The most capable models, the ones a notch above what you can access today, get locked down the way governments lock down weapons-grade nuclear material. There's a threshold of capability where a model becomes a national-security object, and past it the frontier disappears behind government walls. On a flat curve, the difference between people stops being which model they have and starts being how well they use the one everyone has.
 
 I think he's right, and on the substance we barely disagree. He wrote it from the orchestrator's chair, though, as someone who already knows how to drive these tools. He even sees the trap coming: token spend signals literacy on the way up, he says, and then it flips, and you start measuring waste instead. But that's one person's skill curve. What I've spent a career on is the version one level up. Taking a team of people at wildly different levels of skill and willingness and moving them, together, onto something new without breaking trust: that tension isn't new, and it's a different job to run than to describe.
 
@@ -60,7 +60,7 @@ Training is empowerment with constraints, which is the only kind of empowerment 
 
 ## What breaks it
 
-The engineer I mentioned above is still struggling to get out of that bottom cohort because they have deliverables and leadership hasn't yet believed this training is necessary.
+The engineer I mentioned above is still struggling to get out of that bottom cohort because they have deliverables … and leadership hasn't yet believed this training is necessary.
 
 They're opting in because they're seeing where the puck is headed.
 
