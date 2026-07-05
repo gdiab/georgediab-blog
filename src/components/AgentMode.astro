@@ -109,6 +109,12 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
     const article = document.querySelector<HTMLElement>("#article");
     if (!root || !article) return;
 
+    // ViewTransitions fires `astro:page-load` on initial load too, so this runs
+    // once from the direct call below and again from the event — guard against
+    // double-binding every listener on the same element.
+    if (root.dataset.agentModeReady) return;
+    root.dataset.agentModeReady = "true";
+
     const tabRead = root.querySelector<HTMLButtonElement>("#tab-read");
     const tabAgent = root.querySelector<HTMLButtonElement>("#tab-agent");
     const panel = root.querySelector<HTMLElement>("[data-agent-panel]");
@@ -124,18 +130,32 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
       }
     }
 
-    function showAgent() {
+    function showAgent(userInitiated = true) {
       tabRead!.setAttribute("aria-selected", "false");
       tabAgent!.setAttribute("aria-selected", "true");
       panel!.hidden = false;
       article!.hidden = true;
+      if (userInitiated) {
+        // Focus the Agent tab: the mid-post CTA that may have triggered this
+        // lives inside #article, which is now hidden, so keyboard focus would
+        // otherwise fall to <body>. preventScroll so it doesn't fight the
+        // reposition below.
+        tabAgent!.focus({ preventScroll: true });
+        // Hiding the tall article collapses page height; if the user opened this
+        // from the mid-post banner while scrolled down, the browser clamps scroll
+        // to the new (shorter) bottom. Bring the panel back into view. Instant,
+        // not smooth: the page's `scroll-behavior: smooth` animates from the
+        // just-clamped position, and the concurrent layout collapse makes that
+        // animation under-shoot. A crisp reposition is also the right feel here.
+        root!.scrollIntoView({ block: "start", behavior: "instant" });
+      }
       if (location.hash !== "#agent") {
         history.replaceState(null, "", "#agent");
       }
     }
 
     tabRead.addEventListener("click", showRead);
-    tabAgent.addEventListener("click", showAgent);
+    tabAgent.addEventListener("click", () => showAgent());
 
     // Clipboard copy with transient feedback for any [data-copy] button.
     root.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
@@ -169,13 +189,14 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
         } else {
           article.appendChild(node);
         }
-        node.querySelector("[data-agent-banner-cta]")?.addEventListener("click", showAgent);
+        node.querySelector("[data-agent-banner-cta]")?.addEventListener("click", () => showAgent());
       }
     }
 
-    // #agent deep-link activates the Agent view on load.
+    // #agent deep-link activates the Agent view on load. No scroll: the browser
+    // is already at the top, so let it settle there naturally.
     if (location.hash === "#agent") {
-      showAgent();
+      showAgent(false);
     }
   }
 
