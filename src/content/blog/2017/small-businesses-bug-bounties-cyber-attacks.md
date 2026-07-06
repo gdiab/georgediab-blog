@@ -5,6 +5,7 @@ pubDatetime: 2017-07-11T12:20:37-04:00
 tags: ["security", "small-business", "bug-bounty"]
 draft: true
 source: "https://tech.co/black-hat-smb-cyber-attacks-2017-07"
+heroImage: "/posts/small-businesses-bug-bounties-cyber-attacks/hero.jpg"
 ---
 
 The likelihood of cyber attacks on small businesses is actually higher than the constant and varied cyber intrusions being reported worldwide. [The New York Times](https://www.nytimes.com/2016/01/14/business/smallbusiness/no-business-too-small-to-be-hacked.html) reports that 62 percent of all such attacks are on SMBs, at a rate of about 4,000 per day.
@@ -26,6 +27,8 @@ The fact is that you can take steps to protect your small business from cyber th
 - Prepare a bug bounty budget. Once your security is in place, you can hire ethical hackers to test your system for vulnerabilities. A bug bounty is a reward given in exchange for the bugs that are found through this process. Hackerone is one tool that can help you set up this bug bounty system. It's definitely more affordable than actually being hacked.
 
 ## Is State-Sponsored Hacking Contributing to the Threats?
+
+![State-sponsored cyber attacks on critical infrastructure](/posts/small-businesses-bug-bounties-cyber-attacks/government-cybersecurity.jpg)
 
 Every day, there is more information – yet more uncertainty – regarding the presence of state-sponsored cyber attacks. On the heels of the G20 summit in Hamburg, [The Washington Post](https://www.washingtonpost.com/world/national-security/us-officials-say-russian-government-hackers-have-penetrated-energy-and-nuclear-company-business-networks/2017/07/08/bbfde9a2-638b-11e7-8adc-fea80e32bf47_story.html) reported that "Russian government hackers were behind recent cyber-intrusions into the business systems of U.S. nuclear power and other energy companies".
 

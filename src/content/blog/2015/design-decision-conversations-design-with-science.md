@@ -5,6 +5,7 @@ pubDatetime: 2015-06-04T18:00:36+00:00
 tags: ["design", "ux", "product"]
 draft: true
 source: "https://tech.co/design-decision-joe-leech-2015-06"
+heroImage: "/posts/design-decision-conversations-design-with-science/hero.jpg"
 ---
 
 How do you make and communicate why you are making your design decisions? According to author [Joe Leech](http://mrjoe.uk/), it’s research, design, and design strategy, in equal measure. At [Future Insights Live](https://futureinsightslive.com/las-vegas-2015/) in Las Vegas, Leech presented “How to Design With Science” as designers filled the room to understand how psychology and data can make you a more successful designer, without destroying the magic. See the other Future Insights stories here: [FILive Las Vegas stories](http://tech.co/tag/fi-live-las-vegas)!

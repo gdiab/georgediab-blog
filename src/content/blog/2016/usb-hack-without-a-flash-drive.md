@@ -5,11 +5,14 @@ pubDatetime: 2016-08-08T12:30:39-05:00
 tags: ["security", "hardware", "privacy"]
 draft: true
 source: "https://tech.co/usb-hack-flash-drive-2016-08"
+heroImage: "/posts/usb-hack-without-a-flash-drive/hero.jpg"
 ---
 
 “Does dropping a USB in a parking lot really work?” was the question posed by [Elie Bursztein](https://twitter.com/elie) of Google’s Anti-Abuse Research Team when he took the stage at **[BlackHat 2016](https://www.blackhat.com/us-16/)** Las Vegas, NV. You might think you would never be the victim of a USB hack, and I hope you’re right. But after watching Bursztein’s presentation, I learned more about the various ways that computers can be harmed through the USB drive.
 
 ## Who Would Pick Up a USB Drive in a Parking Lot?
+
+![USB drives dropped in a parking lot](/posts/usb-hack-without-a-flash-drive/parking-lot.jpg)
 
 This parking lot scenario refers to the belief by hackers that end users will pick up and plug in a USB flash drive they find lying around. Yes, even a thumb drive found lying in the street – if you watched [Season 1 of *Mr. Robot*](http://www.usanetwork.com/mrrobot), you know what I’m talking about. In episode six, Darlene drops USB flash drives in the parking lot of a prison in hopes that some employee of the prison will pick up the drive and connect it to a computer inside the prison. Spoiler Alert: It works.
 

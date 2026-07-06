@@ -5,6 +5,7 @@ pubDatetime: 2017-07-28T14:30:38-04:00
 tags: ["security", "bug-bounty", "startup"]
 draft: true
 source: "https://tech.co/business-cybersecurity-bug-bounty-2017-07"
+heroImage: "/posts/is-your-business-prepared-to-offer-a-bug-bounty/hero.jpg"
 ---
 
 It's July in Las Vegas, and the cybersecurity community has once again gathered to attend BlackHat USA. As previously reported, there are a number of ways that small businesses can prepare for cyber attacks. Setting up a bug bounty budget is one of the ways to do this.
@@ -25,6 +26,9 @@ These researchers are simply individuals who are trying to earn a living helping
 
 A poorly written bug submission might seem, at first, like a low value bug, but with more communication, you might learn how seriousness of the issue. This just becomes a teachable moment, asking for screen captures or perhaps a rewrite to clarify a submission so that it's value can be better ascertained.
 
+![Bug bounty panel at BlackHat USA](/posts/is-your-business-prepared-to-offer-a-bug-bounty/panel-photo.jpg)
+*Panel Photo from @Kym_Possible*
+
 ## Monitor the Success & Popularity of Your Program
 
 There are many companies running a bug bounty program, so attracting the best security researchers might be a priority of yours. If you feel the quality of your submissions goes down, it might be time to either raise the award amounts for the bounties, or examine the program as a whole. Valentine, VP of Technology Services at Indeed, added:
@@ -32,6 +36,8 @@ There are many companies running a bug bounty program, so attracting the best se
 "It's a marketplace. You got a bounty amount, the payment amounts need to be rational for the work that's happening. If we make a change, we pay. It's established a reputation for our program. Be clear about what you will pay and why."
 
 Obviously, the rewards can keep the best talent working on "white hat" hacking on your products, but if your budget is small, you'll need to be creative. Rangel, Director of Product Management at Silent Circle, suggests other ways to reward the community. Lean toward more fun and social prizes: when the payouts are low, offer more kudos. Sometimes the reputation you can spotlight for folks is just as valuable to a security researcher as cold hard cash. A balance of reputation and monetary compensation can often keep the community going, especially when you are just starting the process up.
+
+![Cybersecurity](/posts/is-your-business-prepared-to-offer-a-bug-bounty/hexadite-cyber-security.jpg)
 
 ## Set Clear Expectations for Your Bug Bounty Program
 

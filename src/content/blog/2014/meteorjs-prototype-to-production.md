@@ -5,6 +5,7 @@ pubDatetime: 2014-09-17T09:00:38-04:00
 tags: ["meteorjs", "javascript", "engineering", "startup"]
 draft: true
 source: "https://tech.co/meteorjs-production-app-2014-09"
+heroImage: "/posts/meteorjs-prototype-to-production/hero.jpg"
 ---
 
 MeteorJs is an open-source framework to quickly build web apps that is powerful enough for an experienced developer, but easy enough for a beginner to get started on building a production app.

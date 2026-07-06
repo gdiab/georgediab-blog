@@ -5,6 +5,7 @@ pubDatetime: 2016-05-24T16:08:08-04:00
 tags: ["twilio", "developer-tools", "api"]
 draft: true
 source: "https://tech.co/signal-conference-twilio-console-2016-05"
+heroImage: "/posts/twilio-console-developer-experience/hero.jpg"
 ---
 
 It’s never been a better time to be a [DOer](https://www.twilio.com/doers).
@@ -39,6 +40,8 @@ In addition to grouping these debugging events by type, developers can now group
 
 You can then click on any of those endpoints to see all of the errors associated with just that endpoint:
 
+![Twilio Debugger showing errors grouped by endpoint](/posts/twilio-console-developer-experience/debugger.png)
+
 Robust search fills out Debugger’s ability to pinpoint errors. In addition to searching by webhook URI, developers can search for errors by phone number, Call Sid, SMS Sid, or any of the parameters that Twilio included in its HTTP request to your application. Full-text search inside the debugger means that you can do specific customer support for all the folks in a geographical area around an issue, or add any other contextual data related to the error.
 
 Debugger is powerful enough that [developers can save time tracking down issues](http://tech.co/32-awful-things-software-engineer-2016-04), and just get to the necessary step: fixing them. No need to wait for that support ticket or call to add context to the error. The glowing bug icon was one of the biggest crowd-pleasers during its demo for the SIGNAL audience. Directly from the Console, you are alerted to existing bugs and with one click, you’re delivered to the Debugger, which sorts errors by “Last Seen”.
@@ -55,6 +58,8 @@ I tried it last night, and it is so easy and painless to set up a phone number a
 
 ***Go ahead! Try it! Call (702) 800-7236 right now!***
 
+![Creating a TwiML Bin in the Twilio Console](/posts/twilio-console-developer-experience/twiml-bins.png)
+
 ## Documentation That Isn’t an Afterthought
 
 Accompanying the new Console is a redesigned Documentation experience. Twilio has also been hard at work re-imagining Twilio Docs from the ground up to help you find the information you are looking for faster than ever before.
@@ -62,6 +67,8 @@ Accompanying the new Console is a redesigned Documentation experience. Twilio ha
 Similar to the new Console, Docs enjoys a new developer responsive design permitting the documentation you’re reading and the code you’re writing to fit side-by-side with your text editor.
 
 Browsing for the right languages and products is also faster with a new filterable sidebar, to display documentation to fit your technology stack. Later, when you search for help with a specific feature, like how to send a picture in an SMS, you will get code snippets in the language and platform you selected previously.
+
+![Light and dark documentation themes](/posts/twilio-console-developer-experience/light-dark-theme.png)
 
 Because there is no greater hell than having to follow PHP examples when you write everything in JavaScript. Oh…and it’s not an afterthought; every developer has a preference, you can select the layout theme of your documentation. Choose Light or Dark! (I chose Dark!)
 

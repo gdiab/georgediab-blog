@@ -5,6 +5,7 @@ pubDatetime: 2015-02-16T15:05:22-04:00
 tags: ["developers", "engineering-management", "culture"]
 draft: true
 source: "https://tech.co/respect-programmers-arc-care-feeding-developers-2015-02"
+heroImage: "/posts/respect-the-programmers-arc/hero.jpg"
 ---
 
 There is inherent value in communicating respect, especially in early startup teams. A recipe for failure, but one so often repeated, looks like this: Wantrepreneur has a great idea. Starts a company, becomes CEO. Hunts for someone to build the idea. Hires CTO. Doesn’t understand why the CTO is always saying “no.” CTO and CEO quarrel over a what seems to be a lack of respect. CEO hires developer after developer to keep fixing and building on unfinished code. There needs to be a bridge created here: Create more understanding by improving communication.
@@ -28,6 +29,8 @@ People are motivated by different things. Treating the team to a celebratory lun
 On the other hand, [Gabe Shepherd](https://twitter.com/gabeshep), who was running the company, didn’t always need to know the technical ins and outs. “Either be quick, or tell me everything,” he says. “Sometimes, I just need to know one simple thing: where’s the bottleneck?” Shepherd says that learning to set expectations – which differed with each team member – about the level of detail he needed helped to improve communication and respect between those with the idea and those who were building it.
 
 Woertink illustrated the Programmer’s Arc: If you want me in the office to shoot the shit and be available for team activities like random ping-pong at 2 pm, my work will get done at a much slower pace. He explained that it took a long time to get the rest of the team to understand this.
+
+![The Programmer’s Arc](/posts/respect-the-programmers-arc/programmers-arc-diagram.png)
 
 Shepherd notes that understanding this really helped him improve communication with this team and other startup teams that he’s helped to grow. “At first I thought it must be an excuse,” he said. “If I can get right back to work after a welcome distraction, why can’t he?” Once he realized that a programmer needs a ramp-up period to get into a block of code, he was able to show more respect to the needs of his teammates.
 

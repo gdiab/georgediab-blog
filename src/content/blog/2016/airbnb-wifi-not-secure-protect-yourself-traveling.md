@@ -5,6 +5,7 @@ pubDatetime: 2016-08-05T21:00:54-04:00
 tags: ["security", "travel", "privacy", "wifi"]
 draft: true
 source: "https://tech.co/airbnb-wifi-security-2016-08"
+heroImage: "/posts/airbnb-wifi-not-secure-protect-yourself-traveling/hero.jpg"
 ---
 
 **Short term rentals** have grown exponentially over the last five years. This market is said to be a [$100 billion industry](https://skift.com/2016/05/25/why-the-vacation-rental-industry-is-blowing-up-right-now/), on track to be worth $170 billion [by 2019](http://www.prnewswire.com/news-releases/global-vacation-rental-market-2015-2019---leading-vendors-are-9flats-airbnb-homeaway-tripadvisor-wimdu-world-travel-holdings--wyndham-worldwide-564824051.html). At the [BlackHat Conference](https://www.blackhat.com/us-16/) in Las Vegas, Jeremy Galloway pointed out the specific threats to wi-fi security for the millions of travelers using the internet while home sharing.
