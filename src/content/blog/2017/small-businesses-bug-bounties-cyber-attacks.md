@@ -3,7 +3,7 @@ title: "Small Businesses Are Going to Need Bug Bounties to Combat Cyber Attacks"
 description: "Small businesses and organizations are not prepared for cyber attacks on their infrastructure, according to the respondents in a Black Hat USA survey."
 pubDatetime: 2017-07-11T12:20:37-04:00
 tags: ["security", "small-business", "bug-bounty"]
-draft: true
+draft: false
 source: "https://tech.co/black-hat-smb-cyber-attacks-2017-07"
 heroImage: "/posts/small-businesses-bug-bounties-cyber-attacks/hero.jpg"
 ---

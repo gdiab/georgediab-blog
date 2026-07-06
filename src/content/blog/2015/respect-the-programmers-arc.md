@@ -3,7 +3,7 @@ title: "Respect the Programmer's Arc: The Care and Feeding of Developers"
 description: "The Programmer's Arc: when you distract a programmer, your results will be delayed."
 pubDatetime: 2015-02-16T15:05:22-04:00
 tags: ["developers", "engineering-management", "culture"]
-draft: true
+draft: false
 source: "https://tech.co/respect-programmers-arc-care-feeding-developers-2015-02"
 heroImage: "/posts/respect-the-programmers-arc/hero.jpg"
 ---

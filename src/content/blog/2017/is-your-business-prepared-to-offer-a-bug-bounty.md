@@ -3,7 +3,7 @@ title: "Is Your Business Prepared to Offer a Bug Bounty?"
 description: "There are a number of ways that small businesses can prepare for cyber attacks. Setting up a bug bounty budget is one of the ways to do this."
 pubDatetime: 2017-07-28T14:30:38-04:00
 tags: ["security", "bug-bounty", "startup"]
-draft: true
+draft: false
 source: "https://tech.co/business-cybersecurity-bug-bounty-2017-07"
 heroImage: "/posts/is-your-business-prepared-to-offer-a-bug-bounty/hero.jpg"
 ---

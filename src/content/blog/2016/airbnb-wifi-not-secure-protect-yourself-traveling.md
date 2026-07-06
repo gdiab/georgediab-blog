@@ -3,7 +3,7 @@ title: "Your Airbnb Wi-Fi Is Not Secure: How to Protect Yourself When Traveling"
 description: "Most people consider the network at their Airbnb to be safer than at hotels. Here's how to strengthen wi-fi security at short term rentals."
 pubDatetime: 2016-08-05T21:00:54-04:00
 tags: ["security", "travel", "privacy", "wifi"]
-draft: true
+draft: false
 source: "https://tech.co/airbnb-wifi-security-2016-08"
 heroImage: "/posts/airbnb-wifi-not-secure-protect-yourself-traveling/hero.jpg"
 ---

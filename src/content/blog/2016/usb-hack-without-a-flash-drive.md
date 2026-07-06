@@ -3,7 +3,7 @@ title: "A USB Hack Can Occur Even Without a Flash Drive"
 description: "You might think you would never be the victim of a USB hack. At BlackHat in Las Vegas, Elie Bursztein shared the surprising results of his study."
 pubDatetime: 2016-08-08T12:30:39-05:00
 tags: ["security", "hardware", "privacy"]
-draft: true
+draft: false
 source: "https://tech.co/usb-hack-flash-drive-2016-08"
 heroImage: "/posts/usb-hack-without-a-flash-drive/hero.jpg"
 ---
