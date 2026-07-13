@@ -1,7 +1,7 @@
 ---
 title: "How I actually run a swarm of coding agents"
 description: "tmux can't tell you an agent is blocked or done. Herdr surfaces each agent's real state, and lets the agents drive the multiplexer themselves. My actual setup."
-pubDatetime: 2026-07-09T21:26:32-07:00
+pubDatetime: 2026-07-13T10:00:23-07:00
 heroImage: "/posts/how-i-run-a-swarm-of-coding-agents/hero.jpg"
 tags: ["ai", "developer-tools", "engineering", "agents", "tools"]
 draft: false
