@@ -14,7 +14,7 @@ agentPrompts:
 
 Claude Code has four commands that all deal with the same problem: what to do with your context when you want to go somewhere without wrecking the session you're already in.
 
-Context is the scarce resource now. The model is usually good enough. What runs out is the room in the window and your own attention, and both get worse when everything you do piles into one long session. The four commands are `/branch`, `/fork`, `/background`, and `/btw`, and they each move your context to a different place. They look similar from a distance, and they're easy to mix up until you see where the context lands in each one.
+Context is the scarce resource now. The model is usually good enough. What runs out is the room in the window (everything Claude can currently see: the conversation, the files it's read, the tool output) and your own attention, and both get worse when everything you do piles into one long session. The four commands are `/branch`, `/fork`, `/background`, and `/btw`, and they each move your context to a different place. They look similar from a distance, and they're easy to mix up until you see where the context lands in each one.
 
 <img src="/posts/context-management-commands/Claude Code Commands-selection.png" alt="A decision-tree diagram titled 'Useful Claude Code commands' for choosing what to do mid-session in Claude Code. It asks what kind of detour this is, then maps quick side questions to /btw, side tasks to /fork, risky alternate paths to /branch, and long-running work to /background." class="w-full rounded-xl" />
 
