@@ -1,6 +1,13 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import { SITE } from "@/config";
+// Self-hosted body font. The previous declared font (Space Grotesk) never
+// loaded in production: its Google Fonts <link> lived in a dead layout
+// (BaseHead), so the site rendered system-ui. Atkinson Hyperlegible chosen
+// deliberately to replace it.
+import "@fontsource/atkinson-hyperlegible/400.css";
+import "@fontsource/atkinson-hyperlegible/400-italic.css";
+import "@fontsource/atkinson-hyperlegible/700.css";
 import "@/styles/global.css";
 import Analytics from "@/components/Analytics.astro";
 
