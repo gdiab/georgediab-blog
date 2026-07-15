@@ -95,6 +95,25 @@ html[data-theme="dark"] {
   footer {
     @apply mx-auto max-w-3xl px-4;
   }
+
+  /* Respect OS-level motion preferences: disable smooth scroll, theme-toggle
+     view-transition fades, and hover/entrance animations. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none !important;
+    }
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 .active-nav {
