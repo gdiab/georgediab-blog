@@ -3,21 +3,24 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+/* Palette derived from the post illustrations (swarm hero): warm off-white
+   sky, deep green-slate hills, terracotta accents. Accent contrast verified:
+   5.2:1 light, 8.2:1 dark. */
 :root,
 html[data-theme="light"] {
-  --background: #f8fbff;
-  --foreground: #0f172a;
-  --accent: #2563eb;
-  --muted: #e2e8f0;
-  --border: #cbd5e1;
+  --background: #faf9f4;
+  --foreground: #1f2721;
+  --accent: #b04a2f;
+  --muted: #ece8dc;
+  --border: #d6d1c2;
 }
 
 html[data-theme="dark"] {
-  --background: #0b1020;
-  --foreground: #e2e8f0;
-  --accent: #38bdf8;
-  --muted: #1e293b;
-  --border: #334155;
+  --background: #131a16;
+  --foreground: #e6e4da;
+  --accent: #f09b7e;
+  --muted: #222b25;
+  --border: #3a453e;
 }
 
 @theme {
