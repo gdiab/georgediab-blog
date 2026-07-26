@@ -41,3 +41,6 @@ src/content/temp/
 
 # Claude session memory
 .remember/
+
+# Impeccable skill working dirs
+.impeccable/
