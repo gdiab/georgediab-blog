@@ -139,8 +139,6 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
     const panel = root.querySelector<HTMLElement>("[data-agent-panel]");
     if (!tabRead || !tabAgent || !panel) return;
 
-    const slug = location.pathname.split("/").filter(Boolean).pop() ?? "";
-
     function showRead() {
       tabRead!.setAttribute("aria-selected", "true");
       tabAgent!.setAttribute("aria-selected", "false");
@@ -153,7 +151,10 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
 
     function showAgent(source: "tab" | "banner" | "deep-link") {
       const userInitiated = source !== "deep-link";
-      track("agent_view_open", { source, slug });
+      // Per-post attribution comes from the page URL Vercel records on every
+      // event; base Pro caps custom properties at 2, so send only what the
+      // URL can't tell us.
+      track("agent_view_open", { source });
       tabRead!.setAttribute("aria-selected", "false");
       tabAgent!.setAttribute("aria-selected", "true");
       panel!.hidden = false;
@@ -187,7 +188,6 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
         track("agent_copy", {
           kind: btn.getAttribute("data-copy-kind") ?? "unknown",
           prompt: btn.getAttribute("data-prompt-label") ?? "",
-          slug,
         });
         try {
           await navigator.clipboard.writeText(btn.getAttribute("data-copy") ?? "");
@@ -209,13 +209,12 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
         track("agent_link_click", {
           target: link.getAttribute("data-agent-link") ?? "",
           prompt: link.getAttribute("data-prompt-label") ?? "",
-          slug,
         });
       });
     });
 
     root.querySelector<HTMLAnchorElement>("[data-raw-md]")?.addEventListener("click", () => {
-      track("agent_raw_md_click", { slug });
+      track("agent_raw_md_click");
     });
 
     // Inject the mid-post banner near the middle of the article (Read view only;
