@@ -55,10 +55,11 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
         class="rounded bg-muted px-2 py-1 font-medium"
         data-copy={markdown}
         data-copy-label="Copy post (markdown)"
+        data-copy-kind="post"
       >
         Copy post (markdown)
       </button>
-      <a href={mdUrl} class="underline hover:opacity-75">View raw markdown</a>
+      <a href={mdUrl} data-raw-md class="underline hover:opacity-75">View raw markdown</a>
     </div>
 
     <ul class="mt-4 space-y-3 list-none pl-0">
@@ -75,13 +76,29 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
                   class="rounded bg-accent px-2 py-1 font-medium text-background"
                   data-copy={p.copyPayload}
                   data-copy-label="Copy"
+                  data-copy-kind="prompt"
+                  data-prompt-label={p.label}
                 >
                   Copy
                 </button>
-                <a href={links.chatgpt} target="_blank" rel="noopener" class="underline hover:opacity-75">
+                <a
+                  href={links.chatgpt}
+                  target="_blank"
+                  rel="noopener"
+                  data-agent-link="chatgpt"
+                  data-prompt-label={p.label}
+                  class="underline hover:opacity-75"
+                >
                   ChatGPT
                 </a>
-                <a href={links.claude} target="_blank" rel="noopener" class="underline hover:opacity-75">
+                <a
+                  href={links.claude}
+                  target="_blank"
+                  rel="noopener"
+                  data-agent-link="claude"
+                  data-prompt-label={p.label}
+                  class="underline hover:opacity-75"
+                >
                   Claude
                 </a>
               </div>
@@ -104,6 +121,8 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
 </div>
 
 <script>
+  import { track } from "@vercel/analytics";
+
   function initAgentMode() {
     const root = document.querySelector<HTMLElement>("[data-agent-mode]");
     const article = document.querySelector<HTMLElement>("#article");
@@ -130,7 +149,12 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
       }
     }
 
-    function showAgent(userInitiated = true) {
+    function showAgent(source: "tab" | "banner" | "deep-link") {
+      const userInitiated = source !== "deep-link";
+      // Per-post attribution comes from the page URL Vercel records on every
+      // event; base Pro caps custom properties at 2, so send only what the
+      // URL can't tell us.
+      track("agent_view_open", { source });
       tabRead!.setAttribute("aria-selected", "false");
       tabAgent!.setAttribute("aria-selected", "true");
       panel!.hidden = false;
@@ -155,12 +179,16 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
     }
 
     tabRead.addEventListener("click", showRead);
-    tabAgent.addEventListener("click", () => showAgent());
+    tabAgent.addEventListener("click", () => showAgent("tab"));
 
     // Clipboard copy with transient feedback for any [data-copy] button.
     root.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
       const label = btn.getAttribute("data-copy-label") ?? "Copy";
       btn.addEventListener("click", async () => {
+        track("agent_copy", {
+          kind: btn.getAttribute("data-copy-kind") ?? "unknown",
+          prompt: btn.getAttribute("data-prompt-label") ?? "",
+        });
         try {
           await navigator.clipboard.writeText(btn.getAttribute("data-copy") ?? "");
           btn.textContent = "Copied";
@@ -176,6 +204,19 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
       });
     });
 
+    root.querySelectorAll<HTMLAnchorElement>("[data-agent-link]").forEach((link) => {
+      link.addEventListener("click", () => {
+        track("agent_link_click", {
+          target: link.getAttribute("data-agent-link") ?? "",
+          prompt: link.getAttribute("data-prompt-label") ?? "",
+        });
+      });
+    });
+
+    root.querySelector<HTMLAnchorElement>("[data-raw-md]")?.addEventListener("click", () => {
+      track("agent_raw_md_click");
+    });
+
     // Inject the mid-post banner near the middle of the article (Read view only;
     // it lives inside #article so it hides automatically in Agent view).
     const tpl = root.querySelector<HTMLTemplateElement>("[data-agent-banner]");
@@ -189,14 +230,14 @@ const { prompts, summary, mdUrl, markdown } = Astro.props;
         } else {
           article.appendChild(node);
         }
-        node.querySelector("[data-agent-banner-cta]")?.addEventListener("click", () => showAgent());
+        node.querySelector("[data-agent-banner-cta]")?.addEventListener("click", () => showAgent("banner"));
       }
     }
 
     // #agent deep-link activates the Agent view on load. No scroll: the browser
     // is already at the top, so let it settle there naturally.
     if (location.hash === "#agent") {
-      showAgent(false);
+      showAgent("deep-link");
     }
   }
 
