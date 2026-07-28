@@ -1,7 +1,7 @@
 ---
 title: "This is the feedback loop you didn't know you needed"
 description: "A week-plus with Lavish, the local review surface for agent-generated HTML: how the annotate-to-agent loop works, when the wait pays off, what it costs."
-pubDatetime: 2026-07-28T00:56:48-07:00
+pubDatetime: 2026-07-28T08:28:00-07:00
 tags: ["ai", "agents", "tools", "developer-tools", "productivity"]
 draft: false
 agentSummary: "A practitioner report on Lavish (lavish-axi), the open-source local CLI that turns agent-generated HTML into an interactive review surface: click the exact element or highlight the exact sentence, type feedback there, and it lands in the agent's context as structured JSON instead of prose. The post situates Lavish inside the 'HTML is the new markdown' shift (Thariq of the Claude Code team, backed by Karpathy), walks through a real model-eval curation session including the authoring wait, and names the costs: generation time is the price of the format (the agent writing HTML, not Lavish serving it), the wait only amortizes across multiple review rounds, the layout audit can false-alarm, and the share command publishes to a third-party host that is public, crawlable, and without a delete endpoint."
@@ -24,7 +24,7 @@ I've been living in a tool called [Lavish](https://github.com/kunchenguid/lavish
 
 ## The tagline is doing real work
 
-Lavish's pitch is "HTML is the new markdown," and that's not just a repo slogan. Thariq, an engineer on the Claude Code team, [kicked this off](https://x.com/trq212/status/2052811606032269638): "HTML is the new markdown. I've stopped writing markdown files for almost everything and switched to using Claude Code to generate HTML for me." Karpathy [backed it days later](https://x.com/karpathy/status/2053872850101285137): "This works really well btw, at the end of your query ask your LLM to 'structure your response as HTML', then view the generated file in your browser."
+Lavish's pitch is "HTML is the new markdown," and the line has a pedigree. Thariq, an engineer on the Claude Code team, [kicked this off](https://x.com/trq212/status/2052811606032269638): "HTML is the new markdown. I've stopped writing markdown files for almost everything and switched to using Claude Code to generate HTML for me." Karpathy [backed it days later](https://x.com/karpathy/status/2053872850101285137): "This works really well btw, at the end of your query ask your LLM to 'structure your response as HTML', then view the generated file in your browser."
 
 The logic holds up when you've watched an agent run for twenty minutes and hand you a plan. A long markdown plan is a wall. The same plan as HTML gets sections, tables, collapsible detail, and visual hierarchy that tells you where to look first.
 
@@ -46,7 +46,7 @@ Those structured decisions are worth the extra authoring time, though. Lavish sh
 
 Then the page loaded, and the loop got good. Each candidate task was a card with a checkbox. I checked the keepers, typed short notes on the maybes, and hit send. My picks arrived in the agent's context as structured JSON, not as prose it had to parse and hopefully not misread. I edited the underlying file mid-session and the page live-reloaded. There's a conversation panel on the page, so the agent's follow-up questions showed up next to the work instead of in another window. Two full rounds of that and the shortlist was done. It beat numbered-list-in-chat curation by enough that going back feels broken. I'll do whatever it takes to not have to.
 
-Lavish runs an automated layout audit in the real browser, a checker that measures element geometry and reports genuine breakage back to the agent so it gets fixed without bugging you. In one session, mine kept crying wolf: "overlapping text" errors with 0px of overflow, a different card each time, disproven every time by an actual screenshot. To be clear about what this was: the page rendered fine the whole time. The audit was reporting overlaps that didn't exist, false alarms from the checker, not actual rendering breakage. Others have hit the same thing ([#143](https://github.com/kunchenguid/lavish-axi/issues/143), [#186](https://github.com/kunchenguid/lavish-axi/issues/186)). It happened in that one session and hasn't come back since.
+Lavish runs an automated layout audit in the real browser, a checker that measures element geometry and reports genuine breakage back to the agent so it gets fixed without bugging you. In one session, mine kept crying wolf: "overlapping text" errors with 0px of overflow, a different card each time, disproven every time by an actual screenshot. The page rendered fine the whole time; the checker was seeing things. Others have hit the same thing ([#143](https://github.com/kunchenguid/lavish-axi/issues/143), [#186](https://github.com/kunchenguid/lavish-axi/issues/186)). It happened in that one session and hasn't come back since.
 
 ## When the wait pays for itself
 
