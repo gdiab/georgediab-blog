@@ -3,7 +3,7 @@ title: "This is the feedback loop you didn't know you needed"
 description: "A week-plus with Lavish, the local review surface for agent-generated HTML: how the annotate-to-agent loop works, when the wait pays off, what it costs."
 pubDatetime: 2026-07-28T00:56:48-07:00
 tags: ["ai", "agents", "tools", "developer-tools", "productivity"]
-draft: true
+draft: false
 agentSummary: "A practitioner report on Lavish (lavish-axi), the open-source local CLI that turns agent-generated HTML into an interactive review surface: click the exact element or highlight the exact sentence, type feedback there, and it lands in the agent's context as structured JSON instead of prose. The post situates Lavish inside the 'HTML is the new markdown' shift (Thariq of the Claude Code team, backed by Karpathy), walks through a real model-eval curation session including the authoring wait, and names the costs: generation time is the price of the format (the agent writing HTML, not Lavish serving it), the wait only amortizes across multiple review rounds, the layout audit can false-alarm, and the share command publishes to a third-party host that is public, crawlable, and without a delete endpoint."
 agentPrompts:
   - "How do I set up Lavish so my agent opens its HTML plans in a local review surface?"
@@ -42,11 +42,7 @@ Instead the agent built a review page and opened it in my browser. That build is
 
 Those structured decisions are worth the extra authoring time, though. Lavish ships playbooks that teach the agent common artifact shapes, and the one it calls `input` is my favorite: instead of a question buried in chat scroll, the agent lays out each call it needs from me as a set of clean options on the page, recommendation marked, with a queue button per question. Seeing "here are the four decisions I need from you, everything else I can settle myself" rendered as cards changes the feel of the review entirely.
 
-<!-- TODO(George): drop in the "Decisions I need from you" screenshot here as
-     /posts/the-feedback-loop-you-didnt-know-you-needed/lavish-decision-cards.png
-     (the D1/D2 decision cards from the dotfiles plan review). Suggested markdown:
-![A Lavish decisions block: numbered decision cards, each with options, the agent's recommendation marked, and a queue button per question](/posts/the-feedback-loop-you-didnt-know-you-needed/lavish-decision-cards.png)
--->
+![A Lavish decisions block titled "Decisions I need from you": numbered decision cards, each with options, honest downside notes, the agent's recommendation marked, and a queue button per question](/posts/the-feedback-loop-you-didnt-know-you-needed/lavish-decision-cards.png)
 
 Then the page loaded, and the loop got good. Each candidate task was a card with a checkbox. I checked the keepers, typed short notes on the maybes, and hit send. My picks arrived in the agent's context as structured JSON, not as prose it had to parse and hopefully not misread. I edited the underlying file mid-session and the page live-reloaded. There's a conversation panel on the page, so the agent's follow-up questions showed up next to the work instead of in another window. Two full rounds of that and the shortlist was done. It beat numbered-list-in-chat curation by enough that going back feels broken. I'll do whatever it takes to not have to.
 
