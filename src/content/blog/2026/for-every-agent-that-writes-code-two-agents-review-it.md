@@ -3,7 +3,7 @@ title: "For every agent that writes code, two agents review it"
 description: "Six weeks of agent-written code with two reviewer agents per writer. What the gate caught: leaked secrets, silent side effects, and what it costs."
 pubDatetime: 2026-08-02T16:54:50-07:00
 tags: ["ai", "agents", "software-engineering", "developer-tools", "tools"]
-draft: true
+draft: false
 agentSummary: "Six weeks of running the same review gate across a dozen repos where agents write most of the code. The pipeline: written task briefs, implementer agents, reviewer agents issuing two separate verdicts (matches the brief, and is good code), TDD fix waves, scoped re-reviews limited to ADDRESSED or NOT ADDRESSED, and a final whole-branch review, with a strict maintainability audit and a cross-model Codex second opinion as extras. Measured over the last month: roughly two reviewer agents per implementer, sustained. The receipts include a staged file with live credentials stopped one commit short of git history, a secret-scrubber with a hole in its own regex, unescaped LLM output rendered into another agent's report, and a dry run that executed a real install. Honest costs: double-ish token and time spend, reviewer false positives, and an untested dependence on written briefs."
 agentPrompts:
   - "How do I set up a two-verdict review gate (spec compliance vs code quality) for agent-written code?"
