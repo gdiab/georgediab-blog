@@ -44,3 +44,6 @@ src/content/temp/
 
 # Impeccable skill working dirs
 .impeccable/
+
+# Lavish skill working dirs
+.lavish/
