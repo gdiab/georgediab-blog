@@ -18,7 +18,7 @@ I've spent the last six weeks running the same gate across a dozen repos (my dot
 
 ## Two reviewers for every writer
 
-Last week, across four active repos, my sessions spawned 133 subagents. 41 of them wrote or fixed code. 89 reviewed it: 55 task reviews, 20 scoped re-reviews, and 14 final whole-branch passes. Around 1.5 million output tokens, and most of them went to judgment, not generation. Widen the window to the last 28 days and 13 repos and it's roughly 690 subagents, with 251 on the review side against 170 implementers. Two reviewers per writer last week, closer to one and a half over the month.
+Last week, across four active repos, my sessions spawned 133 subagents. 41 of them wrote or fixed code. 89 reviewed it: 55 task reviews, 20 scoped re-reviews, and 14 final whole-branch passes. The other three were odd jobs that fit neither bucket. Around 1.5 million output tokens, and most of them went to judgment, not generation. Widen the window to the last 28 days and 13 repos and it's roughly 690 subagents. About 270 of those were odd jobs too, research and exploration mostly; the pipeline roles split 251 on the review side against 170 implementers. Two reviewers per writer last week, closer to one and a half over the month.
 
 Counting method, because numbers without one are just claims: each subagent transcript gets classified by its first prompt (implement, review, re-review, fix wave, or final review), and token totals come from the usage records. The counts will drift as new sessions pile up. The ratio hasn't.
 
