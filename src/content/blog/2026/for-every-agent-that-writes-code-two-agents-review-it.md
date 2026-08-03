@@ -70,4 +70,6 @@ The gate raises the floor. And, for better or worse, it's replacing my own readi
 
 Six weeks in, the gate has caught something real every week: a side effect, a leaked credential, a broken defense, an injection path, a tainted benchmark. None of them were hard bugs to fix. All of them were easy bugs to ship.
 
+If you want to run the same gate, the pieces are two installs and a skill file; the choreography is bundled in [one short gist](https://gist.github.com/gdiab/9bd9098fe2ed75513242fe697f7275d9).
+
 For now, every agent that writes code gets two that review it. They keep earning it.
