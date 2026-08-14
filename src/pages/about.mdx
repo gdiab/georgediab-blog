@@ -1,10 +1,9 @@
 ---
 layout: ../layouts/AboutLayout.astro
 title: "About"
-description: "George Diab's home on the web — sharing experiments, notes, and projects."
+description: "George Diab, building software since 1998. Writing about AI-assisted engineering, shipping iOS apps and agent tooling solo, and consulting at georgediab.net."
 ---
 
-import NewsletterForm from '../components/NewsletterForm.astro';
 import { SITE } from "../config";
 
 <div class="flex flex-col md:flex-row gap-8 items-start">
@@ -12,31 +11,23 @@ import { SITE } from "../config";
     <img src={`/${SITE.ogImage}`} alt="George Diab" class="w-full h-auto rounded-lg" />
   </div>
   <div class="flex-1 min-w-0">
-    <p>Hi, I'm George Diab. I'm building this space to collect what I'm learning, prototypes that ship, and ideas that keep resurfacing.</p>
-    <p>Over time you'll find posts about product experiments, engineering workflows, and the occasional rabbit hole.</p>
-    <p>For now I'm laying the groundwork — wiring up the site, deciding on rhythm, and keeping things simple.</p>
-    <p>If you're working on something interesting or just want to say hi, I'd love to hear from you.</p>
+    <p>I'm George Diab. I've been building software since 1998, starting as a web and database developer at Bank of America while I finished my degree at UNLV. Most recently I was an Engineering Manager and Architect at Codingscape, and before that I led technology teams at RevUnit and Credit One Bank. I live in Las Vegas.</p>
+    <p>I write here about AI-assisted engineering, which for me means the unglamorous version: agents working test-first against real code, verified with tests and linting, then reviewed by a different model than the one that wrote it so the blind spots don't line up. Most posts come out of something that annoyed me enough to fix.</p>
   </div>
 </div>
 
-## GitHub Activity
+## What I've shipped lately
 
-<div class="bg-secondary p-0 rounded-lg">
-  <img 
-    src="https://ghchart.rshah.org/gdiab" 
-    alt="George's GitHub Contribution Graph" 
-    class="w-full"
-    style="max-width: 100%; height: auto;"
-    loading="lazy"
-  />
-</div>
+Two iOS apps are live on the App Store, [AnxiLog+](https://anxilog.app) and [Arbatash](https://arbatash.com), both built and maintained solo and almost entirely with agents. Arbatash is getting multiplayer now, still agent-built.
 
-I build what excites me and try to open source as much as possible. I also run a solo AI consulting practice at [georgediab.net](https://georgediab.net?utm_source=georgediab&utm_medium=referral).
+The tooling is public at [github.com/gdiab](https://github.com/gdiab). `linkledger-cli` is a local-first memory layer for agents. `agent-status-ledger` reads my own Claude Code and Codex session transcripts, correlates them against git commits, and produces a daily standup for the agents I run, with every claim tagged by evidence level so an agent's self-report never gets confused for verified work. There are a handful of Claude Code skills in there too, including the 12-Factor assessment skill I use in client work.
 
-[Follow me on GitHub](https://github.com/gdiab) or reach out via [email](mailto:me@georgediab.com).
+My notes live in a plain-Markdown second brain in a git repo, operated by custom skills and MCP tooling. I wrote about that one [here](/posts/2026/building-a-second-brain-in-plain-text).
 
-## Stay Connected
+## The consulting practice
 
-<NewsletterForm />
+I run a [solo AI consulting practice at georgediab.net](https://georgediab.net?utm_source=georgediab&utm_medium=referral): diagnosis first for small businesses, and a fractional AI architect tier for teams that want someone who lives in the tools. It's a separate site on purpose. The tools I recommend there are the tools I use every day, which is also why I'm comfortable telling someone they don't need them.
 
-If you'd like to connect or have questions about my work, feel free to reach out through any of the links below.
+## Talking to me
+
+The writing here has been going since 2011, though the current run started in 2026. If a post is useful, or wrong, I'd like to hear about it: [me@georgediab.com](mailto:me@georgediab.com).
