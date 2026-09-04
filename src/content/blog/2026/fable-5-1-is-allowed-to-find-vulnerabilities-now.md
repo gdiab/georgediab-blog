@@ -1,10 +1,10 @@
 ---
 title: "Fable 5.1 is allowed to find vulnerabilities now"
 description: "Anthropic shipped the capability that got Fable 5 pulled in June, said nothing about June, and cut a price that stops at the subscription boundary."
-pubDatetime: 2026-09-04T07:00:00-07:00
+pubDatetime: 2026-09-04T08:25:00-07:00
 tags: ["ai", "anthropic", "openai", "ai-policy", "claude-code", "security"]
 heroImage: "/posts/fable-5-1-is-allowed-to-find-vulnerabilities-now/hero.jpg"
-draft: true
+draft: false
 unlisted: false
 agentSummary: "Anthropic's Fable 5.1 (released 2026-09-01) restores the vulnerability-discovery capability that triggered the June 2026 export-control pull of Fable 5, drawing the line the security community asked for (discovery allowed, exploit development blocked) without mentioning June. The headline 25 to 45 percent price cut comes entirely from cheaper cache reads and applies only where usage is billed by token, so subscribers see none of it. Measured from the author's own Claude Code transcripts, 5.1 takes the same number of turns per prompt as Fable 5 but emits about 50 percent more output tokens, which works out to about 21 percent cheaper per prompt at API list price and about 16 percent more expensive on a subscription-shaped meter. The weekly Fable ceiling is unchanged and Claude Code limits drop 17 percent on September 14. OpenAI's GPT-6 Astra, released two days after Fable 5.1, draws the same discovery-allowed, exploit-blocked line, with the unrestricted model gated behind its Daybreak defender program."
 agentPrompts:
@@ -52,11 +52,11 @@ The arithmetic, per prompt, across every Claude Code session I ran in each windo
 
 Means over every prompt in the window, subagent turns excluded, cache writes priced at the one-hour rate. Two days of 5.1 is a thin sample, and the 5.1 window had more short question-and-answer prompts than the Fable 5 one, which pulls its averages down, not up.
 
-Then there is the meter itself. Anthropic reset everyone's limits when 5.1 shipped on Tuesday evening. By Thursday afternoon, a day and three quarters into a seven-day window, my Fable allocation read 56% used. I wrote that at that pace it would run dry Friday. Friday morning Claude Code told me itself:
+Then there is the meter itself. Anthropic reset everyone's limits when 5.1 shipped on Tuesday evening. By Thursday afternoon, a day and three quarters into a seven-day window, my Fable allocation read 56% used. This morning Claude Code put up the warning:
 
 ![Claude Code's notice: Approaching limit. Resets Tuesday at 8:00 pm. A View usage button below.](/posts/fable-5-1-is-allowed-to-find-vulnerabilities-now/approaching-limit.jpg)
 
-The notice says approaching, not out, but the reset is Tuesday night, so the weekend and Monday run on Opus. Some of that is me. This was a week with one session that ran for two days, subagents fanning out, and a desktop-automation tool stuffing screenshots into context, and Claude Code's own usage screen says so in as many words. But the same logs show the model's share. Compared with an equal stretch of Fable 5 in late August, this week's turns produced almost twice the output tokens and more than twice the cache writes for about a third more cache reads. The expensive parts doubled. The part that got cheaper barely moved, and on a subscription it did not get cheaper anyway.
+The reset is Tuesday night, so the weekend and Monday run on Opus. Some of that is me. This was a week with one session that ran for two days, subagents fanning out, and a desktop-automation tool stuffing screenshots into context, and Claude Code's own usage screen says so in as many words. But the same logs show the model's share. Compared with an equal stretch of Fable 5 in late August, this week's turns produced almost twice the output tokens and more than twice the cache writes for about a third more cache reads. The expensive parts doubled. The part that got cheaper barely moved, and on a subscription it did not get cheaper anyway.
 
 I don't want to oversell this. Anthropic doesn't publish how Fable draws down a weekly limit, only that it does so "[faster than other Claude models](https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan)," and I have no Fable 5 reading of the same meter to set beside this one. But if your Fable allocation feels like it is going faster since Tuesday, the shape of the tokens says you are not imagining it, and the shape of your sessions is probably helping.
 
@@ -64,7 +64,7 @@ I don't want to oversell this. Anthropic doesn't publish how Fable draws down a 
 
 On Max you can still spend up to 50% of your weekly limit on Fable, and 5.1 inherited that unchanged. [The support page](https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan) is explicit that this is a ceiling inside the limit, not an addition: "you can never use more than your weekly limit." Pro runs Fable on credits. Anthropic reset everyone's limits on launch day, which was a decent thing to do. Then on September 14 the temporary 50% boost to Claude Code weekly limits becomes a permanent 25%, which Anthropic itself describes as "[a 17% reduction in weekly limits on Claude Code](https://x.com/ClaudeDevs/status/2093742322525810912)" compared to today. So the model that spends more per turn arrives two weeks before the limit shrinks. In July I built a little skill that runs Fable's habits on Opus so I could save the real thing for problems that need it. It's getting more use this month than it did in August.
 
-OpenAI priced Astra at the same $10 and $50 per million tokens and says it is "[included within the existing subscription allowances](https://openai.com/index/gpt-6-astra/#:~:text=included%20within%20the%20existing%20subscription%20allowances)," with credits for sale on top. OpenAI doesn't say whether there is a ceiling inside the allowance the way there is on Max. It hasn't reached my account yet, so I can't tell you what it does to a meter.
+OpenAI priced Astra at the same $10 and $50 per million tokens and says it is "[included within the existing subscription allowances](https://openai.com/index/gpt-6-astra/#:~:text=included%20within%20the%20existing%20subscription%20allowances)," with credits for sale on top. OpenAI doesn't say whether there is a ceiling inside the allowance the way there is on Max. It hasn't shown up in my account yet, so I can't say how fast it burns through a week's limit.
 
 ## Talks better, still talks too much
 
