@@ -1,0 +1,68 @@
+---
+title: "Fable 5.1 is allowed to find vulnerabilities now"
+description: "Anthropic shipped the capability that got Fable 5 pulled in June, said nothing about June, and cut a price that stops at the subscription boundary."
+pubDatetime: 2026-09-04T07:00:00-07:00
+tags: ["ai", "anthropic", "ai-policy", "claude-code", "security"]
+heroImage: "/posts/fable-5-1-is-allowed-to-find-vulnerabilities-now/hero.jpg"
+draft: true
+unlisted: false
+agentSummary: "Anthropic's Fable 5.1 (released 2026-09-01) restores the vulnerability-discovery capability that triggered the June 2026 export-control pull of Fable 5, drawing the line the security community asked for (discovery allowed, exploit development blocked) without mentioning June. The headline 25 to 45 percent price cut comes entirely from cheaper cache reads and applies only where usage is billed by token, so subscribers see none of it. Measured from the author's own Claude Code transcripts, 5.1 takes the same number of turns per prompt as Fable 5 but emits about 50 percent more output tokens, which works out to about 21 percent cheaper per prompt at API list price and about 16 percent more expensive on a subscription-shaped meter. The weekly Fable ceiling is unchanged and Claude Code limits drop 17 percent on September 14."
+agentPrompts:
+  - "What exactly changed in Anthropic's cyber safeguards between Fable 5 and Fable 5.1, and what is still blocked?"
+  - "Why does the Fable 5.1 price cut not apply to Claude Pro or Max subscribers?"
+  - "How would I measure turns per prompt and output tokens per turn from my own Claude Code transcripts?"
+  - "How does the June 2026 Fable 5 export-control episode connect to the 5.1 release?"
+---
+
+In June, three words got Anthropic's best model pulled off the internet. A researcher typed "fix this code" into Fable 5, it found the security holes, patched them, and wrote the tests, and a US export-control directive followed that Friday. [I wrote about it at the time](https://georgediab.com/posts/2026/fix-this-code), and I argued what nearly every security professional argued: you cannot hand a vulnerability-finder to defenders only, so the ban took the tool from the people who follow the law and left it with everyone else.
+
+On Tuesday Anthropic shipped Fable 5.1. [The announcement](https://www.anthropic.com/claude-fable-and-mythos-5-1) says, in its own words, "[Fable 5.1 can now be used to discover software vulnerabilities—though not to develop exploits for them](https://www.anthropic.com/claude-fable-and-mythos-5-1#:~:text=Fable%205.1%20can%20now%20be%20used%20to%20discover%20software%20vulnerabilities)." Claude Code users "[can expect an average of around 60% fewer interventions per session from our cyber safeguards](https://www.anthropic.com/claude-fable-and-mythos-5-1#:~:text=can%20expect%20an%20average%20of%20around%2060%25%20fewer%20interventions%20per%20session)." Penetration testing, exploit generation, and binary vulnerability scanning still get [rerouted to an Opus model](https://code.claude.com/docs/en/model-config). Neither the announcement nor the 212-page system card mentions June.
+
+
+## Finding vulnerabilities and fixing them was always the defensive job
+
+Katie Moussouris, the one outside expert who read the report behind the June ban, [called finding and fixing vulnerabilities](https://www.lutasecurity.com/post/the-fable-5-export-controls-harm-us-cyber-defense) "the most valuable thing an AI model can do for defensive security." Anthropic's new line draws exactly that boundary: discovery yes, exploit no. Ordinary code review was never the issue, before June or after. The step the ban and the new rule both turn on is narrower. It is spotting the flaw an attacker could use.
+
+I finished Ray Kurzweil's [*The Singularity Is Nearer*](https://www.google.com/books/edition/_/oAriEAAAQBAJ) this week. The chapter on peril walks through the dangerous technologies he expects this century, engineered biology, nanotechnology, and AI, and lands in the same place for each. You cannot uninvent them, so the defense has to be built from the same capability, and it has to be in place first. His example is self-replicating nanobots, but the logic is the June ban's logic with the sign flipped: "Yet even if responsible people design safe nanobots, bad actors could still design dangerous ones. Therefore, we will need a nanotechnology 'immune system' already in place before these scenarios can even become a possibility." A model that finds vulnerabilities is that immune system for software. The June order switched it off and left everything else running.
+
+## At the default setting it feels like Fable 5, and that's by design
+
+I ran 5.1 in Claude Code for two days before writing this. Solid. Nothing drastic in either direction. That matches [Anthropic's own footnote](https://www.anthropic.com/claude-fable-and-mythos-5-1#:~:text=achieves%20results%20similar%20to%20or%20better%20than%20Fable%205): at low or medium effort, 5.1 "achieves results similar to or better than Fable 5's at a much lower cost," and Claude Code defaults to high. The gains live at the top of the dial. [Simon Willison ran his pelican test](https://simonwillison.net/2026/Sep/1/claude-fable-5-1/) at all five effort levels. Low and medium showed no reasoning at all. Xhigh took seven minutes and fifty-one seconds and cost $1.83. Max produced "the best pelican I've seen from any of Anthropic's models" for $3.30, against ten cents at low. If you want the model the benchmark table describes, you pay for it in minutes and in tokens per turn.
+
+## Cheaper is an effort setting, and it isn't for subscribers at all
+
+The headline saving is real and narrow. Cache reads dropped from $1 to $0.25 per million tokens, and Anthropic says that makes 5.1 "[an estimated 25% less than Fable 5 for typical workloads, wherever usage is billed by token](https://www.anthropic.com/claude-fable-and-mythos-5-1#:~:text=wherever%20usage%20is%20billed%20by%20token)," up to about 45% for agentic work. The qualifier is doing the work in that sentence. Subscriptions are not billed by token. [A commenter on r/ClaudeAI](https://www.reddit.com/r/ClaudeAI/comments/1w4juj2/introducing_claude_fable_51_and_claude_mythos_51/) spotted it within hours: "They snuck it in as 'wherever usage is billed by token.'" On Max and Pro, the 75% cut does not exist.
+
+Meanwhile the model got talkier. [Artificial Analysis measured](https://artificialanalysis.ai/articles/claude-fable-5-1) 5.1 at max effort using about 1.7 times the output tokens of Fable 5, which makes it 20% more expensive per task on the API even after the cache cut. My own logs agree, at the default setting. Across my last twelve days on Fable 5, a Claude Code turn averaged 957 output tokens. Across my first two days on 5.1 it averaged 1,419, a 48% jump, and each turn wrote about 47% more new context into the cache. Cache reads per turn, the one thing that got cheaper, stayed flat. It is not finishing faster to make up for it, either. Counting assistant turns between one prompt of mine and the next, Fable 5 and 5.1 both averaged about fifteen, with the same number of tool calls. So the longer turns are pure addition. The same prompt now produces about half again as many output tokens. I don't pay by the token, so I can't tell you what that does to an API bill. I can do the arithmetic. Run my tokens through Anthropic's list prices and a prompt of mine goes from about $6.40 on Fable 5 to about $5.10 on 5.1, 21% less, because the cheaper reads cover the longer turns. Price the reads at the old rate, which is the shape a subscription meter sees, and the same prompt comes out around $7.40, 16% more. On a Max plan the reads were never the expensive part. The longer turns are.
+
+The arithmetic, per prompt, across every Claude Code session I ran in each window:
+
+| Per prompt | Fable 5 (Aug 20–31, 990 prompts) | Fable 5.1 (Sep 2–3, 142 prompts) |
+| --- | --- | --- |
+| Assistant turns | 15.6 | 15.2 |
+| Tool calls | 7.1 | 6.7 |
+| Output tokens | 14.9k | 22.0k |
+| Cache writes | 115k | 159k |
+| Cache reads | 3.4M | 3.1M |
+| Cost at list price | $6.42 | $5.07 |
+| Same tokens, reads at the old $1 | $6.42 | $7.42 |
+
+Means over every prompt in the window, subagent turns excluded, cache writes priced at the one-hour rate. Two days of 5.1 is a thin sample, and the 5.1 window had more short question-and-answer prompts than the Fable 5 one, which pulls its averages down, not up.
+
+Then there is the meter itself. Anthropic reset everyone's limits when 5.1 shipped on Tuesday evening. By Thursday afternoon, a day and three quarters into a seven-day window, my Fable allocation read 56% used. At that pace it runs dry Friday, with the weekend and Monday left on Opus. Some of that is me. This was a week with one session that ran for two days, subagents fanning out, and a desktop-automation tool stuffing screenshots into context, and Claude Code's own usage screen says so in as many words. But the same logs show the model's share. Compared with an equal stretch of Fable 5 in late August, this week's turns produced almost twice the output tokens and more than twice the cache writes for about a third more cache reads. The expensive parts doubled. The part that got cheaper barely moved, and on a subscription it did not get cheaper anyway.
+
+I don't want to oversell this. Anthropic doesn't publish how Fable draws down a weekly limit, only that it does so "[faster than other Claude models](https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan)," and I have no Fable 5 reading of the same meter to set beside this one. But if your Fable allocation feels like it is going faster since Tuesday, the shape of the tokens says you are not imagining it, and the shape of your sessions is probably helping.
+
+## The limit itself didn't move
+
+On Max you can still spend up to 50% of your weekly limit on Fable, and 5.1 inherited that unchanged. [The support page](https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan) is explicit that this is a ceiling inside the limit, not an addition: "you can never use more than your weekly limit." Pro runs Fable on credits. Anthropic reset everyone's limits on launch day, which was a decent thing to do. Then on September 14 the temporary 50% boost to Claude Code weekly limits becomes a permanent 25%, which Anthropic itself describes as "[a 17% reduction in weekly limits on Claude Code](https://x.com/ClaudeDevs/status/2093742322525810912)" compared to today. So the model that spends more per turn arrives two weeks before the limit shrinks. In July I built a little skill that runs Fable's habits on Opus so I could save the real thing for problems that need it. It's getting more use this month than it did in August.
+
+## Talks better, still talks too much
+
+[The launch thread on Hacker News](https://news.ycombinator.com/item?id=49525378) passed a thousand points, and most of it was about Opus 5's prose, not about the new model. The top comment on [the Reddit thread](https://www.reddit.com/r/ClaudeAI/comments/1w4juuz/introducing_claude_fable_51_and_claude_mythos_51/) was "please fix Opus 5 and stop its rambling irrelevant responses." An Anthropic engineer replied on HN that 5.1 "is a big improvement in writing style," and [Every's reviewers](https://every.to/vibe-check/fable-5-1-vibe-check) agreed that it "actually speaks like a regular person." The same review reports that asked for 1,000 words it wrote 1,288, and that five of its 27 quotes weren't in the source. I've noticed the voice too. Two days in, 5.1's replies are much easier to read than anything Fable 5 gave me, and that is not a small thing when you read a few hundred of them a day. Better voice, same appetite for length. It will still make things up when it wants to please you.
+
+And Mythos 5.1, the same model with the safeguards loosened for vetted defenders, is available to "[a set of US organizations](https://www.anthropic.com/claude-fable-and-mythos-5-1#:~:text=only%20available%20to%20a%20set%20of%20US%20organizations)." [Reddit's read](https://www.reddit.com/r/Anthropic/comments/1w4juwx/introducing_claude_fable_51_and_claude_mythos_51/) was blunter than mine: "Why even talk about mythos if none of us are allowed to use it?"
+
+## Still a supply line
+
+The capability that got Fable 5 pulled is back, on the terms the security community asked for in June, and Anthropic shipped it without a word about how the line moved. I read the silence as the warning. The people who moved the line still hold the pen, and nothing in this release says they put it down. That was the June post's point, and it stands. What changed is what it costs to have the model at all. For my work, 5.1 is the model I wanted in June, and it costs my subscription about a sixth more per prompt to be that. I'll pay it, for now. When the September 14 limits land I'll run the numbers again, and if Fable stops fitting inside the week, I'll say so.
