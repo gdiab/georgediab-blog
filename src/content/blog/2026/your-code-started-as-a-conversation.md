@@ -3,6 +3,7 @@ title: "Your code started as a conversation"
 description: "Engram indexes coding-agent transcripts so you can find why code exists, not just when it changed. How I use Mike Manzano’s open-source provenance tool, who it’s for, and where it still fails me."
 pubDatetime: 2026-09-14T21:30:00-07:00
 tags: ["ai", "agents", "tools", "developer-tools", "open-source", "software-engineering"]
+heroImage: "/posts/your-code-started-as-a-conversation/hero.jpg"
 draft: true
 unlisted: false
 agentSummary: "Personal field report on Engram, Mike Manzano’s local provenance index over coding-agent transcripts. Covers what it is (tapes, fingerprints, explain/grep/peek), how George uses it through agents (Tackle SPEC recovery, off-label memory, dispatch markers), who it’s for, and confirmed failures: text≠idea lineage, install cliffs, misuse-as-memory, Cursor adapter format drift (issue #19), and why semantic tools like funes are complementary."
