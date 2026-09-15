@@ -3,6 +3,7 @@ title: "Running an organization of agents through Tightbeam"
 description: "Six weeks running forty-three coding agents through Tightbeam: what it records, how reviews and rules hold, what broke, and who should try it."
 pubDatetime: 2026-09-14T16:50:43-07:00
 tags: ["ai", "agents", "tools", "developer-tools", "open-source", "software-engineering"]
+heroImage: "/posts/running-an-organization-of-agents-through-tightbeam/hero.jpg"
 draft: false
 unlisted: false
 agentSummary: "Six weeks of running forty-three Claude Code and Codex sessions through Tightbeam, Mike Manzano's open gateway that records every agent claim, review, and ruling in one ledger instead of chat logs. Covers the four-word model (work item, assignment, claim, verdict), the nobody-approves-their-own-code rule, statutes compiled into harness hooks, the ATC and TopLines views, and the real cost: credential rotation on a Mac, a database that grew to 1.39 GB and crashed the gateway, and fourteen of the fifteen open issues being the author's. Try it if you already run several agents and own an always-on box."
