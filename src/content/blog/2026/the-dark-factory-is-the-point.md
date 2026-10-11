@@ -1,5 +1,5 @@
 ---
-title: "The dark factory is a Michelin kitchen"
+title: "Why the dark factory is a Michelin kitchen"
 description: "In February I said the dark factory wasn't the point. Aim for lights-off anyway, but run it like a Michelin kitchen: sample the dishes, fix the kitchen when the same mistake shows up twice, then franchise."
 pubDatetime: 2026-10-09T09:50:16-07:00
 tags: ["ai", "agents", "software-engineering", "engineering-management", "developer-tools"]
