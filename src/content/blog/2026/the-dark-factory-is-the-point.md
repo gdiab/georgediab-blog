@@ -1,17 +1,17 @@
 ---
 title: "Why the dark factory is a Michelin kitchen"
 description: "In February I said the dark factory wasn't the point. Aim for lights-off anyway, but run it like a Michelin kitchen: sample the dishes, fix the kitchen when the same mistake shows up twice, then franchise."
-pubDatetime: 2026-10-09T09:50:16-07:00
+pubDatetime: 2026-10-11T13:36:41-07:00
 tags: ["ai", "agents", "software-engineering", "engineering-management", "developer-tools"]
 heroImage: "/posts/the-dark-factory-is-the-point/hero.jpg"
-draft: true
+draft: false
 ---
 
 In February I wrote that "[most teams do not need a 'dark factory.'](https://www.georgediab.com/posts/2026/the-dark-factory#:~:text=Most%20teams%20do%20not%20need%20a%20%22dark%20factory.%22)" Eight months later I have agents merging their own commits on one project, a review gate on another that won't let a model approve its own diff, and a game where the agent wrote 101 of 105 commits and checked its own work by playing it in a headless browser. Last week Lauren Tan got asked on [Matt Pocock's stream](https://www.youtube.com/watch?v=MN9dGgmLyso&t=3115s) whether what she runs is a dark factory. She's [poteto](https://x.com/poteto) on X, she ships thousands of PRs a month, and she wrote [pstack](https://github.com/cursor/plugins/tree/main/pstack). She said, "[It kind of is, yeah, actually.](https://www.youtube.com/watch?v=MN9dGgmLyso&t=3115s)" That's my answer now too, so I owe the February post a correction.
 
 I still agree with most of that post. The part I'd take back is the advice to pick a stopping point, and that was pretty much what the title was saying.
 
-## The parts I'd still sign
+## What I still agree with
 
 The February argument was that [verification, not generation, is the bottleneck](https://www.georgediab.com/posts/2026/the-dark-factory#:~:text=Verification%20is%20still%20the%20bottleneck.), that "[if you want autonomy, you have to pay for evidence](https://www.georgediab.com/posts/2026/the-dark-factory#:~:text=If%20you%20want%20autonomy%2C%20you%20have%20to%20pay%20for%20evidence.)," and that "[no human review](https://www.georgediab.com/posts/2026/the-dark-factory#:~:text=%22no%20human%20review%22%20is%20only%20defensible%20if%20review%20is%20replaced%20with%20something%20stronger)" only makes sense when review is replaced by something stronger than a human skimming a diff. I kept a list of changes that should stay behind mandatory human review: security-sensitive code, migrations, concurrency, compliance, incident playbooks. I still run all of that today. Every loop below was built to produce evidence before it was trusted to run on its own, and the list of things I won't let an agent merge unsupervised hasn't gotten any shorter.
 
@@ -39,7 +39,7 @@ That's how I square the kitchen with aiming for dark. For me, lights-off means t
 
 ## What it looks like when you aim for dark
 
-Here are three of my own kitchens, with numbers, since this kind of claim is easy to make and hard to back up.
+Here are three of my kitchens.
 
 Scrapwake is a browser space-arcade game I built with Cursor's cloud agents, driven from a Grok Bot project. As I write this it has 108 commits across all branches, and the agent wrote 104 of them. I wrote three, the last one is a merge by Cursor's bot, and all nine PRs open under my GitHub account. The verification loop was easy to describe and took most of the effort. I taught the agent how to play the game so it could confirm its own work, and had it take screenshots so I could check too. `npm run verify` builds the game and runs 154 unit tests. Then it runs Playwright smoke tests that drive the real game in headless Chrome through test hooks, with real keyboard events and real collision frames, and saves the screenshots. A coverage test fails the build if any gameplay contract in the table is missing one of its four required cases, so the agent can't quietly skip a scenario. The agent also runs revert checks on its own. It breaks the feature on purpose, confirms the test goes red, and restores it. Six of those are documented for one shield mechanic.
 
