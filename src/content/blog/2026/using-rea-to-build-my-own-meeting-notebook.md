@@ -13,9 +13,11 @@ Previous attempts haven't gone particularly well. I tried [Minutes](https://gith
 
 Minutes repeatedly missed my microphone on Zoom calls. With Anarlog, I spent time getting local transcription, summaries, and speaker channels working with my setup. After enough of that, wanting a recording I could find and process again felt pretty reasonable. If the transcription goes wrong, at least let me keep the conversation.
 
-Then I came across [REA, Reverse Engineer Anything](https://github.com/morluto/rea). It gives an agent tools and instructions for investigating an application through the files installed on your machine. I asked the agent to try it against Granola on my Mac before building our own version. Could understanding the app I liked get this attempt closer to the one I wanted?
+Then I came across [REA, Reverse Engineer Anything](https://rea.tools/) ([GitHub](https://github.com/morluto/rea)). It gives an agent tools and instructions for investigating an application through the files installed on your machine. I asked the agent to try it against Granola on my Mac before building our own version. Could understanding the app I liked get this attempt closer to the one I wanted?
 
-We called the result ggranola. My sense is that REA helped bridge a gap I'd been missing in the earlier attempts. I knew the experience I wanted. I hadn't understood enough of what made it work.
+The setup was Codex with GPT-6 Astra on High, using REA 6.4.0. Everything ran against the copy of Granola installed on my own Mac, for my personal use, and no Granola code went into ggranola.
+
+We called the result ggranola. My sense is that REA helped with what I'd been missing in the earlier attempts. I knew the experience I wanted. I hadn't understood enough of what made it work.
 
 ## REA gave the agent something concrete to investigate
 
@@ -25,7 +27,9 @@ It wasn't a particularly tidy first run. The broad scan hit an archive-checking 
 
 After consulting the instructions, the agent narrowed the analysis to three audio-related files. That produced useful findings, alongside unresolved questions. At one point, REA couldn't trace a reference that the agent could see in the source. We kept that contradiction in the record and used direct code reading and conventional tools to fill in parts of the picture.
 
-That limits what I can claim for REA, but it also describes how it helped. The agent could break an unfamiliar application into questions it could investigate, keep partial answers, and continue. We came away with findings we could use and a record of where the investigation stopped.
+The agent could break an unfamiliar application into questions it could investigate, keep partial answers, and continue. We came away with findings we could use and a record of where the investigation stopped.
+
+Before this I'd never heard of [Ghidra](https://ghidra-sre.org/), a free tool from the NSA that turns compiled apps back into roughly readable code. A common question about REA is why not just tell your agent to run Ghidra. In my run, REA didn't use it at all. The skill is what kept the agent asking specific questions and writing down what it found, instead of wandering through the app's code.
 
 ## The notes had to remain mine
 
@@ -44,7 +48,7 @@ Audio retention was a choice I wanted to make differently. The packaged code had
   <p class="post-callout-note">The agents tested the failure paths as well as the successful one.</p>
 </aside>
 
-Those choices came from the investigation and from me. The menu bar was my request. A later look at Granola's live Settings informed more settings work, but that was a separate, authorized UI inspection. Giving REA credit doesn't require attributing every decision to it.
+Those choices came from the investigation and from me. The menu bar was my request. A later look at Granola's live Settings informed more settings work.
 
 ## A working app gave me more useful complaints
 
@@ -54,7 +58,7 @@ Once I could use the app, I could ask for specific changes. Put each meeting in 
 
 <figure>
   <img src="/posts/using-rea-to-build-my-own-meeting-notebook/settings.png" alt="ggranola Settings in a browser test fixture, with sample meetings, a microphone selector, and a 30-day retention choice" width="1280" height="720" loading="lazy" decoding="async">
-  <figcaption>ggranola's Settings, captured in a browser test fixture with sample meetings. The installed-app recording checks below are separate. Click to enlarge.</figcaption>
+  <figcaption>ggranola's Settings, captured in a browser test fixture with sample meetings. Click to enlarge.</figcaption>
 </figure>
 
 <aside class="post-callout post-callout-test not-prose" aria-labelledby="microphone-check">
@@ -69,7 +73,7 @@ Once I could use the app, I could ask for specific changes. Put each meeting in 
 
 That's a much more useful result to me than a screenshot of a microphone dropdown.
 
-Reviews caught things I wouldn't want to discover in a real meeting. Command-Q could bypass the recording guard. Our echo filter could confuse different names or signed numbers with duplicate speech. The agents fixed those failures and added checks for them. I've [written before about putting reviewers around coding agents](https://georgediab.com/posts/2026/for-every-agent-that-writes-code-two-agents-review-it), and this run supplied more reasons to keep doing it. These were separate sessions of the same model, so this wasn't a test of reviewers from different model families.
+Reviews caught things I wouldn't want to discover in a real meeting. Command-Q could bypass the recording guard. Our echo filter could confuse different names or signed numbers with duplicate speech. The agents fixed those failures and added checks for them. I've [written before about putting reviewers around coding agents](https://georgediab.com/posts/2026/for-every-agent-that-writes-code-two-agents-review-it), and this run supplied more reasons to keep doing it.
 
 Then there were the things a code review couldn't finish for me. macOS stopped accepting earlier recording permissions after rebuilds changed the app's signing identity. We moved to a consistent development identity, I repaired the initial permissions, and we tested another update. It recorded without asking for approval again and preserved the existing meeting files.
 
@@ -100,11 +104,9 @@ A focused REA pass and direct inspection of verified package files then let us i
   </dl>
   <p>The original run's tokens would be valued at about <strong>$256 using Standard API rates</strong>. I used a Pro plan; this comparison isn't my bill.</p>
   <details>
-    <summary>How we counted, and what the estimate leaves out</summary>
-    <p>Through 8:50 a.m. PDT on October 12, the original project tree contained 19 sessions: one coordinator and 18 delegated agents, including the first documentation worker. The separate writing pane made 20. That's across the run, not peak concurrency. All counted sessions recorded GPT-6 Astra.</p>
-    <p>The original tree logged 194.7 million tokens, with about 98% of input served from cache. That includes repeated context across research, implementation, reviews, and documentation. It isn't a count of newly written code. At the API rates checked on October 12, those tokens would be about $256 at Standard pricing or $512 at Fast pricing; including the separate writer brings the estimates to about $277 or $553. <a href="https://developers.openai.com/api/docs/models/gpt-6-astra">official model rates</a></p>
-    <p>This ran through a Pro plan. Those estimates aren't my bill, and the logs don't tell me how to allocate the subscription to this project. My time and local hardware aren't included either. The token snapshot also predates the later layout update and reminder investigation. <a href="https://learn.chatgpt.com/docs/pricing">Codex plan accounting</a></p>
-    <p>We summed the last cumulative usage counter before the cutoff once per session. Cached input is included in input, and reasoning is included in output; neither is added twice. Later work, including the reminder investigation, falls outside these totals.</p>
+    <summary>How we counted</summary>
+    <p>19 sessions in the original project tree: one coordinator and 18 delegated agents, all on GPT-6 Astra, through 8:50 a.m. PDT on October 12. The separate writing pane made 20. Token totals include repeated context across research, implementation, reviews, and documentation, so they aren't a count of new code. Later work, including the reminder investigation, isn't included.</p>
+    <p>At the API rates checked on October 12, the original tree comes to about $256 Standard or $512 Fast; with the writer, about $277 or $553. <a href="https://developers.openai.com/api/docs/models/gpt-6-astra">Official model rates</a>. It ran on a Pro plan, so this isn't my bill. <a href="https://learn.chatgpt.com/docs/pricing">Codex plan accounting</a></p>
   </details>
 </aside>
 
@@ -114,8 +116,9 @@ There's an awkward accounting question in spending all this effort to avoid anot
 
 I'm learning from this even before I know whether it saves me money. Working through the recording failures and the gap between a passing test and a usable app gives me something to take into the next experiment. A meeting notebook I want to keep using would be a pretty good bonus. If someone else finds it useful too, even better.
 
-REA seemed to make this attempt more effective. I suspect understanding the app helped bridge the gap I kept running into. Perhaps clearer requirements from the earlier attempts helped too. We didn't do a matched run without REA, so I can't put a number on its contribution. I can point to what we learned and how it informed the behavior we built.
+REA seemed to make this attempt more effective. I suspect understanding the app helped. Perhaps clearer requirements from the earlier attempts helped too. We didn't do a matched run without REA, so I can't put a number on its contribution. I can point to what we learned and how it informed the behavior we built.
 
-At the early October 12 build checkpoint, ggranola recorded both audio sources on my Mac, transcribed locally, and kept the recordings and my notes available. Calendar setup was partial, direct menu-bar interaction needed verification, and recording hadn't been demonstrated on my Linux laptop. The speaker tests were controlled examples. There's more to establish before I can say it works as well for me as Granola.
+Right now ggranola records both audio sources on my Mac, transcribes locally, and keeps the recordings and my notes. There's more to establish before I can say it works as well for me as Granola.
 
-I'd like to open-source it so someone else could take this starting point and build what they need. I'm making it for myself, with no plan to sell it. For now, I want to get through an ordinary meeting, find my notes and recording afterward, and choose to use it again for the next one. That's the back-pocket test I keep coming back to.
+<!-- George: open-source line. (A) drop this sentence entirely; (B, current default) keep the softened version below. Original: "I'd like to open-source it so someone else could take this starting point and build what they need." -->
+I haven't decided whether to open-source it yet. I'm making it for myself, with no plan to sell it. For now, I want to get through a week of ordinary meetings, find my notes and recording afterward, and choose to use it again for the next one. That's the back-pocket test I keep coming back to.
