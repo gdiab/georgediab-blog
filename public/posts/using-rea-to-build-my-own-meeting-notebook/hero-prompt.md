@@ -1,0 +1,7 @@
+# Hero illustration
+
+Generated with the built-in image-generation tool on October 12, 2026. Saved as `hero.jpg` with JPEG encoding for the blog. Conceptual illustration, not a screenshot of either application.
+
+## Prompt
+
+Use case: illustration-story. Asset type: wide 16:9 editorial hero illustration for George Diab's technical software blog. Primary request: illustrate learning how a meeting-notebook application works and using that understanding to build a personal version. A thoughtful anonymous developer viewed from behind at a small home workbench; the central focal point is an open notebook-like software object on the desk with a few translucent layers carefully lifted apart, revealing symbolic handwritten note lines and a simple audio waveform. Beside it sits an understated laptop showing a new, simpler notebook interface made of unreadable lines. The scene feels like patient examination and making something useful for oneself, not a factory or a sales pitch. Style: clean slightly painterly editorial digital illustration, soft depth and tactile surfaces, simplified human silhouette, spacious balanced composition. Palette: deep midnight navy and muted green-slate, warm amber desk lamp, off-white paper, restrained teal highlights. Main objects readable at small thumbnail size with generous quiet space around them. No text, no readable code, no brands, no logos, no real application UI, no arrows or flowchart, no robot mascots, no stock-photo realism, no hyperrealistic hands, no excessive neon, no watermark. Landscape 16:9.
