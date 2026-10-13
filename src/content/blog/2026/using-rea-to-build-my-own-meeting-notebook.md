@@ -1,7 +1,7 @@
 ---
 title: "Using REA to build my own meeting notebook"
 description: "I used REA to investigate Granola, then built a meeting notebook for myself. What helped, what broke, and what the experiment taught me."
-pubDatetime: 2026-10-12T13:13:42-07:00
+pubDatetime: 2026-10-13T10:45:00-07:00
 tags: ["ai", "agents", "developer-tools", "software-engineering"]
 draft: false
 heroImage: "/posts/using-rea-to-build-my-own-meeting-notebook/hero.jpg"
