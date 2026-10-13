@@ -14,6 +14,7 @@ Based on recent hero images, the house style is:
 - Soft depth: rounded rectangles, subtle shadows, gentle bloom, faint grids or dotted paths.
 - Human figures, when used, should be anonymous, from behind or in profile, not posed.
 - UI/code should be symbolic and mostly unreadable, using abstract lines rather than real text.
+- Pets are optional. Only add one if it genuinely gives the scene character, and make it a dog: a black-and-white American pit bull / English terrier mix with one ear flipped up, drawn in the same painterly style as the rest of the scene.
 
 Avoid:
 
@@ -22,6 +23,7 @@ Avoid:
 - Readable code, dense tiny text, cluttered dashboards.
 - Bright rainbow palettes, excessive cyberpunk neon, mascot/cartoon style.
 - Hyperrealistic faces or hands.
+- Cats. Use a dog instead, or no pet at all.
 
 ## Reusable prompt
 
@@ -44,4 +46,4 @@ No branding, no logos, no readable text, no photorealistic stock-photo look, no 
 
 ## Negative prompt
 
-Readable text, real code, logos, brand names, stock photo, smiling corporate people, cluttered dashboard, excessive neon, cartoon mascot, hyperrealistic face, distorted hands, garish colors, dense tiny details, watermark.
+Readable text, real code, logos, brand names, stock photo, smiling corporate people, cluttered dashboard, excessive neon, cartoon mascot, hyperrealistic face, distorted hands, garish colors, dense tiny details, watermark, cat.
