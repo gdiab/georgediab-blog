@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+  AI Tab Groups BETA — Privacy Policy (static, ready-to-attach draft).
+  Built from reviewed-clean Lane B v10 (art_2f908971) + current code/package evidence (v0.3.1 685d3ead /
+  ZIP art_a3b21aee; offline/synthetic-only reviewed-clean att_d8b0890a). Contact set to the PO default
+  hello@georgediab.net (George may change it). NOT HOSTED by the agent; George hosts this at a public URL
+  he controls (PO default: https://georgediab.com/ai-tab-groups/privacy) and links it in the CWS dashboard.
+  No activation / store-install / release-readiness is implied by this file.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Tab Groups BETA — Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 46rem; margin: 2rem auto; padding: 0 1.1rem;
+         font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  h1 { font-size: 1.6rem; margin-bottom: 0.2rem; }
+  h2 { font-size: 1.15rem; margin-top: 1.8rem; }
+  .meta { opacity: 0.75; font-size: 0.9rem; }
+  code { font-size: 0.92em; }
+  ul { padding-left: 1.3rem; }
+  .note { border-left: 3px solid currentColor; padding: 0.3rem 0 0.3rem 0.8rem; opacity: 0.9; }
+  footer { margin-top: 2.5rem; font-size: 0.85rem; opacity: 0.7; }
+</style>
+</head>
+<body>
+<h1>AI Tab Groups BETA — Privacy Policy</h1>
+<p class="meta">Effective date: <time datetime="2026-11-03">2026-11-03</time>. Applies to the AI Tab Groups BETA browser
+extension (beta).</p>
+
+<h2>Summary</h2>
+<p>AI Tab Groups BETA groups your browser tabs. Rule-based grouping runs entirely on your device. If you connect
+your own AI provider, the extension sends limited tab <strong>metadata</strong> (not page contents) to
+<strong>that provider</strong> to generate grouping suggestions. The extension has no developer-configured
+data recipient — it contacts only the provider endpoint you enter.</p>
+
+<h2>What the extension handles</h2>
+<ul>
+  <li><strong>Web browsing activity</strong> — the <strong>titles</strong> and the <strong>origin + path</strong>
+  (site and path, without query strings or fragments) of tabs in your current window, used to group them and
+  to build AI suggestions.</li>
+  <li><strong>User-generated content</strong> — the <strong>names of your tab groups</strong> (text you
+  created), sent as context for suggestions; and the <strong>grouping rules you create</strong> (match
+  patterns and rule group names), which are stored and used <strong>locally only</strong> and are
+  <strong>never sent</strong> to any provider.</li>
+  <li><strong>Authentication information</strong> — the <strong>API key</strong> you enter for a chosen AI
+  provider (required for cloud providers; a local provider may be configured without one).</li>
+</ul>
+
+<h2>How it is used and shared</h2>
+<ul>
+  <li>Rule-based grouping is performed <strong>locally</strong>; no data leaves your device for it.</li>
+  <li>There are <strong>two</strong> explicit actions that send data, each <strong>only</strong> to the
+  <strong>AI provider endpoint you configured</strong>:
+    <ul>
+      <li><strong>Test connection</strong> (Options) sends a short fixed test prompt and the model name, plus
+      your API key in the authentication header if supplied — and <strong>no</strong> tab, group, rule, or
+      page data.</li>
+      <li><strong>Get suggestions</strong> sends the tab titles, origins/paths, and existing group names
+      above, plus the fixed instructions and model name, with your API key in the authentication header, to
+      return grouping suggestions.</li>
+    </ul>
+    The authentication header is provider-specific (<code>x-api-key</code> for Anthropic;
+    <code>Authorization: Bearer</code> for OpenAI-compatible/local). Sending is separate from changing tabs:
+    your tabs/groups change only when you <strong>Apply</strong> a suggestion.</li>
+  <li>The extension sends requests <strong>only</strong> to the endpoint you enter; it has <strong>no
+  developer-operated data sink</strong> in its code. Data you send goes to the third-party AI provider
+  <strong>you</strong> selected, governed by <strong>that provider's</strong> privacy policy and terms.</li>
+  <li>Your data is <strong>never sold</strong> and is <strong>not</strong> transferred to advertising
+  platforms, data brokers, or for credit/lending purposes. The use of information received from Google APIs,
+  and all use of user data, will adhere to the
+  <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq">Chrome Web Store User
+  Data Policy</a>, including the Limited Use requirements.</li>
+</ul>
+
+<h2>What is never sent</h2>
+<p>Full URLs, query strings, and fragments; page text or other page content; your passwords or cookies; and
+your locally-stored grouping rules. The extension does not read page contents.</p>
+
+<h2>Local storage</h2>
+<p>Your provider configuration and <strong>API key</strong>, your grouping rules, per-window cursor state,
+and a short local diagnostics log are stored <strong>on your device</strong> in the extension's storage. The
+diagnostics log never contains your key, URLs, paths, or tab titles.</p>
+<p class="note">Your API key is stored as a plain value in local extension storage (no additional
+encryption), and a local provider endpoint may use an unencrypted <code>http://localhost</code> connection; a
+cloud provider is always reached over HTTPS. This is disclosed plainly for the beta.</p>
+
+<h2>Your choices</h2>
+<p>AI features are optional. You can remove the provider (which clears the stored key), edit or remove rules,
+and uninstall at any time.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:hello@georgediab.net">hello@georgediab.net</a>.</p>
+
+<footer>
+AI Tab Groups BETA is in beta.
+</footer>
+</body>
+</html>
