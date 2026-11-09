@@ -136,6 +136,53 @@
     text-underline-offset: 0.2em;
   }
 
+
+  /* Pull quotes emphasize a line from the post. They are not blockquotes
+     (cited speech, left accent/50 border, 80% opacity) and not callouts
+     (new information, 3px solid accent bar, labels/headings). */
+  .prose .pull-quote {
+    min-width: 0;
+    margin-block: 2.75rem;
+    padding-block: 1.25rem;
+    color: var(--foreground);
+  }
+
+  .prose .pull-quote::before,
+  .prose .pull-quote::after {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+
+  .prose .pull-quote::before {
+    margin-bottom: 1.35rem;
+  }
+
+  .prose .pull-quote::after {
+    margin-top: 1.35rem;
+  }
+
+  .prose .pull-quote p {
+    margin: 0;
+    /* 1.25x body at default .prose (1rem); 1.5x body at lg:prose-xl (1.25rem). */
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+
+  @media (min-width: 1024px) {
+    .prose .pull-quote p {
+      font-size: 1.875rem;
+    }
+  }
+
   .prose .post-widget {
     display: flex;
     align-items: center;
@@ -173,6 +220,19 @@
     .prose .post-callout-stats {
       grid-template-columns: 1fr;
       gap: 1rem;
+    }
+
+    .prose .pull-quote {
+      margin-block: 2.25rem;
+      padding-block: 1rem;
+    }
+
+    .prose .pull-quote::before {
+      margin-bottom: 1.1rem;
+    }
+
+    .prose .pull-quote::after {
+      margin-top: 1.1rem;
     }
   }
 
